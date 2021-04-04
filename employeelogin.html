@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Employee Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+      body{
+        background-image: url("images/login.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:cover,contain;
+      }
+      .headingstyle{
+        background-image: url("images/login.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:cover,contain;
+      }
+      .panel_style{
+        margin-top: 5%;
+      }
+      #navbar {
+        overflow: hidden;
+        background-color:rgba(0,0,0,0.2);
+        text-align: right;
+      }
+      #navbar a {
+        float: right;
+        display: block;
+        color: white;
+        text-align: right;
+        padding: 30px 30px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      #navbar a:hover {
+        background-color: #ddd;
+        color: white;
+      }
+      #navbar a.active {
+        background-color: black;
+        color: white;
+      }
+    </style>  
+  </head>
+  <body>
+    <div id="navbar">
+			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
+			<a href="compose.html"><button type="button" class="btn btn-danger btn-lg">SIGN UP</button></a>
+			<a href="compose.html"><button type="button" class="btn btn-primary btn-lg">LOGIN</button></a>
+		</div>
+    <div class="container panel_style">
+      <div class="col-xs-6 col-xs-offset-3">
+        <div class="panel ">
+          <div class="panel-heading headingstyle">
+            <h3><b>Login</b></h3>
+          </div>
+          <nav class="navbar" style="background-color: #e3f2fd;">
+            <ul class="nav navnavbar-nav row">
+              <li class="nav-item active col-xs-6"><a class="nav-link" href="login.html"><h5><b>Customer</b></h5></a></li>
+              <li class="nav-item col-xs-6"><a class="nav-link" href="employeelogin.html"><h5><b>Employee</b></h5></a></li>
+            </ul>
+          </nav>
+          <div class="panel-body">
+            <form>
+              <div class="form-group">
+                <input type="text" placeholder="Username" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="password" placeholder="Password" class="form-control">
+              </div>
+              <button class="btn btn-info" type="button">Login</button>
+            </form>
+          </div>
+          <div class="panel-footer">
+            Don't have an account? <a href="###">Contact Admin</a> <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
