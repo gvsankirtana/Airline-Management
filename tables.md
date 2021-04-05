@@ -7,6 +7,7 @@ Schema of the project -> https://drive.google.com/file/d/1fNM8E-KdrGRa7raDDep0PN
 3. create table airline_Coordinator(Emp_ID int(4) primary key Auto_increment,Emp_name varchar(20),salary double(7,2),gender varchar(7),phone_no varchar(13),email varchar(40) UNIQUE,Date_of_join date,Role varchar(20),check(Gender in('Male','Female')));
    alter table airline_Coordinator add login_username varchar(20) references login(login_username);
 ![image](https://user-images.githubusercontent.com/59526292/113536707-5543d600-95f4-11eb-8f7e-50bda577efc4.png)
-4.
+4.create table customer_Care_Agent(Emp_ID int(4) primary key Auto_increment,Emp_name varchar(20),salary double(7,2),gender varchar(7),phone_no varchar(13),email varchar(40) UNIQUE,Date_of_join date,login_username varchar(20) references login(login_username),check(Gender in('Male','Female')));![image](https://user-images.githubusercontent.com/59526292/113536769-7d333980-95f4-11eb-93f2-7f1d958ec660.png)
+
 
 
