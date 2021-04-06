@@ -13,6 +13,7 @@ Schema of the project -> https://drive.google.com/file/d/1fNM8E-KdrGRa7raDDep0PN
 6. create table ticket(Ticket_no int(6) primary key,Class varchar(20),Booking_Ref varchar(8),Seat_No int(3),payment_Type varchar(15),booking_time time,booking_date date,account_No varchar(10),Bank_name varchar(30),flight_ID int(4) references airline(Flight_ID));
 7.  create table enquiry(Enquiry_ID int(8) primary key Auto_increment,Enquiry_type varchar(10),Enquiry_title varchar(40) NOT NULL,Enquiry_Description varchar(200),enquiry_answer varchar(200) Default NULL,Cust_id int(4) references customer(CUST_ID));
 8.  create table passenger_info(Aadhar_No int(12) primary key,P_DOB date,P_email varchar(40),P_Name varchar(30),P_gender varchar(7),P_age int(3),p_phone_no varchar(13),state varchar(10),city varchar(10),pincode varchar(10),check(p_gender in('Male','Female')));
+
  alter table ticket add aadhar_no  int(12) references passenger_info(aadhar_No);![image](https://user-images.githubusercontent.com/59526292/113744534-6c80e180-9722-11eb-871a-b9ae76d5fcf4.png)
 
  
