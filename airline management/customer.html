@@ -113,16 +113,108 @@ body {
 span a {
 	color: #BBB;
 }
+#side a, .dropdown-btn {
+   padding: 6px 8px 6px 16px;
+   text-decoration: none;
+   font-size: 20px;
+   color: white;
+   display: block;
+   border: none;
+   background: none;
+   width: 100%;
+   text-align: left;
+   cursor: pointer;
+   outline: none;
+}
+#side a:hover, .dropdown-btn:hover {
+   color: yellow;
+}
+.sticky {
+   position: fixed;
+   top: 0;
+   width: 100%;
+}
+.sticky + .content {
+   padding-top: 60px;
+}
+#menu{
+   width:50px;
+   position: fixed;
+   right: 65px;
+   top:35px;
+   z-index:2;
+   cursor:pointer;
+}
+#side{
+   width:250px;
+   height:700px;
+   position: fixed;
+   right:-250px;
+   top:0;
+   background-color:rgba(0,0,0,0.2);
+   z-index: 2;
+   transition: 2s;
+   overflow-y: scroll;
+}
+li {list-style-type: none;
+   font-size: 16pt;
+}
+nav ul li{
+   list-style: none;
+   margin:50px 20px;
+}
+nav ul li a{
+   text-transform: uppercase;
+   text-decoration: none;
+   color: white;
+   text-align: right;
+}
    </style>
 </head>
 <body>
 	<div id="navbar">
 		<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
 	</div>
+	<nav id="side">
+		<ul>
+			<br>
+			<br>
+			<br>
+			<br>
+			<li><a href="search flights.html">Search Flights</a></li>
+			<li><a href="passenger info table.html">Book Ticket</a></li>
+		</ul>
+	</nav>
+	<img src="https://royalposthumus.com/images/white_menu_icon.png" style="width: 100px;"id="menu">
 	<div class="form-box">
 		<div class="header-text">
 			Customer Enquiry
 		</div><input placeholder="Your Enquiry Title" type="text"> <input placeholder="Your Enquiry Type" type="password"><textarea id="w3review" name="w3review" rows="4" cols="50">Enter Description</textarea> <button>Submit</button>
 	</div>
+	<script>
+		var menu=document.getElementById("menu");
+		var side=document.getElementById("side");
+		side.style.right="-250px";
+		menu.onclick=function(){
+		if(side.style.right=="-250px"){
+			side.style.right="0px"
+		}
+		else{
+			side.style.right="-250px"
+			}
+		}
+		var scroll = new SmoothScroll('a[href*="#"]');
+		window.onscroll = function() {myFunction()};
+		var navbar = document.getElementById("navbar");
+		var sticky = navbar.offsetTop;
+		function myFunction() {
+		if (window.pageYOffset >= sticky) {
+					navbar.classList.add("sticky")
+		}
+		 else {
+		navbar.classList.remove("sticky");
+		}
+		}
+		</script>
 </body>
 </html>
