@@ -1,51 +1,54 @@
-
-<html><body><div class=table>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-      <form action="/save/" name="att" id="att" method="post">
-  <table class="table table-dark table-striped  table-hover ">
-    <thead>
-      <tr>
-        <th>Subject</th>
-        <th>present</th>
-        <th>absent</th>
-        <th>ATTENDENCE PERCENTAGE</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><label for="epc">EPC</label></td>
-            <td><input type="text" name="epc"  value=0 id="epc"><p>hello</p></td>
-            <td><input type="text" name="epct"  value=0 id="epct"></td>
-            <td><input type="button" onclick="sub2()" class="btn btn-danger" value="decline"></td>
-          </tr>
-      <tr>
-        <td><label for="epc">EPC</label></td>
-        <td><input type="text" name="epc"  value=0 id="epc"><p>hello</p></td>
-        <td><input type="text" name="epct"  value=0 id="epct"></td>
-        <td><input type="button" onclick="sub2()" class="btn btn-danger" value="decline"></td>
-      </tr>
-      <tr>
-        <td><label for="epc">EPC</label></td>
-        <td><input type="text" name="epc"  value=0 id="epc"><p>hello</p></td>
-        <td><input type="text" name="epct"  value=0 id="epct"></td>
-        <td><input type="button" onclick="sub2()" class="btn btn-danger" value="decline"></td>
-      </tr>
-      <tr>
-        <td><label for="epc">EPC</label></td>
-        <td><input type="text" name="epc"  value=0 id="epc"><p>hello</p></td>
-        <td><input type="text" name="epct"  value=0 id="epct"></td>
-        <td><input type="button" onclick="sub2()" class="btn btn-danger" value="decline"></td>
-      </tr>
-       <tr> <td colspan="4" align="center"><input type="submit" id="submit" name="submit"></td>   
-      </tr>
-    </tbody>
-  </table>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flight Details</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  <body>
+  <div class="container">
+      <div class="row clearfix">
+      <div class="col-md-12 column">
+        <table class="table table-bordered table-hover" id="tab_logic">
+          <thead>
+            <tr >
+              <th class="text-center">
+                #
+              </th>
+              <th class="text-center">
+                Name
+              </th>
+              <th class="text-center">
+                Mail
+              </th>
+              <th class="text-center">
+                Mobile
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id='addr0'>
+              <td>
+              1
+              </td>
+              <td>
+              <input type="text" name='name0'  placeholder='Name' class="form-control"/>
+              </td>
+              <td>
+              <input type="text" name='mail0' placeholder='Mail' class="form-control"/>
+              </td>
+              <td>
+              <input type="text" name='mobile0' placeholder='Mobile' class="form-control"/>
+              </td>
+            </tr>
+                      <tr id='addr1'></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</form>
-</div>
-     </body>
-     </html>
+</body>
+</html>
