@@ -18,9 +18,8 @@ Schema of the project -> https://drive.google.com/file/d/1fNM8E-KdrGRa7raDDep0PN
  
 9. create table answers(emp_id int(4) references customer_care_agent(Emp_id),enquiry_id int(8) references enquiry(enquiry_id),primary key(emp_id,enquiry_id));
 ![image](https://user-images.githubusercontent.com/59526292/113744824-ae118c80-9722-11eb-9347-3c8943fa6be2.png)
-11. 
+10.  create table manages(emp_id int(4) references airline_Coordinator(Emp_id),flight_id int(4) references Airline(Flight_ID),primary key(Emp_ID,Flight_ID));![image](https://user-images.githubusercontent.com/59526292/113745646-17919b00-9723-11eb-9197-f81af654709a.png)
 
- 
 
 
  
