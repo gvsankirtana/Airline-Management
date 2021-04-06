@@ -15,8 +15,7 @@
 			$("#myModal").modal('show');
 		});
 	</script>
-	<style>
-		
+	<style>		
 form {
     display: inline-block;
     box-sizing: content-box;
@@ -253,27 +252,14 @@ h1 big {
 		</div>
 		<div id="navbar">
 			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
-			<a href="countdown.html"><em><b></a></b></em>
-			<a  href="bmi.html"><em><b></a></b></em>
-			<a href="countdown.html"><em><b></a></b></em>
-			<a  href="bmi.html"><em><b></a></b></em>
-			<a href="compose.html"><button type="button" class="btn btn-danger btn-lg">SIGN UP</button></a>
-			<a href="compose.html"><button type="button" class="btn btn-primary btn-lg">LOGIN</button></a>
+			<a href=""><em><b></a></b></em>
+			<a  href=""><em><b></a></b></em>
+			<a href=""><em><b></a></b></em>
+			<a  href=""><em><b></a></b></em>
+			<a href="login.html"><button type="button" class="btn btn-danger btn-lg">SIGN UP</button></a>
+			<a href="signup.html"><button type="button" class="btn btn-primary btn-lg">LOGIN</button></a>
 		</div>
 		<div class="content">
-			<nav id="side">
-				<ul>
-					<li><a href="#header"><img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="200" ></a></li>
-					<li><a href="#join">Flights</a></li>
-					<li><a href="#join">Offers</a></li>
-				</ul>
-			</nav>
-			<img src="https://royalposthumus.com/images/white_menu_icon.png" style="width: 100px;"id="menu">
-			<BR>
-			<BR>
-			<BR>
-			<BR>
-			<BR>
 			<div class="content">
 				  <center><h6 class="mb-1" style="font-size: 50px;color: white; text-shadow:2px 2px black;">Online Booking & Reservation</h6></center>
 				<center><a href="compose.html" class="btn btn-info btn-rounded btn-lg">BOOK NOW!</a></center>
@@ -282,30 +268,6 @@ h1 big {
 			  </div>
 				</div>
 <script>
-var menu=document.getElementById("menu");
-var side=document.getElementById("side");
-side.style.right="-250px";
-menu.onclick=function(){
-if(side.style.right=="-250px"){
-	side.style.right="0px"
-}
-else{
-	side.style.right="-250px"
-	}
-}
-var scroll = new SmoothScroll('a[href*="#"]');
-window.onscroll = function() {myFunction()};
-var navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
-function myFunction() {
-if (window.pageYOffset >= sticky) {
-			navbar.classList.add("sticky")
-}
- else {
-navbar.classList.remove("sticky");
-}
-}
-	
 function validate()                                    
 { 
 	var email = document.getElementById('email2').value;    
