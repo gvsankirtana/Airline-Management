@@ -189,10 +189,12 @@ nav ul li a{
 	</nav>
 	<img src="https://royalposthumus.com/images/white_menu_icon.png" style="width: 100px;"id="menu">
 	<div class="form-box">
+		<form action=index.php method="POST">
 		<div class="header-text">
 			Customer Enquiry
-		</div><input placeholder="Your Enquiry Title" type="text"> <input placeholder="Your Enquiry Type" type="password"><textarea id="w3review" name="w3review" rows="4" cols="50">Enter Description</textarea> <button>Submit</button>
+		</div><input placeholder="Your customer ID" type="text" id="custID" name="custID"><input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> <input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype"><textarea id="Description" name="Description" rows="1" cols="50">Enter Description</textarea> <button>Submit</button>
 	</div>
+</form>
 	<script>
 		var menu=document.getElementById("menu");
 		var side=document.getElementById("side");
