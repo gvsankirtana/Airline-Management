@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <title>Payment Page</title>
+    <head>
+        <meta charset="utf-8">
+        <title>Employee Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+          body{
+            background-image: url("");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:cover,contain;
+          }
+          .headingstyle{
+            background-image: url("");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:cover,contain;
+          }
+          .panel_style{
+            margin-top: 5%;
+          }
+          #navbar {
+            overflow: hidden;
+            background-color:rgba(0,0,0,0.2);
+            text-align: right;
+          }
+          #navbar a {
+            float: right;
+            display: block;
+            color: white;
+            text-align: right;
+            padding: 30px 30px;
+            text-decoration: none;
+            font-size: 17px;
+          }
+          #navbar a:hover {
+            background-color: #ddd;
+            color: white;
+          }
+          #navbar a.active {
+            background-color: black;
+            color: white;
+          }
+        </style>  
+      </head>
+      <body>
+        <div id="navbar">
+          <img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
+        </div>
+        <div><h2>Billing details</h2></div>
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="container panel_style">
+              <div class="col-xs-6">
+                <div class="panel panel-primary">
+                  <div class="panel-heading headingstyle">
+                    <h3><b>Payment Details</b></h3>
+                  </div>
+                  <div class="panel-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="Bank_Name">Bank Name</label> <br>
+                        <select required>
+                          <option selected value="" disabled> </option>
+                          <option value="sbi">SBI</option>
+                          <option value="hdfc">HDFC</option>
+                          <option value="icici">ICICI</option>
+                          <option value="axis">Axis</option>
+                          <option value="kotak">Kotak</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="Account_Number">Account Number</label> <br>
+                        <input type="number" placeholder="" class="form-control" name="Account_Number">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="container panel_style">
+              <div class="col-xs-6">
+                <div class="panel panel-primary">
+                  <div class="panel-heading headingstyle">
+                    <h3><b>Flight Charges</b></h3>
+                  </div>
+                  <div class="panel-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="Bank_Name">Bank Name</label> <br>
+                        <select required>
+                          <option selected value="" disabled> </option>
+                          <option value="sbi">SBI</option>
+                          <option value="hdfc">HDFC</option>
+                          <option value="icici">ICICI</option>
+                          <option value="axis">Axis</option>
+                          <option value="kotak">Kotak</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="Account_Number">Account Number</label> <br>
+                        <input type="number" placeholder="" class="form-control" name="Account_Number">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+</html>
