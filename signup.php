@@ -30,7 +30,7 @@
         $result = mysqli_query($conn, $sql);
         if ($result){
             $showalert = true;
-        }
+        } 
     }
     else{
         $showError = "Passwords do not match";   
