@@ -2,7 +2,8 @@
     $showalert=false;
    $nameErr = $emailErr = $showError="";
    if($_SERVER["REQUEST_METHOD"] == "POST")
-    {
+    { 
+	   
     include 'connect.php';
     $username = $_POST["username"];
     $name=$_POST["name"];
