@@ -1,12 +1,12 @@
 <?php
-$con=mysqli_connect("localhost", "root", "", "flight_management") or die(mysqli_error($con));
 session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-$username=mysqli_real_escape_string($con,$_POST["login_username"]);
-$password=mysqli_real_escape_string($con,$_POST["password"]);
+  include 'connect.php';
+$username=mysqli_real_escape_string($conn,$_POST["login_username"]);
+$password=mysqli_real_escape_string($conn,$_POST["password"]);
 $query = "SELECT * FROM flight_management.login WHERE login_username='$username' and password='$password'";
-$result = mysqli_query($con, $query);
+$result = mysqli_query($conn, $query);
 $count=mysqli_num_rows($result);
 if($count==0){
     echo "User account does not exists.";
