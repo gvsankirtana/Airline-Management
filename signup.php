@@ -1,6 +1,7 @@
 <?php
     $showalert=false;
    $nameErr = $emailErr = $showError="";
+   $f=0;
    if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
 	   
@@ -15,26 +16,27 @@
     $exists=false;
     if (empty($_POST["name"])) {
       $nameErr = "Name is required" ;
-    } else {
+    } 
       // check if name only contains letters and whitespace
-      if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+      else if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
         $nameErr = "Only letters and white space allowed";
+        $f=1;
       }
-    }
+    
     if (empty($_POST["email"])) {
       $emailErr = "Email is required";
+      $f=1;
     }
     
-    if(($password == $cpassword) && $exists==false && $nameErr="" && $emailErr=""){
+    if(($password == $cpassword) && $exists==false && $f==0){
         $sql = "INSERT INTO `login` ( `login_username`, `password`) VALUES ('$username', '$password')";
         $result = mysqli_query($conn, $sql);
         if ($result){
             $showalert = true;
         } 
     }
-	   
-    else{
-        $showError = "Passwords do not match";   
+    else if($password != $cpassword){
+        $showError = "Error inserting.!Check if password and confirm password match";   
     }
 
     }
