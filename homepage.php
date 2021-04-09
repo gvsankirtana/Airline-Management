@@ -30,7 +30,7 @@ form {
 input {
     box-shadow: 1px 1px 3px 1px black;
     width: 100%;
-    text-align: center;
+    text-align: center; 
 }
 .submit,.reset {
     display:inline-block;
