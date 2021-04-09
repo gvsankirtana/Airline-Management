@@ -203,40 +203,51 @@ h1 big {
     height:50px;
     width:100px;
 }
-#age{
-    height:50px;
-    width:400px;
-}
-#name{
-    height:50px;
-    width:400px;
-}
-#email{
-    height:50px;
-    width:400px;
-}
-#phone{
-    height:50px;
-    width:400px;
-}
-#password{
-    height:50px;
-    width:400px;
-}
 	</style>
 </head>
 <body>
-
-	</div>
-		<div id="navbar">
-			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
-			<a href=""><em><b></a></b></em>
-			<a  href=""><em><b></a></b></em>
-			<a href=""><em><b></a></b></em>
-			<a  href=""><em><b></a></b></em>
-			<a href="signup.php"><button type="button" class="btn btn-danger btn-lg">SIGN UP</button></a>
-			<a href="login.php"><button type="button" class="btn btn-primary btn-lg">LOGIN</button></a>
+   <div id="myModal" class="modal fade" >
+		<div class="modal-dialog" width=30%>
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title text-center">ONLINE BOOKING AND RESERVATION</h4>
+				</div>
+				<div class="modal-body text-center" >
+					<center> <img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" style="width: 200px;"class="logo">
+						<br>
+					</center>
+					<div class="panel">
+						<div class="panel-body">
+							<form action="login.php" method="POST">
+								<div class="text-left form-group">
+									<label for="username">Username:</label>
+									<input type="text" class="form-control text-left" id="login_username" name="login_username">
+							  	</div>
+							  	<div class="text-left form-group">
+									<label for="password">Password:</label>
+									<input type="password" class="form-control text-left" id="password" name="password">
+							  	</div>
+							  	<div class="text-center">
+									<button class="btn btn-success" type="submit" value="submit" >Login</button>
+							  		<button class="btn btn-primary" type="reset" value="reset" >Reset</button>
+							  	</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+	</div>
+   <div id="navbar">
+		<div class="container">
+			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+			</ul>
+		</div>
+	</div>
 		<div class="content">
 			<br>
 			<br>
