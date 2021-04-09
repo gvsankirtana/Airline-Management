@@ -243,7 +243,7 @@ h1 big {
 		<div class="container">
 			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 				<li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
 			</ul>
 		</div>
