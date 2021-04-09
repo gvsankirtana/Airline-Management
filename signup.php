@@ -32,6 +32,7 @@
             $showalert = true;
         } 
     }
+	   
     else{
         $showError = "Passwords do not match";   
     }
