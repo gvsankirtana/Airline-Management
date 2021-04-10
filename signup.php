@@ -30,10 +30,9 @@
     
     if(($password == $cpassword) && $exists==false && $f==0){
         $sql = "INSERT INTO `login` ( `login_username`, `password`) VALUES ('$username', '$password')";
-        $sql = "INSERT INTO `customer` (`Cust_name`,`gender`,`email`,`phone_number`,`login_username`) VALUES ('$name','$gender','$email','$phno','$username')";
         $result = mysqli_query($conn, $sql);
         if ($result){
-            $showalert = true;
+        //    $showalert = true;
         }
         else
         echo("Error description: " . mysqli_error($conn));
@@ -42,7 +41,12 @@
     else if($password != $cpassword){
         $showError = "Error inserting.!Check if password and confirm password match";   
     }
-
+    if($exists==false && $f==0)
+   { 
+     $sql = "INSERT INTO `customer` (`Cust_name`,`gender`,`email`,`phone_number`,`login_username`) VALUES ('$name','$gender','$email','$phno','$username')";
+     $result = mysqli_query($conn, $sql);
+     $showalert=true;
+   }
     }
 ?>
 <!DOCTYPE html>
