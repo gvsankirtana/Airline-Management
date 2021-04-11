@@ -43,7 +43,10 @@
 <title>Ticket Booking Form</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
   font-family: "Lato", sans-serif;
@@ -76,9 +79,10 @@ body {
 }
 
 .main {
-  margin-left: 160px; /* Same as the width of the sidenav */
+  margin-left: 60px; /* Same as the width of the sidenav */
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 0px 10px;
+  margin-right: 80px;
 }
 
 @media screen and (max-height: 450px) {
@@ -315,16 +319,45 @@ nav ul li a{
    color: white;
    text-align: right;
 }
+#navbar {
+   overflow: hidden;
+   background-color:rgba(0,0,0,0.5);
+   text-align: right;
+}
+#navbar a {
+   float: right;
+   display: block;
+   color: white;
+   text-align: right;
+   padding: 30px 30px;
+   text-decoration: none;
+   font-size: 17px;
+}
+#navbar a:hover {
+   background-color: #ddd;
+   color: white;
+}
+#navbar a.active {
+   background-color: black;
+   color: white;
+}
 </style>
 </head>
 <body>
+<div id="navbar">
+		<div class="container">
+			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="171.2" height="100" style="float:left">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
+			</ul>
+		</div>
+	</div>
 <div class="main">
-    <div class="sidenav">
-        <img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="130" height="100" style="float:left">
-        <a href="homepage.html"><button type="button" class="btn btn-danger btn-sm" style="float:right">LOGOUT</button></a>
-      </div>
+  
       <nav id="side">
         <ul>
+          <br>
+          <br>
           <br>
           <br>
           <br>
@@ -334,7 +367,9 @@ nav ul li a{
           <li><a href="customer.html">Enquiry</a></li>
         </ul>
       </nav>
-      <img src="https://image.flaticon.com/icons/png/512/39/39563.png" style="width: 50px;"id="menu">
+      <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
+<div class="main">
+    
       <?php
             if($showalert){
           echo '  <div class="alert alert-success" role="alert">
