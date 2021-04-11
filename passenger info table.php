@@ -17,11 +17,18 @@
     $exists=false;
     if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
       $nameErr = "Only letters and white space allowed" ;
-	  $f=1;
     } 
-    if($f==0){
-        $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`,`P_age`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal','DATEDIFF(CURDATE(),$dob)')";
+    else if (!preg_match("/^[0-9\-\(\)\/\+\s]*$/",$phone)) {
+      $phoneErr = "Enter Valid Phone number" ;
+    } 
+    else if (!preg_match("/^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$/",$adhaar)) {
+      $adherr= "Enter valid Adhaar Number" ;
+    } 
+    else{
+        $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
+        $sql1="UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`)";
         $result = mysqli_query($conn, $sql);
+        mysqli_query($conn, $sql1);
         if ($result){
             $showalert = true;
          }
@@ -334,17 +341,17 @@ nav ul li a{
         <h1>Ticket Booking Form</h1>
       </div>
       <div class="item">
-        <p>Passenger contact name</p>
+        <p>Passenger contact name</p><span class="error"><?php echo $nameErr;?></span>
         <div class="name-item">
           <input type="text" id="name" name="name" required/>
         </div>
       </div>
       <div class="item">
-        <p>Email</p>
+        <p>Email</p><span class="error"><?php echo $emailErr;?></span>
         <input type="email" name="email" required/>
       </div>
       <div class="item">
-        <p>Phone</p>
+        <p>Phone</p><span class="error"><?php echo $phoneErr;?></span>
         <input type="text" name="phone" required/>
       </div>
       <div class="item">
@@ -388,7 +395,7 @@ nav ul li a{
         </div>
       </div>
       <div class="item">
-        <p>Adhaar Number</p>
+        <p>Adhaar Number</p><span class="error"><?php echo $adherr;?></span>
         <input type="text" name="adhaar" required/>
       </div>
       <div class="question">
