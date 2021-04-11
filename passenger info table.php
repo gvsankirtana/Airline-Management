@@ -335,6 +335,17 @@ nav ul li a{
         </ul>
       </nav>
       <img src="https://image.flaticon.com/icons/png/512/39/39563.png" style="width: 50px;"id="menu">
+      <?php
+            if($showalert){
+          echo '  <div class="alert alert-success" role="alert">
+            <p>You have successfuly entered your Information! Click below button for payment👇</p>
+            <div class="btn-block">
+            <a href="payment.html" class="button">Payment</a>
+           </div>
+            <hr>
+           </div> ';
+            }
+            ?>
     <div class="testbox">
     <form action="/flight_management/passenger info table.php" method="post">
       <div class="banner">
