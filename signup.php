@@ -27,7 +27,16 @@
       $emailErr = "Email is required";
       $f=1;
     }
-    
+    $sql_u = "SELECT * FROM `login` WHERE login_username='$username'";
+  	$sql_e = "SELECT * FROM customer WHERE email='$email'";
+  	$res_u = mysqli_query($conn, $sql_u);
+  	$res_e = mysqli_query($conn, $sql_e);
+
+  	if (mysqli_num_rows($res_u) > 0) {
+  	  $nameErr = "Sorry... username already taken"; 	
+  	}else if(mysqli_num_rows($res_e) > 0){
+  	  $emailErr = "Sorry... email already taken.Kindly login or use another email"; 	
+  	}else{
     if(($password == $cpassword) && $exists==false && $f==0){
         $sql = "INSERT INTO `login` ( `login_username`, `password`) VALUES ('$username', '$password')";
         $result = mysqli_query($conn, $sql);
@@ -48,6 +57,7 @@
      $showalert=true;
    }
     }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -126,7 +136,7 @@
             <h4><center><b>Signup Now !!</b></center></h4>
           </div>
           <div class="panel-body">
-            <form action="/flight_management/signup.php" method="post">
+            <form action="/flight_management/Airport-management/signup.php" method="post">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Name" name="name">
               </div>
