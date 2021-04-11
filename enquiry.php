@@ -1,28 +1,29 @@
 <?php
    $showalert=false;
-   $titleErr = $descriptionErr = $typeErr="";
+   $titleErr = $descriptionErr = $typeErr= $userErr= $answer="";
    $f=0;
    if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
     include 'connect.php';
+	$user = $_POST["username"];
     $title = $_POST["enquirytitle"];
     $type =$_POST["enquirytype"];
     $description =$_POST["Description"];
     $exists=false;
-    if (empty($_POST["enquirytitle"])) {
+	if (empty($_POST["username"])) {
+		$userErr = "username is required" ;
+	} 
+    else if (empty($_POST["enquirytitle"])) {
       $titleErr = "title is required" ;
-	  $f=1;
     } 
 	else if(empty($_POST["enquirytype"])){
 		$typeErr = "type is required" ;
-		$f=1;
 	}
 	else if(empty($_POST["Description"])){
 		$descriptionErr = "Description is required" ;
-		$f=1;
 	}
-    if($f==0){
-        $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`) VALUES ('$title', '$type','$description')";
+    else{
+        $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`Cust_id`) VALUES ('$title', '$type','$description',(SELECT `Cust_ID` FROM `customer` WHERE `login_username` = '$user'))";
         $result = mysqli_query($conn, $sql);
         if ($result){
            $showalert = true;
@@ -207,7 +208,7 @@ nav ul li a{
 </head>
 <body>
 	<div id="navbar">
-		<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="171.2" height="100" style="float:left">
+		<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
 		<a href="homepage.html"><button type="button" class="btn btn-danger btn-sm" style="float:right">LOGOUT</button></a>
 	</div>
 	<nav id="side">
@@ -222,7 +223,6 @@ nav ul li a{
 		</ul>
 	</nav>
 	<img src="https://royalposthumus.com/images/white_menu_icon.png" style="width: 100px;"id="menu">
-	<div class="form-box">
 	<?php
             if($showalert){
           echo '  <div class="alert alert-success" role="alert">
@@ -231,10 +231,11 @@ nav ul li a{
            </div> ';
             }
             ?>
+	<div class="form-box">
 		<form action=http://localhost/flight_management/enquiry.php method="POST">
 		<div class="header-text">
 			Customer Enquiry
-		</div><input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> <span class="error"><?php echo $titleErr;?></span> <input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype"><span class="error"><?php echo $typeErr;?></span><textarea id="Description" name="Description" rows="2" cols="50"></textarea><span class="error"><?php echo $descriptionErr;?></span><button>Submit</button>
+		</div><input placeholder="Your Username" type="text" id="username" name="username"><span class="error"><?php echo $userErr;?></span><input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> <span class="error"><?php echo $titleErr;?></span> <input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype"><span class="error"><?php echo $typeErr;?></span><textarea id="Description" name="Description" rows="1" cols="50"></textarea><span class="error"><?php echo $descriptionErr;?></span><button>Submit</button>
 	</div>
 </form>
 	<script>
