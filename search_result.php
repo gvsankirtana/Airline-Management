@@ -5,6 +5,7 @@
     include 'connect.php';
     $from = $_POST["fcity"];
     $to=$_POST["tcity"];
+    
     $class = $_POST["class"];
     $date=$_POST["traveldate"];
     $seats = $_POST["seats"];
