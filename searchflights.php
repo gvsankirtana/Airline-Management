@@ -1,13 +1,11 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Search Flights</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
   font-family: "Lato", sans-serif;
@@ -40,11 +38,11 @@ body {
 }
 
 .main {
-  margin-left: 60px; /* Same as the width of the sidenav */
+  margin-left: 10px; /* Same as the width of the sidenav */
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 0px 10px;
-  margin-right: 80px;
 }
+
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
@@ -76,6 +74,7 @@ body {
 .sidenav a:hover {
   color: #f1f1f1;
 }
+
       body, div, form, input, select, textarea, p { 
       padding: 0;
       margin: 0;
@@ -103,7 +102,7 @@ body {
 
       }
       form {
-      width: 100%;
+      width: 50%;
       padding: 20px;
       border-radius: 6px;
       background: #fff;
@@ -203,8 +202,8 @@ body {
       button {
       width: 150px;
       padding: 10px;
-      border: none;
-      border-radius: 5px; 
+      border: 5;
+      border-radius: 10px; 
       background: #6b4724;
       font-size: 16px;
       color: #fff;
@@ -282,88 +281,89 @@ nav ul li a{
    color: white;
    text-align: right;
 }
-#navbar {
-   overflow: hidden;
-   background-color:rgba(0,0,0,0.2);
-   text-align: right;
-}
-#navbar a {
-   float: right;
-   display: block;
-   color: white;
-   text-align: right;
-   padding: 30px 30px;
-   text-decoration: none;
-   font-size: 17px;
-}
-#navbar a:hover {
-   background-color: #ddd;
-   color: white;
-}
-#navbar a.active {
-   background-color: black;
-   color: white;
-}
 </style>
 </head>
 <body>
-  <div id="navbar">
-		<div class="container">
-			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="171.2" height="100" style="float:left">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
-			</ul>
-		</div>
-	</div>
 <div class="main">
-  
       <nav id="side">
         <ul>
           <br>
           <br>
           <br>
           <br>
-          <br>
-          <br>
-          <li><a href="search flights.html">Search Flights</a></li>
+          <li><a href="searchflights.php">Search Flights</a></li>
           <li><a href="passenger info table.html">Book Ticket</a></li>
           <li><a href="customer.html">Enquiry</a></li>
         </ul>
       </nav>
-      <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
     <div class="testbox">
-    <form action="/">
+    <form action="/flight_management/Airport-Management/search_result.php" method="post">
       <!--<div class="banner">
       </div>-->
       <div class="item">
-            <p>FROM</p>
-          <input type="text" name="name" placeholder="City" required/>
+        <h2><center>Filter Flights</center></h2>
+            <label for="fcity">FROM:</label>
+            <select name="fcity" id="fcity"  class="form-control">
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Delhi">Delhi </option>
+              <option value="Shimla">Shimla</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Lucknow">Lucknow </option>
+              <option value="Allahabad">Allahabad</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+              <option value="Kolkata">Kolkata </option>
+              <option value="Jaipur">	Jaipur</option>
+              <option value="Surat">Surat</option>
+            </select>
       </div>
       <div class="item">
-        <p>TO</p>
-      <input type="text" name="name" placeholder="City" required/>
+        <label for="tcity">TO:</label>
+            <select name="tcity" id="tcity"  class="form-control">
+              <option value="Delhi">Delhi </option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Shimla">Shimla</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Lucknow">Lucknow </option>
+              <option value="Allahabad">Allahabad</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+              <option value="Kolkata">Kolkata </option>
+              <option value="Jaipur">	Jaipur</option>
+              <option value="Surat">Surat</option>
+            </select>
   </div>
+   
       <div class="question">
         <p>Class</p>
         <div class="question-answer">
           <div>
-            <input type="radio" value="none" id="radio_3" name="question2"/>
-            <label for="radio_3" class="radio"><span>First Class</span></label>
+            <input type="radio" name="class" value="Buisness"/>
+            <label for="radio_3" class="radio"><span>Buisness Class</span></label>
           </div>
           <div>
-            <input type="radio" value="none" id="radio_4" name="question2"/>
+            <input type="radio" value="Economy" name="class" checked/>
             <label for="radio_4" class="radio"><span>Economy class</span></label>
           </div>
         </div>
-        <p>Departure Date</p>
         <div class="day-visited">
-          <input type="date" name="dayvisited" required/>
+          DATE OF TRAVEL :
+          <input type="date" name="traveldate"  required/>
+        <div class="seats">TOTAL PASSENGERS:
+          <input type="number" name="seats" min=1 required/>
         </div>
         <div class="btn-block">
           <button type="submit" href="/">Search Flights</button>
         </div>
     </form>
     </div>
+</div>
+</div>
+
+
 </div>
 <script>
   var menu=document.getElementById("menu");

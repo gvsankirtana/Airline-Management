@@ -232,7 +232,7 @@ nav ul li a{
             }
             ?>
 	<div class="form-box">
-		<form action=http://localhost/flight_management/enquiry.php method="POST">
+		<form action=http://localhost/flight_management/Airport-management/enquiry.php method="POST">
 		<div class="header-text">
 			Customer Enquiry
 		</div><input placeholder="Your Username" type="text" id="username" name="username"><span class="error"><?php echo $userErr;?></span><input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> <span class="error"><?php echo $titleErr;?></span> <input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype"><span class="error"><?php echo $typeErr;?></span><textarea id="Description" name="Description" rows="1" cols="50"></textarea><span class="error"><?php echo $descriptionErr;?></span><button>Submit</button>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flight Details</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <style>		
+    form {
+        display: inline-block;
+        box-sizing: content-box;
+        box-shadow: 2px 2px 20px 5px black;
+        padding: 10px;
+        width:100%;
+        max-width: 400px;
+    }
+    #b{
+      text-align:center;
+    }
+    input {
+        box-shadow: 1px 1px 3px 1px black;
+        width: 100%;
+        text-align: center;
+    }
+    .submit,.reset {
+        display:inline-block;
+        color: white;
+        background-color: blue;
+    
+        margin:0;
+        padding: 5px;
+        border: 0;
+        font-weight: bold;
+        width:100%;
+    }
+    .submit:hover ,.reset:hover{
+        color: blue;
+        background-color: red;
+        font-size: 0.7em;
+        font-weight: bold;
+    }
+    *{
+       margin:0;
+       padding:0;
+       
+    }
+    body{
+       background-image: url("https://images.all-free-download.com/images/graphiclarge/airplane_in_the_sky_204716.jpg");
+       background-repeat: no-repeat;
+       background-size:cover;
+    }
+    li {list-style-type: none;
+       font-size: 16pt;
+    }
+    .mail {
+       margin: auto;
+       padding-top: 10px;
+       padding-bottom: 10px;
+       width: 400px;
+       background : black;
+       border: 1px soild silver;
+    }
+    .mail h2 {
+       margin-left: 38px;
+    }
+    input {
+       font-size: 20pt;
+    }
+    input submit {
+       font-size: 12pt;
+    }
+    #main{
+       margin-right: 50px;
+       margin-left: 50px;
+    }
+    .header-text{
+       max-width: 340px;
+       margin-top: 170px;
+       margin-left: 100px;
+       margin-bottom: 100px;
+       text-shadow: 3px 2px black;
+    }
+    h1{
+       font-size:40px ;
+       color:white;
+    }
+    .header-text button{
+       margin-top: 20px;
+       margin-bottom: 60px;
+    }
+    #side{
+       width:250px;
+       height:700px;
+       position: fixed;
+       right:-250px;
+       top:0;
+       background-color:rgba(0,0,0,0.2);
+       z-index: 2;
+       transition: 2s;
+       overflow-y: scroll;
+    }
+    nav ul li{
+       list-style: none;
+       margin:50px 20px;
+    }
+    nav ul li a{
+       text-transform: uppercase;
+       text-decoration: none;
+       color: white;
+       text-align: right;
+    }
+    a:hover{
+       background-color:gray;
+    }
+    #menu{
+       width:50px;
+       position: fixed;
+       right: 65px;
+       top:35px;
+       z-index:2;
+       cursor:pointer;
+    }
+    p{
+       color:white;
+    }
+    h1 big {
+       color:red;
+    }
+    .sticky {
+       position: fixed;
+       top: 0;
+       width: 100%;
+    }
+    .sticky + .content {
+       padding-top: 60px;
+    }
+    #navbar {
+       overflow: hidden;
+       background-color:rgba(0,0,0,0.2);
+       text-align: right;
+    }
+    #navbar a {
+       float: right;
+       display: block;
+       color: white;
+       text-align: right;
+       padding: 30px 30px;
+       text-decoration: none;
+       font-size: 17px;
+    }
+    #navbar a:hover {
+       background-color: #ddd;
+       color: white;
+    }
+    #navbar a.active {
+       background-color: black;
+       color: white;
+    }
+    #side a, .dropdown-btn {
+       padding: 6px 8px 6px 16px;
+       text-decoration: none;
+       font-size: 20px;
+       color: white;
+       display: block;
+       border: none;
+       background: none;
+       width: 100%;
+       text-align: left;
+       cursor: pointer;
+       outline: none;
+    }
+    
+    #side a:hover, .dropdown-btn:hover {
+       color: yellow;
+    }
+    .main {
+       margin-left: 200px; 
+       font-size: 20px; 
+       padding: 0px 10px;
+    }
+    .active {
+       background-color: yellow;
+       color: white;
+    }
+    #test{
+        height:50px;
+        width:100px;
+    }
+    #age{
+        height:50px;
+        width:400px;
+    }
+    #name{
+        height:50px;
+        width:400px;
+    }
+    #email{
+        height:50px;
+        width:400px;
+    }
+    #phone{
+        height:50px;
+        width:400px;
+    }
+    #password{
+        height:50px;
+        width:400px;
+    }
+      </style>
+</head>
+  <!------ Include the above in your HEAD tag ---------->
+  <body>
+    <div id="navbar">
+			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
+			<a href=""><em><b></a></b></em>
+			<a  href=""><em><b></a></b></em>
+			<a href=""><em><b></a></b></em>
+			<a  href=""><em><b></a></b></em>
+			<a href="homepage.html"><button type="button" class="btn btn-danger btn-lg">LOGOUT</button></a>
+		</div>
+    <nav id="side">
+      <ul>
+        <br>
+        <br>
+        <br>
+        <br>
+        <li><a href="search flights.html">Search Flights</a></li>
+        <li><a href="passenger info table.html">Book Ticket</a></li>
+        <li><a href="customer.html">Enquiry</a></li>
+      </ul>
+    </nav>
+    <img src="https://image.flaticon.com/icons/png/512/39/39563.png" style="width: 50px;"id="menu">
+  <div class="container">
+      <div class="row clearfix">
+      <div class="col-md-12 column">
+        <table class="table table-bordered table-hover" id="tab_logic">
+          <thead>
+            <tr>
+              <th class="text-center">
+                SRNO
+              </th>
+              <th class="text-center">
+                Name
+              </th>
+              <th class="text-center">
+                Mail
+              </th>
+              <th class="text-center">
+                Mobile
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id='addr0'>
+              <td>
+              1
+              </td>
+              <td>
+              <input type="text" name='name0'  placeholder='Name' class="form-control"/>
+              </td>
+              <td>
+              <input type="text" name='mail0' placeholder='Mail' class="form-control"/>
+              </td>
+              <td>
+              <input type="text" name='mobile0' placeholder='Mobile' class="form-control"/>
+              </td>
+            </tr>
+                      <tr id='addr1'></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

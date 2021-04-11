@@ -206,39 +206,6 @@ h1 big {
 	</style>
 </head>
 <body>
-   <div id="myModal" class="modal fade" >
-		<div class="modal-dialog" width=30%>
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title text-center">ONLINE BOOKING AND RESERVATION</h4>
-				</div>
-				<div class="modal-body text-center" >
-					<center> <img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" style="width: 200px;"class="logo">
-						<br>
-					</center>
-					<div class="panel">
-						<div class="panel-body">
-							<form action="login.php" method="POST">
-								<div class="text-left form-group">
-									<label for="username">Username:</label>
-									<input type="text" class="form-control text-left" id="login_username" name="login_username">
-							  	</div>
-							  	<div class="text-left form-group">
-									<label for="password">Password:</label>
-									<input type="password" class="form-control text-left" id="password" name="password">
-							  	</div>
-							  	<div class="text-center">
-									<button class="btn btn-success" type="submit" value="submit" >Login</button>
-							  		<button class="btn btn-primary" type="reset" value="reset" >Reset</button>
-							  	</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
    <div id="navbar">
 		<div class="container">
 			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="171.2" height="100" style="float:left">
@@ -254,11 +221,13 @@ h1 big {
 			<br>
 			<br>
 			<div class="content">
-				  <center><h6 class="mb-1" style="font-size: 50px;color: white; text-shadow:2px 2px black;">Online Booking & Reservation</h6></center>
+				  <center><h6 class="mb-1" style="background-color: YellowGreen; font-size: 50px;color: white; text-shadow:2px 2px black;">Online Booking & Reservation</h6></center>
 				  <br>
                <p>We are responsible for booking flight tickets and handle reservations for customers.<br>We are the face of the airline industry and the first point of contact for any customer while boarding a flight.
                <br>Our customers who hold an account in our application can book flight tickets in ease.
-               <br>Login/Signup to continue enjoying our services!! </p>
+               <br><a style= "background-color: white;" href="login.php"> Login </a>
+				   <a style= "background-color: white;" href="signup.php"> SignUp</a>
+               to continue enjoying our services!! </p>
          <!--	<center><a href="login.php" class="btn btn-info btn-rounded btn-lg">BOOK NOW!</a></center>
 		-->  
        </div>
