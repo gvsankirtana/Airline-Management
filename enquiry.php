@@ -1,3 +1,36 @@
+<?php 
+include 'connect.php';
+$sql2="CREATE VIEW custenqui AS SELECT Enquiry_ID,Enquiry_type,Enquiry_title,Enquiry_Description,enquiry_answer FROM enquiry";
+$sql3="SELECT * FROM custenqui WHERE enquiry_answer IS NOT NULL";
+mysqli_query($conn,$sql2);
+$res=mysqli_query($conn,$sql3);
+if ($res){
+  }
+  else
+  echo("Error description: " . mysqli_error($conn));
+$f=1;
+echo 
+'
+<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:15px;background-color: black;">
+<thead>
+<tr><th colspan="13"><h3>FAQS</h3></th></tr>
+<tr>
+	  <th scope="col">Enquiry Title</th>
+	  <th scope="col">Enquiry Type</th>
+	  <th scope="col">Enquiry Description</th>
+	  <th scope="col">Enquiry Answer</th>
+	</tr>
+  </thead>
+  ' ;
+  while($rows=mysqli_fetch_assoc($res))
+  {
+	echo "<tr><td>{$rows['Enquiry_title']}</td>
+	 <td>{$rows['Enquiry_type']}</td> 
+	 <td>{$rows['Enquiry_Description']}</td> 
+	 <td>{$rows['enquiry_answer']}</td><tr>";
+  }
+echo '</table>';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -235,36 +268,6 @@ nav ul li a{
         else
         echo("Error description: " . mysqli_error($conn));
     }
-	$sql2="CREATE VIEW custenqui AS SELECT Enquiry_ID,Enquiry_type,Enquiry_title,Enquiry_Description,enquiry_answer FROM enquiry";
-	$sql3="SELECT * FROM custenqui WHERE enquiry_answer IS NOT NULL";
-	mysqli_query($conn,$sql2);
-	$res=mysqli_query($conn,$sql3);
-	if ($res){
-	  }
-	  else
-	  echo("Error description: " . mysqli_error($conn));
-	$f=1;
-	echo 
-	'
-	<table border=3 class="table table-bordered table-hover" id="tab_logic" align="center" style="font-size:15px; background-color: black;">
-	<thead>
-	<tr><th colspan="13"><h3>FAQS</h3></th></tr>
-	<tr>
-		  <th scope="col">Enquiry Title</th>
-		  <th scope="col">Enquiry Type</th>
-		  <th scope="col">Enquiry Description</th>
-		  <th scope="col">Enquiry Answer</th>
-		</tr>
-	  </thead>
-	  ' ;
-	  while($rows=mysqli_fetch_assoc($res))
-	  {
-		echo "<tr><td>{$rows['Enquiry_title']}</td>
-		 <td>{$rows['Enquiry_type']}</td> 
-		 <td>{$rows['Enquiry_Description']}</td> 
-		 <td>{$rows['enquiry_answer']}</td><tr>";
-	  }
-  echo '</table>';
 }?>
 		<div class="form-box">
 		<?php
