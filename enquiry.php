@@ -1,8 +1,6 @@
 <?php 
 include 'connect.php';
-$sql2="CREATE VIEW custenqui AS SELECT Enquiry_ID,Enquiry_type,Enquiry_title,Enquiry_Description,enquiry_answer FROM enquiry";
-$sql3="SELECT * FROM custenqui WHERE enquiry_answer IS NOT NULL";
-mysqli_query($conn,$sql2);
+$sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NOT NULL";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }
