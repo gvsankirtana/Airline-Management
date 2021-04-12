@@ -234,7 +234,7 @@ nav ul li a{
 			<br>
 			<li><a href="search flights.html">Search Flights</a></li>
 			<li><a href="passenger info table.html">Book Ticket</a></li>
-			<li><a href="customer.html">Enquiry</a></li>
+			<li><a href="enquiry.php">Enquiry</a></li>
 		</ul>
 	</nav>
 	<img src="https://royalposthumus.com/images/white_menu_icon.png" style="width: 100px;"id="menu">
