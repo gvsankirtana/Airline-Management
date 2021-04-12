@@ -4,7 +4,8 @@ session_start();
 ?>
 <?php 
 include 'connect.php';
-$sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NOT NULL";
+$user = $_SESSION["user"];
+$sql3="SELECT * FROM enquiry WHERE Cust_id = (SELECT `Cust_Id` FROM `customer` WHERE `login_username` = '$user') AND enquiry_answer IS NOT NULL";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }
@@ -244,7 +245,6 @@ nav ul li a{
    if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
     include 'connect.php';
-	$user = $_SESSION["user"];
     $title = $_POST["enquirytitle"];
     $type =$_POST["enquirytype"];
     $description =$_POST["Description"];
