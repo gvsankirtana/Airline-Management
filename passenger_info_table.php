@@ -6,45 +6,9 @@
      }
 ?>
 <?php
-   $showalert=false;
-   $nameErr = $emailErr = $phoneErr= $adherr="";
    include 'connect.php';
    $flight = $_POST["flight"];
    $_SERVER["REQUEST_METHOD"]="";
-   $f=0;
-   if($_SERVER["REQUEST_METHOD"] == "POST")
-    { 
-    $name = $_POST["name"];
-    $email =$_POST["email"];
-    $phone =$_POST["phone"];
-    $city =$_POST["city"];
-    $postal =$_POST["zipcode"];
-    $adhaar =$_POST["adhaar"];
-    $state =$_POST["state"];
-    $gender =$_POST["gender"];
-    $dob =$_POST["dob"];
-    $exists=false;
-    if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-      $nameErr = "Only letters and white space allowed" ;
-    } 
-    else if (!preg_match("/^[0-9\-\(\)\/\+\s]*$/",$phone)) {
-      $phoneErr = "Enter Valid Phone number" ;
-    } 
-    else if (!preg_match("/^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$/",$adhaar)) {
-      $adherr= "Enter valid Adhaar Number" ;
-    } 
-    else{
-        $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
-        $sql1="UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`) where Aadhar_No='$adhaar'";
-        $result = mysqli_query($conn, $sql);
-        mysqli_query($conn, $sql1);
-        if ($result){
-            $showalert = true;
-         }
-         else
-         echo("Error description: " . mysqli_error($conn));
-    }
-} 
 ?>
 <!DOCTYPE html>
 <html>
@@ -378,19 +342,8 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
       </nav>
       <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
 <div class="main">
-      <?php
-            if($showalert){
-          echo '  <div class="alert alert-success" role="alert">
-            <p>You have successfuly entered your Information! Click below button for payment👇</p>
-            <div class="btn-block">
-            <a href="payment.html" class="button">Payment</a>
-           </div>
-            <hr>
-           </div> ';
-            }
-            ?>
     <div class="testbox">
-    <form action="/flight_management/passenger_info_table.php" method="post">
+    <form action="/flight_management/passenger.php" method="post">
       <div class="banner">
         <h1>Ticket Booking Form</h1>
       </div>
@@ -401,17 +354,17 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
         </div>
       </div>
       <div class="item">
-        <p>Passenger contact name</p><span class="error"><?php echo $nameErr;?></span>
+        <p>Passenger contact name</p>
         <div class="name-item">
           <input type="text" id="name" name="name" required/>
         </div>
       </div>
       <div class="item">
-        <p>Email</p><span class="error"><?php echo $emailErr;?></span>
+        <p>Email</p>
         <input type="email" name="email" required/>
       </div>
       <div class="item">
-        <p>Phone</p><span class="error"><?php echo $phoneErr;?></span>
+        <p>Phone</p>
         <input type="text" name="phone" required/>
       </div>
       <div class="item">
@@ -455,7 +408,7 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
         </div>
       </div>
       <div class="item">
-        <p>Adhaar Number</p><span class="error"><?php echo $adherr;?></span>
+        <p>Adhaar Number</p>
         <input type="text" name="adhaar" required/>
       </div>
       <div class="question">
@@ -475,7 +428,7 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
           <input type="date" name="dob" required/>
         </div>
         <div class="btn-block">
-          <button type="submit">Book</button>
+          <button type="submit"><a href="/flight_management/payment.php">Book</a></button>
         </div>
     </form>
     </div>
