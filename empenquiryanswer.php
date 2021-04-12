@@ -1,34 +1,35 @@
-<?php
-   $showalert=false;
-   $userErr = $enquiErr = $ansErr="";
-   if($_SERVER["REQUEST_METHOD"] == "POST")
-    { 
-    include 'connect.php';
-	$emp = $_POST["emp"];
-    $enquiid = $_POST["enqui"];
-    $ans =$_POST["ans"];
-    $exists=false;
-	if (empty($_POST["emp"])) {
-		$userErr = "employee username needed" ;
-	} 
-    else if (empty($_POST["enqui"])) {
-      $enquiErr = "Enter Enquiry ID" ;
-    } 
-	else if(empty($_POST["ans"])){
-		$ansErr = "Enter answer" ;
-	}
-    else{
-        $sql="INSERT INTO `answers`(`Enquiry_ID`,`emp_id`) values ('$enquiid',(SELECT `Emp_ID` FROM `customer_care_agent` WHERE `login_username` = '$emp'))";
-        $sql1 = "UPDATE `enquiry` SET `enquiry_answer`= '$ans' WHERE `Enquiry_ID` = '$enquiid'" ;
-        mysqli_query($conn, $sql);
-        $result = mysqli_query($conn, $sql1);
-        if ($result){
-           $showalert = true;
-        }
-        else
-        echo("Error description: " . mysqli_error($conn));
-    }
-}
+<?php 
+include 'connect.php';
+$sql2="CREATE VIEW custenqui AS SELECT Enquiry_ID,Enquiry_type,Enquiry_title,Enquiry_Description FROM enquiry";
+$sql3="SELECT * FROM custenqui WHERE enquiry_answer IS NOT NULL";
+mysqli_query($conn,$sql2);
+$res=mysqli_query($conn,$sql3);
+if ($res){
+  }
+  else
+  echo("Error description: " . mysqli_error($conn));
+$f=1;
+echo 
+'
+<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:15px;background-color: black;">
+<thead>
+<tr><th colspan="13"><h3>FAQS</h3></th></tr>
+<tr>
+	  <th scope="col">Enquiry Title</th>
+	  <th scope="col">Enquiry Type</th>
+	  <th scope="col">Enquiry Description</th>
+	  <th scope="col">Enquiry Answer</th>
+	</tr>
+  </thead>
+  ' ;
+  while($rows=mysqli_fetch_assoc($res))
+  {
+	echo "<tr><td>{$rows['Enquiry_title']}</td>
+	 <td>{$rows['Enquiry_type']}</td> 
+	 <td>{$rows['Enquiry_Description']}</td> 
+	 <td>{$rows['enquiry_answer']}</td><tr>";
+  }
+echo '</table>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +73,20 @@ body {
 	z-index: -1;
 	display: block;
 	filter: blur(2px);
+}
+#tab_logic{
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: auto auto;
+	padding: 40px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #000;
+	position: absolute;
+	top: 100px;
+	bottom: 0;
+	left: 0;
+	right: 1000px;
+	width: 300px;
+	height: 430px;
 }
 .form-box .header-text {
 	font-size: 32px;
@@ -219,6 +234,38 @@ nav ul li a{
 		</ul>
 	</nav>
 	<img src="https://image.flaticon.com/icons/png/512/39/39563.png" style="width: 50px;"id="menu">
+	<?php
+   $showalert=false;
+   $userErr = $enquiErr = $ansErr="";
+   if($_SERVER["REQUEST_METHOD"] == "POST")
+    { 
+    include 'connect.php';
+	$emp = $_POST["emp"];
+    $enquiid = $_POST["enqui"];
+    $ans =$_POST["ans"];
+    $exists=false;
+	if (empty($_POST["emp"])) {
+		$userErr = "employee username needed" ;
+	} 
+    else if (empty($_POST["enqui"])) {
+      $enquiErr = "Enter Enquiry ID" ;
+    } 
+	else if(empty($_POST["ans"])){
+		$ansErr = "Enter answer" ;
+	}
+    else{
+        $sql="INSERT INTO `answers`(`Enquiry_ID`,`emp_id`) values ('$enquiid',(SELECT `Emp_ID` FROM `customer_care_agent` WHERE `login_username` = '$emp'))";
+        $sql1 = "UPDATE `enquiry` SET `enquiry_answer`= '$ans' WHERE `Enquiry_ID` = '$enquiid'" ;
+        mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql1);
+        if ($result){
+           $showalert = true;
+        }
+        else
+        echo("Error description: " . mysqli_error($conn));
+    }
+}
+?>
 	<div class="form-box">
         <form action=http://localhost/flight_management/empenquiryanswer.php method="POST">
 		<div class="header-text">
