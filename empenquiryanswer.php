@@ -1,8 +1,6 @@
 <?php 
 include 'connect.php';
-$sql2="CREATE VIEW custenqui AS SELECT Enquiry_ID,Enquiry_type,Enquiry_title,Enquiry_Description FROM enquiry";
-$sql3="SELECT * FROM custenqui WHERE enquiry_answer IS NOT NULL";
-mysqli_query($conn,$sql2);
+$sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NULL";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }
@@ -15,19 +13,19 @@ echo
 <thead>
 <tr><th colspan="13"><h3>FAQS</h3></th></tr>
 <tr>
+      <th scope="col">Enquiry ID</th>
 	  <th scope="col">Enquiry Title</th>
 	  <th scope="col">Enquiry Type</th>
 	  <th scope="col">Enquiry Description</th>
-	  <th scope="col">Enquiry Answer</th>
 	</tr>
   </thead>
   ' ;
   while($rows=mysqli_fetch_assoc($res))
   {
-	echo "<tr><td>{$rows['Enquiry_title']}</td>
+	echo "<tr><td>{$rows['Enquiry_ID']}</td>;
+	 <td>{$rows['Enquiry_title']}</td>
 	 <td>{$rows['Enquiry_type']}</td> 
-	 <td>{$rows['Enquiry_Description']}</td> 
-	 <td>{$rows['enquiry_answer']}</td><tr>";
+	 <td>{$rows['Enquiry_Description']}</td><tr>";
   }
 echo '</table>';
 ?>
