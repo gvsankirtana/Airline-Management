@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 session_start();
    $showalert=false;
@@ -33,8 +33,7 @@ session_start();
         else
         echo("Error description: " . mysqli_error($conn));
     }
-}
-=======
+}?>
 <?php 
 include 'connect.php';
 $sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NOT NULL";
@@ -65,7 +64,6 @@ echo
 	 <td>{$rows['enquiry_answer']}</td><tr>";
   }
 echo '</table>';
->>>>>>> af4fac2aeca2b0daad4239819d4e1ab540ae51b8
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -314,18 +312,8 @@ nav ul li a{
            </div> ';
             }
             ?>
-<<<<<<< HEAD
-	<div class="form-box">
-		<form action=http://localhost/flight_management/Airport-management/enquiry.php method="POST">
-			WELCOME!
-    <?php
-print_r($_SESSION["user"]);
-?>
-			<div class="header-text">
-=======
 		<form action=http://localhost/flight_management/enquiry.php method="POST">
 		<div class="header-text">
->>>>>>> af4fac2aeca2b0daad4239819d4e1ab540ae51b8
 			Customer Enquiry
 		</div><input placeholder="Your Username" type="text" id="username" name="username"><span class="error"><?php echo $userErr;?></span><input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> <span class="error"><?php echo $titleErr;?></span> <input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype"><span class="error"><?php echo $typeErr;?></span><textarea id="Description" name="Description" rows="1" cols="50"></textarea><span class="error"><?php echo $descriptionErr;?></span><button>Submit</button>
 </form>
