@@ -305,7 +305,7 @@ nav ul li a{
       </nav>
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
     <div class="testbox">
-    <form action="/flight_management/Airport-Management/search_result.php" method="post">
+    <form action="/flight_management/search_result.php" method="post">
       <!--<div class="banner">
       </div>-->
       <div class="item">
