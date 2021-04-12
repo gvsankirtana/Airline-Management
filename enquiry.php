@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
    $showalert=false;
@@ -33,6 +34,38 @@ session_start();
         echo("Error description: " . mysqli_error($conn));
     }
 }
+=======
+<?php 
+include 'connect.php';
+$sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NOT NULL";
+$res=mysqli_query($conn,$sql3);
+if ($res){
+  }
+  else
+  echo("Error description: " . mysqli_error($conn));
+$f=1;
+echo 
+'
+<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:15px;background-color: black;">
+<thead>
+<tr><th colspan="13"><h3>FAQS</h3></th></tr>
+<tr>
+	  <th scope="col">Enquiry Title</th>
+	  <th scope="col">Enquiry Type</th>
+	  <th scope="col">Enquiry Description</th>
+	  <th scope="col">Enquiry Answer</th>
+	</tr>
+  </thead>
+  ' ;
+  while($rows=mysqli_fetch_assoc($res))
+  {
+	echo "<tr><td>{$rows['Enquiry_title']}</td>
+	 <td>{$rows['Enquiry_type']}</td> 
+	 <td>{$rows['Enquiry_Description']}</td> 
+	 <td>{$rows['enquiry_answer']}</td><tr>";
+  }
+echo '</table>';
+>>>>>>> af4fac2aeca2b0daad4239819d4e1ab540ae51b8
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +88,7 @@ body {
 	border-radius: 5px;
 	box-shadow: 0 0 10px #000;
 	position: absolute;
-	top: 0;
+	top: 0px;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -131,6 +164,20 @@ body {
 	color: #000;
 	text-align: center;
 	line-height: 20px;
+}
+#tab_logic{
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: auto auto;
+	padding: 40px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #000;
+	position: absolute;
+	top: 100px;
+	bottom: 0;
+	left: 0;
+	right: 1000px;
+	width: 300px;
+	height: 430px;
 }
 .form-box span {
 	font-size: 14px;
@@ -225,6 +272,41 @@ nav ul li a{
 	</nav>
 	<img src="https://royalposthumus.com/images/white_menu_icon.png" style="width: 100px;"id="menu">
 	<?php
+   $showalert=false;
+   $titleErr = $descriptionErr = $typeErr= $userErr= $answer="";
+   $f=0;
+   if($_SERVER["REQUEST_METHOD"] == "POST")
+    { 
+    include 'connect.php';
+	$user = $_POST["username"];
+    $title = $_POST["enquirytitle"];
+    $type =$_POST["enquirytype"];
+    $description =$_POST["Description"];
+    $exists=false;
+	if (empty($_POST["username"])) {
+		$userErr = "username is required" ;
+	} 
+    else if (empty($_POST["enquirytitle"])) {
+      $titleErr = "title is required" ;
+    } 
+	else if(empty($_POST["enquirytype"])){
+		$typeErr = "type is required" ;
+	}
+	else if(empty($_POST["Description"])){
+		$descriptionErr = "Description is required" ;
+	}
+    else{
+        $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`Cust_id`) VALUES ('$title', '$type','$description',(SELECT `Cust_ID` FROM `customer` WHERE `login_username` = '$user'))";
+        $result = mysqli_query($conn, $sql);
+        if ($result){
+           $showalert = true;
+        }
+        else
+        echo("Error description: " . mysqli_error($conn));
+    }
+}?>
+		<div class="form-box">
+		<?php
             if($showalert){
           echo '  <div class="alert alert-success" role="alert">
             <p>You have successfuly entered your enquiry!</p>
@@ -232,6 +314,7 @@ nav ul li a{
            </div> ';
             }
             ?>
+<<<<<<< HEAD
 	<div class="form-box">
 		<form action=http://localhost/flight_management/Airport-management/enquiry.php method="POST">
 			WELCOME!
@@ -239,9 +322,12 @@ nav ul li a{
 print_r($_SESSION["user"]);
 ?>
 			<div class="header-text">
+=======
+		<form action=http://localhost/flight_management/enquiry.php method="POST">
+		<div class="header-text">
+>>>>>>> af4fac2aeca2b0daad4239819d4e1ab540ae51b8
 			Customer Enquiry
 		</div><input placeholder="Your Username" type="text" id="username" name="username"><span class="error"><?php echo $userErr;?></span><input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> <span class="error"><?php echo $titleErr;?></span> <input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype"><span class="error"><?php echo $typeErr;?></span><textarea id="Description" name="Description" rows="1" cols="50"></textarea><span class="error"><?php echo $descriptionErr;?></span><button>Submit</button>
-	</div>
 </form>
 	<script>
 		var menu=document.getElementById("menu");
@@ -256,5 +342,5 @@ print_r($_SESSION["user"]);
 			}
 		}
 		</script>
-</body>
+	</body>
 </html>
