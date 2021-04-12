@@ -19,7 +19,7 @@ body {
 	border-radius: 5px;
 	box-shadow: 0 0 10px #000;
 	position: absolute;
-	top: 200px;
+	top: 0px;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -95,6 +95,20 @@ body {
 	color: #000;
 	text-align: center;
 	line-height: 20px;
+}
+#tab_logic{
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: auto auto;
+	padding: 40px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #000;
+	position: absolute;
+	top: 100px;
+	bottom: 0;
+	left: 0;
+	right: 1000px;
+	width: 300px;
+	height: 430px;
 }
 .form-box span {
 	font-size: 14px;
@@ -232,7 +246,7 @@ nav ul li a{
 	$f=1;
 	echo 
 	'
-	<table border=3 class="table table-bordered table-hover" id="tab_logic" align="center" style="font-size:15px; background-color: #FADCC8;">
+	<table border=3 class="table table-bordered table-hover" id="tab_logic" align="center" style="font-size:15px; background-color: black;">
 	<thead>
 	<tr><th colspan="13"><h3>FAQS</h3></th></tr>
 	<tr>
