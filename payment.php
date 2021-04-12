@@ -170,7 +170,7 @@
           <table class="table table-hover">
             <tr>
               <th>flight number</th>
-              <td></td>
+              <td><?php echo $_POST['flight']?></td>
             </tr>
             <tr>
               <th>From</th>
