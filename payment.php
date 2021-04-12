@@ -126,9 +126,8 @@
         <br>
         <br>
         <br>
-        <li><a href="search flights.html">Search Flights</a></li>
-        <li><a href="passenger info table.html">Book Ticket</a></li>
-        <li><a href="customer.html">Enquiry</a></li>
+        <li><a href="searchflights.php">Book Ticket</a></li>
+          <li><a href="enquiry.php">Enquiry</a></li>
       </ul>
     </nav>
     <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
