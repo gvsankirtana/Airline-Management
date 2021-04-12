@@ -1,8 +1,15 @@
+<?php 
+     session_start();
+     if(($_SESSION["user"])==null)
+     {
+      header("location: login.php");
+     }
+?>
 <?php
    $showalert=false;
    $nameErr = $emailErr = $phoneErr= $adherr="";
    include 'connect.php';
-   echo $_POST["flight"];
+   $flight = $_POST["flight"];
    $_SERVER["REQUEST_METHOD"]="";
    $f=0;
    if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -355,7 +362,7 @@ nav ul li a{
 		</div>
 	</div>
 <div class="main">
-  
+WELCOME! <?php print_r($_SESSION["user"]); ?>
       <nav id="side">
         <ul>
           <br>
@@ -371,7 +378,6 @@ nav ul li a{
       </nav>
       <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
 <div class="main">
-    
       <?php
             if($showalert){
           echo '  <div class="alert alert-success" role="alert">
@@ -387,6 +393,12 @@ nav ul li a{
     <form action="/flight_management/passenger_info_table.php" method="post">
       <div class="banner">
         <h1>Ticket Booking Form</h1>
+      </div>
+      <div class="item">
+        <p>Flight ID</p><span class="error">
+        <div class="name-item">
+          <input type="text" value="<?php echo $flight ?>" disabled></input>
+        </div>
       </div>
       <div class="item">
         <p>Passenger contact name</p><span class="error"><?php echo $nameErr;?></span>
