@@ -1,10 +1,12 @@
 <?php
    $showalert=false;
    $nameErr = $emailErr = $phoneErr= $adherr="";
+   include 'connect.php';
+   echo $_POST["flight"];
+   $_SERVER["REQUEST_METHOD"]="";
    $f=0;
    if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
-    include 'connect.php';
     $name = $_POST["name"];
     $email =$_POST["email"];
     $phone =$_POST["phone"];
@@ -35,7 +37,7 @@
          else
          echo("Error description: " . mysqli_error($conn));
     }
-}
+} 
 ?>
 <!DOCTYPE html>
 <html>
@@ -382,7 +384,7 @@ nav ul li a{
             }
             ?>
     <div class="testbox">
-    <form action="/flight_management/passenger info table.php" method="post">
+    <form action="/flight_management/passenger_info_table.php" method="post">
       <div class="banner">
         <h1>Ticket Booking Form</h1>
       </div>

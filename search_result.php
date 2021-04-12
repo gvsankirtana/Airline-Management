@@ -9,7 +9,7 @@
     $class = $_POST["class"];
     $date=$_POST["traveldate"];
     $seats = $_POST["seats"];
-      $sql="Select * from airline where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats'";
+      $sql="Select * from airline where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by economy_fare";
       $res=mysqli_query($conn,$sql);
       if ($res){
         }
@@ -18,6 +18,7 @@
       $f=1;
       echo 
       '
+      <form method="POST" action="passenger_info_table.php">
       <table border=3 class="table table-bordered table-hover" id="tab_logic" align="center" style="font-size:15px; background-color: #FADCC8;">
       <thead>
       <tr><th colspan="13"><h3>Airline Search Results from '.$_POST["fcity"].' to '.$_POST["tcity"] .' :</h3></th></tr>
@@ -30,19 +31,23 @@
             <th scope="col">Dept_date</th>
             <th scope="col">Arrival_time</th>
             <th scope="col">Arrival_date</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         ' ;
         while($rows=mysqli_fetch_assoc($res))
         {
-          echo "<tr><td>{$rows['Flight_ID']}</td>
+          echo "
+          <input type='hidden' name='flight' value='{$rows['Flight_ID']}' />
+          <tr><td>{$rows['Flight_ID']}</td>
            <td>{$rows['Airline_name']}</td> 
            <td>{$rows['economy_Fare']}</td> 
            <td>{$rows['buisness_fare']}</td>
            <td>{$rows['dept_Time']}</td>
            <td>{$rows['dept_date']}</td>
            <td>{$rows['arrival_time']}</td>
-           <td>{$rows['arrival_date']}</td><tr>";
+           <td>{$rows['arrival_date']}</td>
+           <td><input type='submit'name='submit' value='BOOK NOW!'/></td><tr>";
         }
     echo '</table>';
     }

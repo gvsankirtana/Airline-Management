@@ -9,10 +9,18 @@ $query = "SELECT * FROM flight_management.login WHERE login_username='$username'
 $result = mysqli_query($conn, $query);
 $count=mysqli_num_rows($result);
 if($count==0){
-    echo "User account does not exists.";
+    echo ' <div class="alert alert-danger" role="alert">
+    <h4 style={color:red;}class="alert-heading">User account does not exists.</h4>
+    <p>Signup to create an account to enjoy our services!</p>
+    <hr>
+   </div> ';
 }
 else{
-    header("location: searchflights.html");
+  $_SESSION['user'] = $username;
+  if(!isset($_SESSION[' user']))
+  {
+   header("location: searchflights.php");
+  }
 }
 }
 ?>

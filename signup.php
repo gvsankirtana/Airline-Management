@@ -1,4 +1,6 @@
 <?php
+     session_start();
+
     $showalert=false;
    $nameErr = $emailErr = $showError="";
    $f=0;
@@ -55,6 +57,11 @@
      $sql = "INSERT INTO `customer` (`Cust_name`,`gender`,`email`,`phone_number`,`login_username`) VALUES ('$name','$gender','$email','$phno','$username')";
      $result = mysqli_query($conn, $sql);
      $showalert=true;
+     $_SESSION['user'] = $username;
+     if(!isset($_SESSION["user"]))
+    {
+     header("location: searchflights.php");
+    }
    }
     }
   }
