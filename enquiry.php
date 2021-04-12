@@ -1,39 +1,7 @@
 
 <?php
 session_start();
-   $showalert=false;
-   $titleErr = $descriptionErr = $typeErr= $userErr= $answer="";
-   $f=0;
-   if($_SERVER["REQUEST_METHOD"] == "POST")
-    { 
-    include 'connect.php';
-	$user = $_POST["username"];
-    $title = $_POST["enquirytitle"];
-    $type =$_POST["enquirytype"];
-    $description =$_POST["Description"];
-    $exists=false;
-	if (empty($_POST["username"])) {
-		$userErr = "username is required" ;
-	} 
-    else if (empty($_POST["enquirytitle"])) {
-      $titleErr = "title is required" ;
-    } 
-	else if(empty($_POST["enquirytype"])){
-		$typeErr = "type is required" ;
-	}
-	else if(empty($_POST["Description"])){
-		$descriptionErr = "Description is required" ;
-	}
-    else{
-        $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`Cust_id`) VALUES ('$title', '$type','$description',(SELECT `Cust_ID` FROM `customer` WHERE `login_username` = '$user'))";
-        $result = mysqli_query($conn, $sql);
-        if ($result){
-           $showalert = true;
-        }
-        else
-        echo("Error description: " . mysqli_error($conn));
-    }
-}?>
+?>
 <?php 
 include 'connect.php';
 $sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NOT NULL";
@@ -276,15 +244,12 @@ nav ul li a{
    if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
     include 'connect.php';
-	$user = $_POST["username"];
+	$user = $_SESSION["user"];
     $title = $_POST["enquirytitle"];
     $type =$_POST["enquirytype"];
     $description =$_POST["Description"];
     $exists=false;
-	if (empty($_POST["username"])) {
-		$userErr = "username is required" ;
-	} 
-    else if (empty($_POST["enquirytitle"])) {
+    if (empty($_POST["enquirytitle"])) {
       $titleErr = "title is required" ;
     } 
 	else if(empty($_POST["enquirytype"])){
@@ -303,6 +268,7 @@ nav ul li a{
         echo("Error description: " . mysqli_error($conn));
     }
 }?>
+ <h4 style="text-align=right;">WELCOME! <?php print_r($_SESSION["user"]); ?></h4>
 		<div class="form-box">
 		<?php
             if($showalert){
@@ -315,7 +281,7 @@ nav ul li a{
 		<form action=http://localhost/flight_management/enquiry.php method="POST">
 		<div class="header-text">
 			Customer Enquiry
-		</div><input placeholder="Your Username" type="text" id="username" name="username"><span class="error"><?php echo $userErr;?></span><input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> <span class="error"><?php echo $titleErr;?></span> <input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype"><span class="error"><?php echo $typeErr;?></span><textarea id="Description" name="Description" rows="1" cols="50"></textarea><span class="error"><?php echo $descriptionErr;?></span><button>Submit</button>
+		</div><input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> <span class="error"><?php echo $titleErr;?></span> <input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype"><span class="error"><?php echo $typeErr;?></span><textarea id="Description" name="Description" rows="1" cols="50"></textarea><span class="error"><?php echo $descriptionErr;?></span><button>Submit</button>
 </form>
 	<script>
 		var menu=document.getElementById("menu");
