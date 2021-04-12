@@ -1,25 +1,27 @@
 <?php
    $showalert=false;
-   $userErr = $custErr = $ansErr="";
+   $userErr = $enquiErr = $ansErr="";
    if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
     include 'connect.php';
 	$emp = $_POST["emp"];
-    $custid = $_POST["cust"];
+    $enquiid = $_POST["enqui"];
     $ans =$_POST["ans"];
     $exists=false;
 	if (empty($_POST["emp"])) {
 		$userErr = "employee username needed" ;
 	} 
-    else if (empty($_POST["cust"])) {
-      $custErr = "Enter Customer ID" ;
+    else if (empty($_POST["enqui"])) {
+      $enquiErr = "Enter Enquiry ID" ;
     } 
 	else if(empty($_POST["ans"])){
 		$ansErr = "Enter answer" ;
 	}
     else{
-        $sql = "INSERT INTO `enquiry` ( `enquiry_answer`) VALUES ('$ans')";
-        $result = mysqli_query($conn, $sql);
+        $sql="INSERT INTO `answers`(`Enquiry_ID`,`emp_id`) values ('$enquiid',(SELECT `Emp_ID` FROM `customer_care_agent` WHERE `login_username` = '$emp'))";
+        $sql1 = "UPDATE `enquiry` SET `enquiry_answer`= '$ans' WHERE `Enquiry_ID` = '$enquiid'" ;
+        mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql1);
         if ($result){
            $showalert = true;
         }
@@ -218,10 +220,12 @@ nav ul li a{
 	</nav>
 	<img src="https://image.flaticon.com/icons/png/512/39/39563.png" style="width: 50px;"id="menu">
 	<div class="form-box">
+        <form action=http://localhost/flight_management/empenquiryanswer.php method="POST">
 		<div class="header-text">
 			Answering Query 
-		</div><input placeholder="Your employee Username" name="emp" type="text"> <input placeholder="customer id" name="cust" type="type"><textarea  name="ans" rows="4" cols="50">Enter answer for query</textarea> <button>Submit</button>
-	</div>
+		</div><input placeholder="Your employee Username" id="emp" name="emp" type="text"> <input placeholder="Enquiry id" name="enqui" id="enqui" type="type"><textarea  name="ans" id="ans" rows="4" cols="50">Enter answer for query</textarea> <button>Submit</button>
+        </form>
+    </div>
 	<script>
 		var menu=document.getElementById("menu");
 		var side=document.getElementById("side");
