@@ -1,6 +1,9 @@
-
-<?php
-session_start();
+<?php 
+     session_start();
+     if(($_SESSION["user"])==null)
+     {
+      header("location: login.php");
+     }
 ?>
 <?php 
 include 'connect.php';
