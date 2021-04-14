@@ -340,7 +340,7 @@
           </select>
         </div>
         <div class="question">
-        <p>Gender</p>
+        <p>Class</p>
         <div class="question-answer">
           <div>
           <input type="radio" value="Business" id="radio_3" name="class"/>
