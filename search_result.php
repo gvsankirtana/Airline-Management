@@ -21,7 +21,7 @@
       <form method="POST" action="passenger_info_table.php">
       <table border=3 class="table table-bordered table-hover" id="tab_logic" align="center" style="font-size:15px; background-color: #FADCC8;">
       <thead>
-      <tr><th colspan="13"><h3>Airline Search Results from '.$_POST["fcity"].' to '.$_POST["tcity"] .' :</h3></th></tr>
+      <tr><th colspan="13"><h3>Airline Search Results from '.$_POST["fcity"].' to '.$_POST["tcity"] .' in '.$_POST["class"].' class:</h3></th></tr>
       <tr>
             <th scope="col">Flight_ID</th>
             <th scope="col">Airline_Name</th>

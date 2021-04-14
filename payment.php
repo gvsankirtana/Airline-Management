@@ -1,5 +1,9 @@
 <?php
-  require 'connect.php';
+  include 'connect.php';
+  $flightid=$_POST["flight"];
+  $query ="SELECT FLight_ID, departure_Destination, arrival_Destination from airline";
+  $result = mysqli_query($conn, $query);
+  $row = mysqli_fetch_row($result);
 ?>
 <!DOCTYPE html>
 <html>
@@ -103,11 +107,10 @@
         margin-right: 80px;
       }
     </style>
-     
   </head>
   <body>
     <?php
-      $query ="SELECT FLight_ID departure_destination arrival_destination vacant_seats from airline "
+      
     ?>
     <div id="navbar">
       <div class="container">
@@ -119,15 +122,9 @@
     </div>
     <nav id="side">
       <ul>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br><br><br><br><br><br><br>
         <li><a href="searchflights.php">Book Ticket</a></li>
-          <li><a href="enquiry.php">Enquiry</a></li>
+        <li><a href="enquiry.php">Enquiry</a></li>
       </ul>
     </nav>
     <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
@@ -169,19 +166,22 @@
           <table class="table table-hover">
             <tr>
               <th>flight number</th>
-              <td><?php echo $_POST['flight']?></td>
+              <td><?php echo $flightid?></td>
             </tr>
             <tr>
               <th>From</th>
-              <td></td>
+              <td>
+              <?php 
+                echo $row[1];
+              ?></td>
             </tr>
             <tr>
               <th>To</th>
-              <td></td>
+              <td><?php echo $row[2] ?> </td>
             </tr>
             <tr>
               <th>Charges</th>
-              <td></td>
+              <td><?php echo $_POST['class'] ?></td>
             </tr>
           </table>
         </div>
