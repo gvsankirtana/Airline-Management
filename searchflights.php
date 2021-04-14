@@ -347,7 +347,7 @@
               <label for="radio_3" class="radio"><span>Buisness Class</span></label>
             </div>
             <div>
-              <input type="radio" value="Economy" name="class" checked/>
+              <input type="radio" value="Economy" name="class" />
               <label for="radio_4" class="radio"><span>Economy class</span></label>
             </div>
           </div>
