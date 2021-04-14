@@ -340,17 +340,17 @@
           </select>
         </div>
         <div class="question">
-          <p>Class</p>
-          <div class="question-answer">
-            <div>
-              <input type="radio" name="class" value="Buisness"/>
-              <label for="radio_3" class="radio"><span>Buisness Class</span></label>
-            </div>
-            <div>
-              <input type="radio" value="Economy" name="class" checked/>
-              <label for="radio_4" class="radio"><span>Economy class</span></label>
-            </div>
+        <p>Gender</p>
+        <div class="question-answer">
+          <div>
+          <input type="radio" value="Business" id="radio_3" name="class"/>
+            <label for="radio_3" class="radio"><span>Business Class</span></label>
           </div>
+          <div>
+            <input type="radio" value="Economy" id="radio_4" name="class"/>
+            <label for="radio_4" class="radio"><span>Economy</span></label>
+          </div>
+        </div>
           <div class="day-visited">
             DATE OF TRAVEL :
             <input type="date" name="traveldate"  required/>
