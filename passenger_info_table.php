@@ -8,6 +8,7 @@
 <?php
    include 'connect.php';
    $flight = $_POST["flight"];
+   $_SESSION['flightid']=$flight;
    $_SERVER["REQUEST_METHOD"]="";
 ?>
 <!DOCTYPE html>

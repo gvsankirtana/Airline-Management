@@ -1,6 +1,7 @@
 <?php
+  session_start();
   include 'connect.php';
-  $flightid=$_POST["flight"];
+  $flightid = $_SESSION['flightid'];
   $query ="SELECT FLight_ID, departure_Destination, arrival_Destination from airline";
   $result = mysqli_query($conn, $query);
   $row = mysqli_fetch_row($result);
