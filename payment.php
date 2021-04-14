@@ -2,6 +2,7 @@
   session_start();
   include 'connect.php';
   $flightid = $_SESSION['flightid'];
+  $class = $_SESSION['class'];
   $query ="SELECT FLight_ID, departure_Destination, arrival_Destination from airline";
   $result = mysqli_query($conn, $query);
   $row = mysqli_fetch_row($result);
@@ -182,7 +183,7 @@
             </tr>
             <tr>
               <th>Charges</th>
-              <td><?php echo $_POST['class'] ?></td>
+              <td><?php echo $class ?></td>
             </tr>
           </table>
         </div>

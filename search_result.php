@@ -1,11 +1,12 @@
 <?php
+session_start();
   $f=1;
    if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
     include 'connect.php';
     $from = $_POST["fcity"];
     $to=$_POST["tcity"];
-    
+    $class=$_POST["class"];
     $class = $_POST["class"];
     $date=$_POST["traveldate"];
     $seats = $_POST["seats"];
@@ -38,6 +39,7 @@
         while($rows=mysqli_fetch_assoc($res))
         {
           echo "
+          <input type='hidden' name='class' value=$class />
           <input type='hidden' name='flight' value='{$rows['Flight_ID']}' />
           <tr><td>{$rows['Flight_ID']}</td>
            <td>{$rows['Airline_name']}</td> 

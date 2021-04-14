@@ -8,6 +8,8 @@
 <?php
    include 'connect.php';
    $flight = $_POST["flight"];
+   $class=$_POST["class"];
+   $_SESSION['class']=$class;
    $_SESSION['flightid']=$flight;
    $_SERVER["REQUEST_METHOD"]="";
 ?>
@@ -351,6 +353,12 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
         <p>Flight ID</p><span class="error">
         <div class="name-item">
           <input type="text" value="<?php echo $flight ?>" disabled></input>
+        </div>
+      </div>
+      <div class="item">
+        <p>Class</p><span class="error">
+        <div class="name-item">
+          <input type="text" value="<?php echo $class ?>" disabled></input>
         </div>
       </div>
       <div class="item">
