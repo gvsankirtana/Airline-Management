@@ -308,6 +308,7 @@
           </select>
         </div>
         <div class="question">
+<<<<<<< HEAD
           <p>Class</p>
           <div class="form-check row">
             <div class="">
@@ -318,7 +319,19 @@
               <input type="radio" name="class" value="Economy Class">
               <label class="form-check-label">Economy</label>
             </div>
+=======
+        <p>Class</p>
+        <div class="question-answer">
+          <div>
+          <input type="radio" value="Business" id="radio_3" name="class"/>
+            <label for="radio_3" class="radio"><span>Business Class</span></label>
+>>>>>>> ae63c9964503534fa609676c07c2dae950a84147
           </div>
+          <div>
+            <input type="radio" value="Economy" id="radio_4" name="class"/>
+            <label for="radio_4" class="radio"><span>Economy</span></label>
+          </div>
+        </div>
           <div class="day-visited">
             DATE OF TRAVEL :
             <input type="date" name="traveldate"  required/>

@@ -227,7 +227,7 @@ nav ul li a{
 <body>
 	<div id="navbar">
 		<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
-		<a href="homepage.html"><button type="button" class="btn btn-danger btn-sm" style="float:right">LOGOUT</button></a>
+		<a href="logout.php"><button type="button" class="btn btn-danger btn-sm" style="float:right">LOGOUT</button></a>
 	</div>
 	<nav id="side">
 		<ul>
