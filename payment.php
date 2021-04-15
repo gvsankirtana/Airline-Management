@@ -3,8 +3,17 @@
   include 'connect.php';
   $flightid = $_SESSION['flightid'];
   $class = $_SESSION['class'];
-  $query ="SELECT FLight_ID, departure_Destination, arrival_Destination from airline";
+  if($_SESSION['class']=="Business"){
+    $price = "SELECT Business from airline where Flight_ID='$flightid'";
+    echo $price;
+  }
+  else if($_SESSION['class']=="Economy"){
+    $price="SELECT Economy from airline where Flight_ID='$flightid'";
+  }
+  $query ="SELECT Flight_ID, departure_Destination, arrival_Destination from airline where Flight_ID='$flightid'";
+  $result1=mysqli_query($conn, $price);
   $result = mysqli_query($conn, $query);
+  $pricerow=mysqli_fetch_row($result1);
   $row = mysqli_fetch_row($result);
 ?>
 <!DOCTYPE html>
@@ -183,7 +192,7 @@
             </tr>
             <tr>
               <th>Charges</th>
-              <td><?php echo $class ?></td>
+              <td><?php echo $pricerow ?></td>
             </tr>
           </table>
         </div>

@@ -26,8 +26,8 @@
       $adherr= "Enter valid Adhaar Number" ;
     } 
     else{
-        $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
-        $sql1="UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`) where Aadhar_No='$adhaar'";
+        $sql = "INSERT INTO passenger_info ( Aadhar_No, P_DOB,P_email,P_Name,P_gender,p_phone_no,state,city,pincode) VALUES ('465827691643', '2001-01-01','mahithamilli@gmail.com','mahitha','female','9390377163','tel','hyd','57824')";
+        $sql1="UPDATE passenger_info SET P_age = year(CURRENT_DATE())-year(P_DOB) where Aadhar_No='4658276956643'";
         $result = mysqli_query($conn, $sql);
         mysqli_query($conn, $sql1);
         if ($result){

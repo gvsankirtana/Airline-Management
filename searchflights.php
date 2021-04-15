@@ -157,46 +157,12 @@
       position: relative;
       margin: 10px 0;
     }
-    input[type=radio], input[type=checkbox]  {
-      display: none;
-    }
-    label.radio {
-      position: relative;
-      display: inline-block;
-      margin: 5px 20px 15px 0;
-      cursor: pointer;
-    }
+    
+    
     .question span {
       margin-left: 30px;
     }
-    label.radio:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 17px;
-      height: 17px;
-      border-radius: 50%;
-      border: 2px solid #ccc;
-    }
-    input[type=radio]:checked + label:before, label.radio:hover:before {
-      border: 2px solid #a37547;
-    }
-    label.radio:after {
-      content: "";
-      position: absolute;
-      top: 6px;
-      left: 5px;
-      width: 8px;
-      height: 4px;
-      border: 3px solid #a37547;
-      border-top: none;
-      border-right: none;
-      transform: rotate(-45deg);
-      opacity: 0;
-    }
-    input[type=radio]:checked + label:after {
-      opacity: 1;
-    }
+    
     .btn-block {
       margin-top: 10px;
       text-align: center;
@@ -298,6 +264,8 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
     <div class="testbox">
       <form action="/flight_management/search_result.php" method="post">
+      
+      
         <!--<div class="banner">
         </div>-->
         <div class="item">
@@ -341,14 +309,14 @@
         </div>
         <div class="question">
           <p>Class</p>
-          <div class="question-answer">
-            <div>
-              <input type="radio" name="class" value="Buisness"/>
-              <label for="radio_3" class="radio"><span>Buisness Class</span></label>
-            </div>
-            <div>
-              <input type="radio" value="Economy" name="class" checked/>
-              <label for="radio_4" class="radio"><span>Economy class</span></label>
+          <div class="form-check row">
+            <div class="">
+              <input type="radio" name="class" value="Business Class" >
+              <label class="form-check-label">Business</label>
+            </div> <br>
+            <div class="">
+              <input type="radio" name="class" value="Economy Class">
+              <label class="form-check-label">Economy</label>
             </div>
           </div>
           <div class="day-visited">
