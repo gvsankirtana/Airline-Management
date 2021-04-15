@@ -7,7 +7,7 @@
    if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
 	   
-    include 'connect.php';
+    include 'connect.php';                              
     $username = $_POST["username"];
     $name=$_POST["name"];
     $gender=$_POST["gender"];
