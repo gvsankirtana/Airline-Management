@@ -2,7 +2,7 @@
 session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-  include 'connect.php';
+  include 'connect.php';                            
 $username=mysqli_real_escape_string($conn,$_POST["login_username"]);
 $password=mysqli_real_escape_string($conn,$_POST["password"]);
 $query = "SELECT * FROM login WHERE login_username='$username' and password='$password'";
