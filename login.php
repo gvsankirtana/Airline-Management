@@ -12,7 +12,7 @@ if($count==0){
     echo ' <div class="alert alert-danger" role="alert">
     <h4 style={color:red;}class="alert-heading">User account does not exists.</h4>
     <p>Signup to create an account to enjoy our services!</p>
-    <hr>
+    <hr>           
    </div> ';
 }
 else{
