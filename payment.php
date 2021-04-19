@@ -1,20 +1,24 @@
 <?php
   session_start();
+  if(($_SESSION["user"])==null)
+     {
+      header("location: login.php");
+     }
   include 'connect.php';
   $flightid = $_SESSION['flightid'];
   $class = $_SESSION['class'];
   if($_SESSION['class']=="Business"){
-    $price = "SELECT Business from airline where Flight_ID='$flightid'";
+    $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
     echo $price;
   }
   else if($_SESSION['class']=="Economy"){
-    $price="SELECT Economy from airline where Flight_ID='$flightid'";
+    $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
   }
   $query ="SELECT Flight_ID, departure_Destination, arrival_Destination from airline where Flight_ID='$flightid'";
   $result1=mysqli_query($conn, $price);
   $result = mysqli_query($conn, $query);
-  /*$pricerow=mysqli_fetch_row($result1);
-  $row = mysqli_fetch_row($result);*/
+  $pricerow=mysqli_fetch_row($result1);
+  $row = mysqli_fetch_row($result);
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +32,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
       body{
-        background-image: url("");
+        background-image: url("images/payment.jpg");
         background-repeat: no-repeat;
         background-position: center;
         background-size:cover,contain;
@@ -117,6 +121,13 @@
         padding: 0px 10px;
         margin-right: 80px;
       }
+      .headingstyle{
+        background-image: url("images/payment.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:cover,contain;
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -138,16 +149,20 @@
         <li><a href="enquiry.php">Enquiry</a></li>
       </ul>
     </nav>
+    
     <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
+    <br><br><br>
     <div class="row container">
       <div class="col-xs-8 container">
         <div class="container-fluid" style="padding-right: 50px; padding-left: 50px;">
+        <form action="ticket.php" method="POST">
           <div class="panel" style="left: 34px;">
-            <div class="panel-heading">
+            <div class="panel-heading headingstyle">
               <h2><b>Payment Details</b></h2>
             </div>
+            
             <div class="panel-body">
-              <form action="ticket.php" method="POST">
+              
                 <div class="form-group">
                   <label for="Bank_Name">Bank Name</label> <br>
                   <select class="form-control" aria-label="slect bank" name="BankName">
@@ -163,17 +178,24 @@
                   <label for="Account_Number">Account Number</label> <br>
                   <input type="number" placeholder="" class="form-control" name="AccountNumber">
                 </div>
-              </form>
+              
             </div>
+            <div class="panel-footer text-right" style="align-items:center;">
+                  <button class="btn btn-success" type="button submit" value="submit" >Submit</button>
+            </div>
+                
           </div>
+          </form>
         </div>
       </div>
       <div class="col-xs-4 container">
         <div class="container-fluid panel-margin">
-          <h2><b>Billing Details</b></h2>
-          <br>
-          <br>
-          <br>
+        <br>
+          <div class="panel">
+          <div class="panel-heading headingstyle">
+          <h3><b>Billing Details</b></h3>
+          </div>
+          <div class="panel-body">
           <table class="table table-hover">
             <tr>
               <th>flight number</th>
@@ -192,9 +214,11 @@
             </tr>
             <tr>
               <th>Charges</th>
-              <td><?php echo $pricerow ?></td>
+              <td><?php echo "₹";echo $pricerow[0] ?></td>
             </tr>
           </table>
+          </div>
+          </div>
         </div>
       </div>
     </div>

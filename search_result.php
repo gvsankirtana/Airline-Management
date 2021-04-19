@@ -10,7 +10,7 @@ session_start();
     $class = $_POST["class"];
     $date=$_POST["traveldate"];
     $seats = $_POST["seats"];
-      $sql="Select * from airline where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by Economy";
+      $sql="Select * from airline where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by economy_Fare";
       $res=mysqli_query($conn,$sql);
       if ($res){
         }
@@ -43,8 +43,8 @@ session_start();
           <input type='hidden' name='flight' value='{$rows['Flight_ID']}' />
           <tr><td>{$rows['Flight_ID']}</td>
            <td>{$rows['Airline_name']}</td> 
-           <td>{$rows['Economy']}</td> 
-           <td>{$rows['Buisness']}</td>
+           <td>{$rows['economy_Fare']}</td> 
+           <td>{$rows['buisness_fare']}</td>
            <td>{$rows['dept_Time']}</td>
            <td>{$rows['dept_date']}</td>
            <td>{$rows['arrival_time']}</td>

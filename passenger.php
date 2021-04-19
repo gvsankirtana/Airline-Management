@@ -40,7 +40,7 @@
             $showalert = true;
          }
          else
-         echo("Error description: " . mysqli_error($conn));*/
+         echo("Error description: " . mysqli_error($conn));
     }
 } 
 ?>
