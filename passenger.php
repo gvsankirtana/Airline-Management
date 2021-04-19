@@ -22,19 +22,23 @@
     else if (!preg_match("/^[0-9\-\(\)\/\+\s]*$/",$phone)) {
       $phoneErr = "Enter Valid Phone number" ;
     } 
-    else if (!preg_match("/^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$/",$adhaar)) {
+    /*else if (!preg_match("/^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$/",$adhaar)) {
+      
+      echo "works";
       $adherr= "Enter valid Adhaar Number" ;
-    } 
+    } */
     else{
         $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
         $sql1="UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`) where Aadhar_No='$adhaar'";
+        
         $result = mysqli_query($conn, $sql);
         mysqli_query($conn, $sql1);
-        if ($result){
+        echo $result;
+        /*if ($result){
             $showalert = true;
          }
          else
-         echo("Error description: " . mysqli_error($conn));
+         echo("Error description: " . mysqli_error($conn));*/
     }
 } 
 ?>
