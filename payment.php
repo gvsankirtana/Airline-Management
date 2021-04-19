@@ -13,8 +13,8 @@
   $query ="SELECT Flight_ID, departure_Destination, arrival_Destination from airline where Flight_ID='$flightid'";
   $result1=mysqli_query($conn, $price);
   $result = mysqli_query($conn, $query);
-  $pricerow=mysqli_fetch_row($result1);
-  $row = mysqli_fetch_row($result);
+  /*$pricerow=mysqli_fetch_row($result1);
+  $row = mysqli_fetch_row($result);*/
 ?>
 <!DOCTYPE html>
 <html>
