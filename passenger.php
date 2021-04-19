@@ -36,7 +36,7 @@
         $result = mysqli_query($conn, $sql);
         mysqli_query($conn, $sql1);
         echo $result;
-        /*if ($result){
+        if ($result){
             $showalert = true;
          }
          else
