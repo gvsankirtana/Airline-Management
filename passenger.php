@@ -1,5 +1,10 @@
 
 <?php
+  session_start();
+  if(($_SESSION["user"])==null)
+     {
+      header("location: login.php");
+     }
   $showalert=false;
   $nameErr = $emailErr = $phoneErr= $adherr="";
    include 'connect.php';
@@ -22,15 +27,12 @@
     else if (!preg_match("/^[0-9\-\(\)\/\+\s]*$/",$phone)) {
       $phoneErr = "Enter Valid Phone number" ;
     } 
-    /*else if (!preg_match("/^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$/",$adhaar)) {
-      
-      echo "works";
+    else if (!preg_match("/^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$/",$adhaar)) {
       $adherr= "Enter valid Adhaar Number" ;
-    } */
+    } 
     else{
         $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
         $sql1="UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`) where Aadhar_No='$adhaar'";
-        
         $result = mysqli_query($conn, $sql);
         mysqli_query($conn, $sql1);
         echo $result;
