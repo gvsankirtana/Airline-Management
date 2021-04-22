@@ -41,6 +41,7 @@ session_start();
           echo "
           <input type='hidden' name='class' value=$class />
           <input type='hidden' name='flight' value='{$rows['Flight_ID']}' />
+          <input type='hidden' name='class' value=$seats />
           <tr><td>{$rows['Flight_ID']}</td>
            <td>{$rows['Airline_name']}</td> 
            <td>{$rows['economy_Fare']}</td> 
