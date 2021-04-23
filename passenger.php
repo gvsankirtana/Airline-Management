@@ -55,6 +55,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<style>
+body{
+  background-image: url("https://media.cntraveler.com/photos/5a4e4dfd75ddab26e42d6603/16:9/w_2560%2Cc_limit/GettyImages-86146996.jpg");
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+</style>
+<body>
 <div class="alert alert-success" role="alert">
             <p>You have successfuly entered your Information!</p>
             <br>
@@ -64,4 +73,5 @@
            </div>
             <hr>
            </div>
+</body>
 </html>
