@@ -13,9 +13,9 @@
    $class=$_POST["class"];
    $seats=$_POST["seats"];
    $s=$_POST["seats"];
-   $_SESSION['class']=$class;
-   $_SESSION['flightid']=$flight;
-   $_SESSION['seats']=$seats;
+  // $_SESSION['class']=$class;
+   //$_SESSION['flightid']=$flight;
+   //$_SESSION['seats']=$seats;
    $_SERVER["REQUEST_METHOD"]="";
    $sql1 = "SELECT email,phone_number FROM customer WHERE login_username = '$user'";
    $result = mysqli_query($conn,$sql1);
@@ -449,6 +449,9 @@ WELCOME! <?php print_r($user); ?>
         <div class="day-visited">
           <input type="date" name="dob" required/>
         </div>
+        <center>
+        <input type="submit" value="Save"/>
+        </center>
         <?php    }?>
         <div class="btn-block">
           <button type="submit"><a href="/flight_management/payment.php">Book</a></button>
