@@ -7,9 +7,11 @@
 ?>
 <?php
    include 'connect.php';
+   $var=0;
    $flight = $_POST["flight"];
    $class=$_POST["class"];
    $seats=$_POST["seats"];
+   $s=$_POST["seats"];
    $_SESSION['class']=$class;
    $_SESSION['flightid']=$flight;
    $_SESSION['seats']=$seats;
@@ -364,15 +366,9 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
         </div>
       </div>
       <div class="item">
-        <p>Total Passengers</p><span class="error">
+        <p>Total Passenger</p><span class="error">
         <div class="name-item">
           <input type="text" value="<?php echo $seats ?>" disabled></input>
-        </div>
-      </div>
-      <div class="item">
-        <p>Passenger contact name</p>
-        <div class="name-item">
-          <input type="text" id="name" name="name" required/>
         </div>
       </div>
       <div class="item">
@@ -422,6 +418,12 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
             <option value="Uttrakand">Uttrakand</option>
           </select>
         </div>
+      <?php for ($var = 1; $var <= $seats; $var++) { ?>
+      <div class="item">
+        <p>Passenger contact name <?php echo $var?></p>
+        <div class="name-item">
+          <input type="text" id="name" name="name" required/>
+        </div>
       </div>
       <div class="item">
         <p>Adhaar Number</p>
@@ -443,9 +445,11 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
         <div class="day-visited">
           <input type="date" name="dob" required/>
         </div>
+        <?php    }?>
         <div class="btn-block">
           <button type="submit"><a href="/flight_management/payment.php">Book</a></button>
         </div>
+      </div>
     </form>
     </div>
 </div>
