@@ -7,7 +7,6 @@ session_start();
     $from = $_POST["fcity"];
     $to=$_POST["tcity"]; 
     $class=$_POST["class"];
-    $class = $_POST["class"];
     $date=$_POST["traveldate"];
     $seats = $_POST["seats"];
       $sql="Select * from airline where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by economy_Fare";
@@ -41,7 +40,7 @@ session_start();
           echo "
           <input type='hidden' name='class' value=$class />
           <input type='hidden' name='flight' value='{$rows['Flight_ID']}' />
-          <input type='hidden' name='class' value=$seats />
+          <input type='hidden' name='seats' value=$seats />
           <tr><td>{$rows['Flight_ID']}</td>
            <td>{$rows['Airline_name']}</td> 
            <td>{$rows['economy_Fare']}</td> 

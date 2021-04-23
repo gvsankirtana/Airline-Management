@@ -9,8 +9,10 @@
    include 'connect.php';
    $flight = $_POST["flight"];
    $class=$_POST["class"];
+   $seats=$_POST["seats"];
    $_SESSION['class']=$class;
    $_SESSION['flightid']=$flight;
+   $_SESSION['seats']=$seats;
    $_SERVER["REQUEST_METHOD"]="";
 ?>
 <!DOCTYPE html>
@@ -359,6 +361,12 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
         <p>Class</p><span class="error">
         <div class="name-item">
           <input type="text" value="<?php echo $class ?>" disabled></input>
+        </div>
+      </div>
+      <div class="item">
+        <p>Total Passengers</p><span class="error">
+        <div class="name-item">
+          <input type="text" value="<?php echo $seats ?>" disabled></input>
         </div>
       </div>
       <div class="item">
