@@ -152,13 +152,13 @@
     <div class="row container">
       <div class="col-xs-8 container">
         <div class="container-fluid" style="padding-right: 50px; padding-left: 50px;">
-        
+        <form action="ticket.php" method="POST">
+            
           <div class="panel" style="left: 34px;">
             <div class="panel-heading headingstyle">
               <h2><b>Payment Details</b></h2>
             </div>        
             <div class="panel-body">
-              <form action="ticket.php" method="POST">
                 <div class="form-group">
                   <label for="Bank_Name">Bank Name</label> <br>
                   <select class="form-control" aria-label="slect bank" name="BankName">
@@ -172,17 +172,17 @@
                 </div>
                 <div class="form-group">
                   <label for="Account_Number">Account Number</label> <br>
-                  <input type="number" placeholder="" class="form-control" name="AccountNumber">
+                  <input type="number" class="form-control" name="AccountNumber">
                 </div>
                 <div class="panel-footer text-right" style="align-items:center;">
               <button class="btn btn-info" value="submit" name="button">Submit</button>
+              <button class="btn btn-info" value="cancel" name="button"><a href="cancelticket.php" style="color:white;">Cancel</a></button>
               </div>
-              </form>
+              
             </div>
-            <div class="panel-footer text-right" style="align-items:center;">
-              <button class="btn btn-info" value="cancel" name="button"><a href="cancelticket.php">Cancel</a></button>
-            </div>
+            
           </div>
+          </form>
         </div>
       </div>
       <div class="col-xs-4 container">

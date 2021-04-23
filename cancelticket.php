@@ -1,3 +1,14 @@
+<?php
+session_start();
+require 'connect.php';
+$aadhar=$_SESSION['adhaar'];
+$sql = "DELETE FROM passenger_info WHERE Aadhar_No='$aadhar'";
+echo $sql;
+echo "&nbsp";
+$result = mysqli_query($conn, $sql);
+echo $result;
+?>
+
 <!DOCTYPE html>
 <html>
   <title>Payment Page</title>
