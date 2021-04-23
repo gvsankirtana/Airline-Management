@@ -5,7 +5,7 @@ session_start();
     { 
     include 'connect.php';
     $from = $_POST["fcity"];
-    $to=$_POST["tcity"];
+    $to=$_POST["tcity"]; 
     $class=$_POST["class"];
     $class = $_POST["class"];
     $date=$_POST["traveldate"];
