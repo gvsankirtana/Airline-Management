@@ -17,9 +17,9 @@ session_start();
         echo("Error description: " . mysqli_error($conn));
       $f=1; 
       echo 
-      '
+      '<div class="result">
       <form method="POST" action="passenger_info_table.php">
-      <table border=3 class="table table-bordered table-hover" id="tab_logic" align="center" style="font-size:15px; background-color: #FADCC8;">
+      <table border=3 class="table table-bordered table-hover" align="center" style="font-size:15px; background-color: #FADCC8;">
       <thead>
       <tr><th colspan="13"><h3>Airline Search Results from '.$_POST["fcity"].' to '.$_POST["tcity"] .' in '.$_POST["class"].':</h3></th></tr>
       <tr>
@@ -51,7 +51,7 @@ session_start();
            <td>{$rows['arrival_date']}</td>
            <td><input type='submit'name='submit' value='BOOK NOW!'/></td><tr>";
         }
-    echo '</table>';
+    echo '</table></div>';
     }
 //INSERT INTO `airline`(`Flight_ID`, `Flight_Type`, `Airline_name`, `Reference_no`, `economy_Fare`, `buisness_fare`, `vacant_seats`, `dept_Time`, `dept_date`, `departure_Destination`, `arrival_time`, `arrival_date`, `arrival_destination`) VALUES ('1234','Airbus A350','Indian Airways','WY233','3200','9999','220','22:00:00','2021-05-01','Mumbai','23;45:00','2021-05-01','Chennai');
  
@@ -71,6 +71,13 @@ body {
   background-image: url("https://www.thephotoforum.com/attachments/thousand_steps3-jpg.95195/");
   background-repeat: no-repeat;
   background-size: cover;
+}
+.result{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 .sidenav {
   height: 100%;
@@ -133,6 +140,29 @@ body {
 .sidenav a:hover {
   color: #f1f1f1;
 }
+.btn-group{
+  left:0;
+  top:35%;
+  position:absolute;
+}
+.btn-group button {
+  background-color: #4CAF50; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 100%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
 
       body, div, form, input, select, textarea, p { 
       padding: 0;
@@ -143,16 +173,17 @@ body {
       color: black;
       line-height: 22px;
       }
+      </style>
 <body>
 <div class="main">
-      <nav id="side">
+<div class="btn-group">
+  <p style="color:#FADCC8;font:20px;margin-left:30px;font-weight:bold;">Filter Flights according to</p>
+  <button >Fare</button>
+  <button>Departure_time</button>
+  <button>Arrival_time</button>
+</div>
         <ul>
-          <br>
-          <br>
-          <br>
-          <br>
-          <li><a href="searchflights.php">Search Flights</a></li>
-          <li><a href="passenger info table.html">Book Ticket</a></li>
-          <li><a href="customer.html">Enquiry</a></li>
         </ul>
       </nav>
+</body>
+</html>
