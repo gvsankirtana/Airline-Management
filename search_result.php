@@ -16,7 +16,7 @@ session_start();
         }
         else
         echo("Error description: " . mysqli_error($conn));
-      $f=1;
+      $f=1; 
       echo 
       '
       <form method="POST" action="passenger_info_table.php">
