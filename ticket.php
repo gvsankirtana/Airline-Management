@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'connect.php';
+
 $flightid=$_SESSION['flightid'];
 $class=$_SESSION['class'];
 if($_SERVER["REQUEST_METHOD"] == "POST"){

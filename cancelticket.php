@@ -1,25 +1,3 @@
-<?php
-  session_start();
-  if(($_SESSION["user"])==null)
-     {
-      header("location: login.php");
-     }
-  include 'connect.php';
-  $flightid = $_SESSION['flightid'];
-  $class = $_SESSION['class'];
-  if($_SESSION['class']=="Business"){
-    $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
-    echo $price;
-  }
-  else if($_SESSION['class']=="Economy"){
-    $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
-  }
-  $query ="SELECT Flight_ID, departure_Destination, arrival_Destination from airline where Flight_ID='$flightid'";
-  $result1=mysqli_query($conn, $price);
-  $result = mysqli_query($conn, $query);
-  $pricerow=mysqli_fetch_row($result1);
-  $row = mysqli_fetch_row($result);
-?>
 <!DOCTYPE html>
 <html>
   <title>Payment Page</title>
@@ -34,8 +12,9 @@
       body{
         background-image: url("images/payment.jpg");
         background-repeat: no-repeat;
-        background-position: center;
+        background-position: absolute,center;
         background-size:cover,contain;
+        height:400px;
       }
       #navbar {
         overflow: hidden;
@@ -128,6 +107,13 @@
         background-size:cover,contain;
         color: white;
       }
+      .flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+}
+
     </style>
   </head>
   <body>
@@ -148,77 +134,16 @@
     </nav>
     
     <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
-    <br><br><br>
-    <div class="row container">
-      <div class="col-xs-8 container">
-        <div class="container-fluid" style="padding-right: 50px; padding-left: 50px;">
-        
-          <div class="panel" style="left: 34px;">
-            <div class="panel-heading headingstyle">
-              <h2><b>Payment Details</b></h2>
-            </div>        
-            <div class="panel-body">
-              <form action="ticket.php" method="POST">
-                <div class="form-group">
-                  <label for="Bank_Name">Bank Name</label> <br>
-                  <select class="form-control" aria-label="slect bank" name="BankName">
-                    <option selected value="" disabled> </option>
-                    <option value="sbi">SBI</option>
-                    <option value="hdfc">HDFC</option>
-                    <option value="icici">ICICI</option>
-                    <option value="axis">Axis</option>
-                    <option value="kotak">Kotak</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="Account_Number">Account Number</label> <br>
-                  <input type="number" placeholder="" class="form-control" name="AccountNumber">
-                </div>
-                <div class="panel-footer text-right" style="align-items:center;">
-              <button class="btn btn-info" value="submit" name="button">Submit</button>
-              </div>
-              </form>
-            </div>
-            <div class="panel-footer text-right" style="align-items:center;">
-              <button class="btn btn-info" value="cancel" name="button"><a href="cancelticket.php">Cancel</a></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-4 container">
-        <div class="container-fluid panel-margin">
-        <br>
-          <div class="panel">
-          <div class="panel-heading headingstyle">
-          <h3><b>Billing Details</b></h3>
-          </div>
-          <div class="panel-body">
-          <table class="table table-hover">
-            <tr>
-              <th>flight number</th>
-              <td><?php echo $flightid?></td>
-            </tr>
-            <tr>
-              <th>From</th>
-              <td>
-              <?php 
-                echo $row[1];
-              ?></td>
-            </tr>
-            <tr>
-              <th>To</th>
-              <td><?php echo $row[2] ?> </td>
-            </tr>
-            <tr>
-              <th>Charges</th>
-              <td><?php echo "₹";echo $pricerow[0] ?></td>
-            </tr>
-          </table>
-          </div>
-          </div>
-        </div>
-      </div>
+    
+    <div class="container text-center flex-container" style="vertical-position:center;">
+    <div>
+    <div style="color:white; font-size:64px;"><b>THANK YOU!</b></div>
+    
+    <div style="color:white; font-size:17px;">Your booking has been cancelled...<br><a href="searchflights.php"style="color:yellow;">click to continue booking flights!</a></div>
     </div>
+    
+    </div>
+    
     <script>
       var menu=document.getElementById("menu");
       var side=document.getElementById("side");
