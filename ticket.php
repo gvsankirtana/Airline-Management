@@ -1,7 +1,6 @@
 <?php
 session_start();
 require 'connect.php';
-
 $flightid=$_SESSION['flightid'];
 $class=$_SESSION['class'];
 $aadhar=$_SESSION['adhaar'];
