@@ -437,12 +437,12 @@ WELCOME! <?php print_r($user); ?>
         <p>Gender</p>
         <div class="question-answer">
           <div>
-          <input type="radio" value="Male" id="radio_3" name="gender"/>
-            <label for="radio_3" class="radio"><span>Male</span></label>
+          <input type="radio" value="Male" id="radio_3<?php echo $var?>" name="gender<?php echo $var?>"/>
+            <label for="radio_3<?php echo $var?>" class="radio"><span>Male</span></label>
           </div>
           <div>
-            <input type="radio" value="Female" id="radio_4" name="gender"/>
-            <label for="radio_4" class="radio"><span>Female</span></label>
+            <input type="radio" value="Female" id="radio_4<?php echo $var?>" name="gender<?php echo $var?>"/>
+            <label for="radio_4<?php echo $var?>" class="radio"><span>Female</span></label>
           </div>
         </div>
         <p>Date Of Birth</p>
