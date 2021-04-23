@@ -9,6 +9,7 @@
    include 'connect.php';
    $var=0;
    $flight = $_POST["flight"];
+   $user=$_SESSION["user"];
    $class=$_POST["class"];
    $seats=$_POST["seats"];
    $s=$_POST["seats"];
@@ -16,6 +17,9 @@
    $_SESSION['flightid']=$flight;
    $_SESSION['seats']=$seats;
    $_SERVER["REQUEST_METHOD"]="";
+   $sql1 = "SELECT email,phone_number FROM customer WHERE login_username = '$user'";
+   $result = mysqli_query($conn,$sql1);
+   $row = mysqli_fetch_row($result);
 ?>
 <!DOCTYPE html>
 <html>
@@ -333,7 +337,7 @@ nav ul li a{
 		</div>
 	</div>
 <div class="main">
-WELCOME! <?php print_r($_SESSION["user"]); ?>
+WELCOME! <?php print_r($user); ?>
       <nav id="side">
         <ul>
           <br>
@@ -373,11 +377,11 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
       </div>
       <div class="item">
         <p>Email</p>
-        <input type="email" name="email" required/>
+        <input type="email" name="email" value="<?php echo $row[0] ?>" required/>
       </div>
       <div class="item">
         <p>Phone</p>
-        <input type="text" name="phone" required/>
+        <input type="text" name="phone" value="<?php echo $row[1] ?>" required/>
       </div>
       <div class="item">
         <p>Address</p>
@@ -433,12 +437,12 @@ WELCOME! <?php print_r($_SESSION["user"]); ?>
         <p>Gender</p>
         <div class="question-answer">
           <div>
-          <input type="radio" value="Male" id="radio_3" name="gender"/>
-            <label for="radio_3" class="radio"><span>Male</span></label>
+          <input type="radio" value="Male" id="radio_3<?php echo $var?>" name="gender<?php echo $var?>"/>
+            <label for="radio_3<?php echo $var?>" class="radio"><span>Male</span></label>
           </div>
           <div>
-            <input type="radio" value="Female" id="radio_4" name="gender"/>
-            <label for="radio_4" class="radio"><span>Female</span></label>
+            <input type="radio" value="Female" id="radio_4<?php echo $var?>" name="gender<?php echo $var?>"/>
+            <label for="radio_4<?php echo $var?>" class="radio"><span>Female</span></label>
           </div>
         </div>
         <p>Date Of Birth</p>
