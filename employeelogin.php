@@ -2,19 +2,21 @@
 session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-  include 'connect.php';                            
+  include 'connect.php';
 $username=mysqli_real_escape_string($conn,$_POST["login_username"]);
 $password=mysqli_real_escape_string($conn,$_POST["password"]);
 $query = "SELECT * FROM login WHERE login_username='$username' and password='$password'";
 $result = mysqli_query($conn, $query);
 $count=mysqli_num_rows($result);
+
+}
 }
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Employee Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -56,7 +58,7 @@ $count=mysqli_num_rows($result);
         background-color: black;
         color: white;
       }
-    </style>
+    </style>  
   </head>
   <body>
     <div id="navbar">
@@ -71,38 +73,38 @@ $count=mysqli_num_rows($result);
           <nav class="navbar" style="background-color: #e3f2fd;">
             <ul class="nav navnavbar-nav row">
               <li class="nav-item active col-xs-6"><a class="nav-link" href="login.html"><h5><b>Customer</b></h5></a></li>
-              <li class="nav-item col-xs-6"><a class="nav-link" href=""><h5><b>Employee</b></h5></a></li>
+              <li class="nav-item col-xs-6"><a class="nav-link" href="employeelogin.html"><h5><b>Employee</b></h5></a></li>
             </ul>
           </nav>
           <div class="panel-body">
-            <form action="login.php" method="POST">
+            <form>
               <div class="form-group">
-                <input type="text" placeholder="Username" class="form-control" id="login_username" name="login_username">
+                <input type="text" placeholder="Username" class="form-control">
               </div>
               <div class="form-group">
-                <input type="password" placeholder="Password" class="form-control" id="password" name="password">
+                <input type="password" placeholder="Password" class="form-control">
               </div>
-              <button class="btn btn-info" type="button submit" value="submit" >Login</button>
-              <?php 
-              if($_SERVER["REQUEST_METHOD"] == "POST"){
-                if($count==0){
-                  echo ' <div class="alert alert-danger" role="alert" style="margin-top: 20px; margin-bottom: 0px;">
-                  <h5 style={color:red;} class="alert-heading"><b>User account does not exists.</b></h5>
-                  <p>Signup to create an account to enjoy our services!</p>
-                  </div> ';
-                }
-                else{
-                  $_SESSION['user'] = $username;
-                    if(!isset($_SESSION[' user'])){
-                     header("location: searchflights.php");
-                   }
+              <button class="btn btn-info" type="button">Login</button>
+              <?php
+              if($_SERVER["REQUEST_METHOD"] == "POST")
+              {
+              if($count==0){
+                echo ' <div class="alert alert-danger" role="alert" style="margin-top: 20px; margin-bottom: 0px;">
+                <h5 style={color:red;} class="alert-heading"><b>User account does not exists.</b></h5>
+                <p>Signup to create an account to enjoy our services!</p>
+                </div> '; 
+              }
+              else{
+                $_SESSION['user'] = $username;
+                if(!isset($_SESSION[' user'])){
+                  header("location: searchflights.php");
                 }
               }
-              ?>
+              }?>
             </form>
           </div>
           <div class="panel-footer">
-            Don't have an account? <a href="signup.php">Sign Up</a> <br>
+            Don't have an account? <a href="###">Contact Admin</a> <br>
           </div>
         </div>
       </div>

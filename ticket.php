@@ -3,12 +3,11 @@ session_start();
 require 'connect.php';
 $BankName=mysqli_real_escape_string($conn,$_POST["BankName"]);
 $AccountNumber=mysqli_real_escape_string($conn,$_POST["AccountNumber"]);
-$flightid=$_SESSION['flightid'];
-$class=$_SESSION['class'];
+$flightid=12546;
+$class="Business";
 $aadhar=$_SESSION['adhaar'];
 $number=$_POST['passengers'];
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
     $query = "INSERT INTO ticket (Booking_Ref, class, payment_Type, booking_time, booking_date, account_No, Bank_name, flight_ID, aadhar_no) values('$class', 'UPI', CURRENT_TIME(), CURRENT_DATE(), '$AccountNumber', '$BankName', '$flightid', '$aadhar')";
     $result = mysqli_query($conn, $query);
     $query = "SELECT Ticket_no FROM ticket WHERE aadhar_no='$aadhar'";
