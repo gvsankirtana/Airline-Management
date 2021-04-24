@@ -14,7 +14,7 @@ $class="Business";
   else if($class=="Economy"){
     $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
   }
-  $query ="SELECT Flight_ID, departure_Destination, arrival_Destination from airline where Flight_ID='$flightid'";
+  $query ="SELECT Flight_ID, departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
   $result1=mysqli_query($conn, $price);
   $result = mysqli_query($conn, $query);
   $pricerow=mysqli_fetch_row($result1);
@@ -159,26 +159,6 @@ $class="Business";
               <h2><b>Payment Details</b></h2>
             </div>
             <div class="panel-body">
-<<<<<<< HEAD
-                <div class="form-group">
-                  <label for="Bank_Name">Bank Name</label> <br>
-                  <select class="form-control" aria-label="slect bank" name="BankName">
-                    <option selected value="" disabled> </option>
-                    <option value="sbi">SBI</option>
-                    <option value="hdfc">HDFC</option>
-                    <option value="icici">ICICI</option>
-                    <option value="axis">Axis</option>
-                    <option value="kotak">Kotak</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="Account_Number">Account Number</label> <br>
-                  <input type="text" class="form-control" name="AccountNumber">
-                </div>
-                <div class="panel-footer text-right" style="align-items:center;">
-              <button class="btn btn-info" value="submit" name="button">Submit</button>
-              <button class="btn btn-info" value="cancel" name="button"><a href="cancelticket.php" style="color:white;">Cancel</a></button>
-=======
               <div class="form-group">
                 <label for="Bank_Name">Bank Name</label> <br>
                 <select class="form-control" aria-label="slect bank" name="BankName">
@@ -197,7 +177,6 @@ $class="Business";
               <div class="panel-footer text-right" style="align-items:center;">
                 <button class="btn btn-info" value="submit" name="button">Submit</button>
                 <button class="btn btn-info" value="cancel" name="button" href="cancelticket.php">Cancel</button>
->>>>>>> d66e6e96e1396b9cc32e83cd3ee02f469f6d2dc6
               </div>
             </div>
           </div>

@@ -7,13 +7,25 @@
      include 'connect.php';
 
  $sql="Select * from  login join customer on login.login_username=customer.login_username";
+ //$sql="Select count(*) from "
   $res=mysqli_query($conn,$sql);
   if ($res){
     }
     else
     echo("Error description: " . mysqli_error($conn));
     $row=mysqli_fetch_assoc($res);
+    if($_SERVER["REQUEST_METHOD"] == "POST")
+{
 
+    $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`Cust_id`) VALUES ('$title', '$type','$description',(SELECT `Cust_ID` FROM `customer` WHERE `login_username` = '$user'))";
+    $result = mysqli_query($conn, $sql);
+    if ($result){
+ //     $showalert = true;
+ echo 'done';
+    }
+    else
+    echo("Error description: " . mysqli_error($conn));
+}
 ?><!DOCTYPE html>
 <html>
   <title>Payment Page</title>
@@ -424,25 +436,21 @@ ul.summary-list > li:last-child  {
       </div>
   </div>
   <div class="profile-info col-md-9">
-      <div class="panel">
-          <form>
-              <textarea placeholder="Whats in your mind today?" rows="2" class="form-control input-lg p-text-area"></textarea>
-          </form>
+          <form action="profile.php" method="get">
+          <input  class="form-control" placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle" required/><br>
+          <select  name="type"  class="form-control">
+          <option value="Feedback">Feedback</option>
+            <option value="complaint">Complaint</option>
+            <option value="Question">Question </option>
+            </select>
+            <br>
+         <div class="panel">
+        <textarea placeholder="Do you want to ask us something" rows="2" class="form-control input-lg p-text-area" name="enquiry"></textarea>
           <footer class="panel-footer">
-              <button class="btn btn-warning pull-right">Post</button>
+              <button type="submit" class="btn btn-warning pull-right">Ask</button>
+              </form>
+
               <ul class="nav nav-pills">
-                  <li>
-                      <a href="#"><i class="fa fa-map-marker"></i></a>
-                  </li>
-                  <li>
-                      <a href="#"><i class="fa fa-camera"></i></a>
-                  </li>
-                  <li>
-                      <a href="#"><i class=" fa fa-film"></i></a>
-                  </li>
-                  <li>
-                      <a href="#"><i class="fa fa-microphone"></i></a>
-                  </li>
               </ul>
           </footer>
       </div>
