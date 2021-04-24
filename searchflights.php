@@ -279,7 +279,7 @@ session_cache_limiter('private_no_expire'); // works
         <li><a href="enquiry.php">Enquiry</a></li>
       </ul>
     </nav>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px; top: 120px"id="menu">
+    <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px; top: 120px"id="menu">
     <div class="testbox">
       <form action="/flight_management/search_result.php" method="post">
         <!--<div class="banner">
