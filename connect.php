@@ -5,12 +5,9 @@ $password = "";
 $database = "flight_management";
 
 $conn = mysqli_connect($server, $username, $password, $database);
-if ($conn){
-    echo "success";
- }
- else{
-     echo "fail:";
+if (!$conn){
+    echo "fail:";
     die("Error". mysqli_connect_error());
-}
+ }
 
 ?>
