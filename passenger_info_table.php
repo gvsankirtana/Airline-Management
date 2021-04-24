@@ -22,7 +22,7 @@
    $row = mysqli_fetch_row($result);
    if($_SERVER["REQUEST_METHOD"] == "POST")
    {
-    $sql = "INSERT INTO `passenger` ( `login_username`, `password`) VALUES ('$username', '$password')";
+//    $sql = "INSERT INTO `passenger` ( `login_username`, `password`) VALUES ('$username', '$password')";
 
    }
 ?>

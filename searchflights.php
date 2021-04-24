@@ -324,11 +324,11 @@
           <p>Class</p>
           <div class="form-check">
             <div class="left">
-              <input type="radio" name="class" value="Business Class" style="width: 13px;height: 13px;">
+              <input type="radio" name="class" value="Business" style="width: 13px;height: 13px;">
               <label class="form-check-label">Business</label>
             </div> 
             <div class="">
-              <input type="radio" name="class" value="Economy Class"style="width: 13px;height: 13px;" checked>
+              <input type="radio" name="class" value="Economy"style="width: 13px;height: 13px;" checked>
               <label class="form-check-label">Economy</label>
             </div>
           </div> <br>
@@ -340,7 +340,7 @@
               <input type="number" name="seats" min=1 required/>
             </div>
             <div class="btn-block">
-              <button type="submit" href="/">Search Flights</button>
+              <input type="submit" value="Search Flights"/>
             </div>
           </div>
         </div>
