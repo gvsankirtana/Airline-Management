@@ -157,7 +157,6 @@
           <div class="panel" style="left: 34px;">
             <div class="panel-heading headingstyle">
               <h2><b>Payment Details</b></h2>
-<<<<<<< Updated upstream
             </div>        
             <div class="panel-body">
                 <div class="form-group">
@@ -182,30 +181,6 @@
               
             </div>
             
-=======
-            </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <label for="Bank_Name">Bank Name</label> <br>
-                <select class="form-control" aria-label="slect bank" name="BankName">
-                  <option selected value="" disabled> </option>
-                  <option value="sbi">SBI</option>
-                  <option value="hdfc">HDFC</option>
-                  <option value="icici">ICICI</option>
-                  <option value="axis">Axis</option>
-                  <option value="kotak">Kotak</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="Account_Number">Account Number</label> <br>
-                <input type="number" placeholder="" class="form-control" name="AccountNumber">
-              </div>
-            </div>
-            <div class="panel-footer text-center">
-              <button class="btn btn-success" value="<?php$cancel=TRUE; ?>">Cancel</button>
-              <button class="btn btn-success" value="<?php$cancel=FALSE;?>">Submit</button>
-            </div>
->>>>>>> Stashed changes
           </div>
           </form>
         </div>
@@ -220,7 +195,7 @@
           <div class="panel-body">
           <table class="table table-hover">
             <tr>
-              <th>Flight Number</th>
+              <th>flight number</th>
               <td><?php echo $flightid?></td>
             </tr>
             <tr>
