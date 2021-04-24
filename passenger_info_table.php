@@ -342,7 +342,12 @@ nav ul li a{
 		</div>
 	</div>
 <div class="main">
+<<<<<<< Updated upstream
 WELCOME! <?php print_r($user); ?>
+=======
+WELCOME! 
+<?php print_r($_SESSION["user"]); ?>
+>>>>>>> Stashed changes
       <nav id="side">
         <ul>
           <br>
