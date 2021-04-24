@@ -48,7 +48,7 @@ session_cache_limiter('private_no_expire'); // works
     }
     .main {
       margin-left: 10px; /* Same as the width of the sidenav */
-      font-size: 28px; /* Increased text to enable scrolling */
+      font-size: 28px; /* Increased text to enable scrolling. */
       padding: 0px 10px;
     }
     @media screen and (max-height: 450px) {
