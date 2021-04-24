@@ -17,11 +17,11 @@ if ($res){
 $f=1;
 echo 
 '
-<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:15px;background-color: black;">
+<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:20px;background-color: transparent;">
 <thead>
-<tr><th colspan="13"><h3>FAQS</h3></th></tr>
+<tr><th colspan="20"><h3>FAQS</h3></th></tr>
 <tr>
-	  <th scope="col">Enquiry Title</th>
+	  <th scope="col" style="text-color:black;">Enquiry Title</th>
 	  <th scope="col">Enquiry Type</th>
 	  <th scope="col">Enquiry Description</th>
 	  <th scope="col">Enquiry Answer</th>
@@ -60,7 +60,7 @@ body {
 	position: absolute;
 	top: 0px;
 	bottom: 0;
-	left: 0;
+	left: 200px;
 	right: 0;
 	width: 500px;
 	height: 430px;
