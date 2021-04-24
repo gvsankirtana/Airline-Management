@@ -5,13 +5,12 @@
       header("location: login.php");
      }
   include 'connect.php';
-  $flightid=12546;
-$class="Business";
-  if($class=="Business"){
+  $flightid=$_SESSION['flightid'];
+$class=$_SESSION['class'];
+  if($class==$_SESSION['class']){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
-    echo $price;
   }
-  else if($class=="Economy"){
+  else if($class==$_SESSION['class']){
     $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
   }
   $query ="SELECT Flight_ID, departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
@@ -172,7 +171,7 @@ $class="Business";
               </div>
               <div class="form-group">
                 <label for="Account_Number">Account Number</label> <br>
-                <input type="number" class="form-control" name="AccountNumber">
+                <input type="text" class="form-control" name="AccountNumber">
               </div>
               <div class="panel-footer text-right" style="align-items:center;">
                 <button class="btn btn-info" value="submit" name="button">Submit</button>
@@ -209,7 +208,7 @@ $class="Business";
             </tr>
             <tr>
               <th>Charges</th>
-              <td><?php echo "₹";echo $pricerow[0] ?></td>
+              <td><?php echo "₹";echo ($pricerow[0])*($_SESSION['seats']) ?></td>
             </tr>
           </table>
           </div>
