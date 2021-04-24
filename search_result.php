@@ -6,7 +6,6 @@ session_start();
      }
 
 $f=1;$fl=0;
-$from=null;$to=null;$class=null;$date=null;$seats=null;
 if( $_SERVER["REQUEST_METHOD"] == "POST")
 { 
 include 'connect.php';

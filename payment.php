@@ -173,7 +173,7 @@
                 </div>
                 <div class="form-group">
                   <label for="Account_Number">Account Number</label> <br>
-                  <input type="number" class="form-control" name="AccountNumber">
+                  <input type="text" class="form-control" name="AccountNumber">
                 </div>
                 <div class="panel-footer text-right" style="align-items:center;">
               <button class="btn btn-info" value="submit" name="button">Submit</button>
