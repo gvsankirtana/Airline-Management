@@ -5,13 +5,13 @@
       header("location: login.php");
      }
   include 'connect.php';
-  $flightid = $_SESSION['flightid'];
-  $class = $_SESSION['class'];
-  if($_SESSION['class']=="Business"){
+  $flightid=12546;
+$class="Business";
+  if($class=="Business"){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
     echo $price;
   }
-  else if($_SESSION['class']=="Economy"){
+  else if($class=="Economy"){
     $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
   }
   $query ="SELECT Flight_ID, departure_Destination, arrival_Destination from airline where Flight_ID='$flightid'";
@@ -157,32 +157,6 @@
           <div class="panel" style="left: 34px;">
             <div class="panel-heading headingstyle">
               <h2><b>Payment Details</b></h2>
-<<<<<<< Updated upstream
-            </div>        
-            <div class="panel-body">
-                <div class="form-group">
-                  <label for="Bank_Name">Bank Name</label> <br>
-                  <select class="form-control" aria-label="slect bank" name="BankName">
-                    <option selected value="" disabled> </option>
-                    <option value="sbi">SBI</option>
-                    <option value="hdfc">HDFC</option>
-                    <option value="icici">ICICI</option>
-                    <option value="axis">Axis</option>
-                    <option value="kotak">Kotak</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="Account_Number">Account Number</label> <br>
-                  <input type="number" class="form-control" name="AccountNumber">
-                </div>
-                <div class="panel-footer text-right" style="align-items:center;">
-              <button class="btn btn-info" value="submit" name="button">Submit</button>
-              <button class="btn btn-info" value="cancel" name="button"><a href="cancelticket.php" style="color:white;">Cancel</a></button>
-              </div>
-              
-            </div>
-            
-=======
             </div>
             <div class="panel-body">
               <div class="form-group">
@@ -198,14 +172,13 @@
               </div>
               <div class="form-group">
                 <label for="Account_Number">Account Number</label> <br>
-                <input type="number" placeholder="" class="form-control" name="AccountNumber">
+                <input type="number" class="form-control" name="AccountNumber">
+              </div>
+              <div class="panel-footer text-right" style="align-items:center;">
+                <button class="btn btn-info" value="submit" name="button">Submit</button>
+                <button class="btn btn-info" value="cancel" name="button" href="cancelticket.php">Cancel</button>
               </div>
             </div>
-            <div class="panel-footer text-center">
-              <button class="btn btn-success" value="<?php$cancel=TRUE; ?>">Cancel</button>
-              <button class="btn btn-success" value="<?php$cancel=FALSE;?>">Submit</button>
-            </div>
->>>>>>> Stashed changes
           </div>
           </form>
         </div>
