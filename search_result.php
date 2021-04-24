@@ -43,6 +43,7 @@ $seats = $_POST["seats"];
     while($rows=mysqli_fetch_assoc($res))
     {
       echo "
+      <form method='POST' action='passenger_info_table.php'>
       <input type='hidden' name='class' value=$class />
       <input type='hidden' name='flight' value='{$rows['Flight_ID']}' />
       <input type='hidden' name='seats' value=$seats />
@@ -53,7 +54,8 @@ $seats = $_POST["seats"];
        <td>{$rows['dept_date']}</td>
        <td>{$rows['arrival_time']}</td>
        <td>{$rows['arrival_date']}</td>
-       <td><input type='submit'name='submit' value='BOOK NOW!'/></td><tr>";
+       <td><input type='submit'name='submit' value='BOOK NOW!'/></td><tr>
+       </form>";
     }
 echo '</table></form></div>';
   }

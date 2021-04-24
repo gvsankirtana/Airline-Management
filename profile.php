@@ -5,7 +5,23 @@
       header("location: login.php");
      }
      include 'connect.php';
-
+     echo 'djsxzn';
+     if($_SERVER["REQUEST_METHOD"] == "POST")
+     {
+         echo 'fjnf';
+         $type = $_POST['type'];
+         $title = $_POST['enquirytitle'];
+         $description = $_POST['desc'];
+     
+         $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`login_username`) VALUES ('$title', '$type','$description','$user')";
+         $result = mysqli_query($conn, $sql);
+         if ($result){
+      //     $showalert = true;
+      echo 'done';
+         }
+         else
+         echo("Error description: " . mysqli_error($conn));
+     }
  $sql="Select * from  login join customer on login.login_username=customer.login_username";
  //$sql="Select count(*) from "
   $res=mysqli_query($conn,$sql);
@@ -14,18 +30,7 @@
     else
     echo("Error description: " . mysqli_error($conn));
     $row=mysqli_fetch_assoc($res);
-    if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-
-    $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`Cust_id`) VALUES ('$title', '$type','$description',(SELECT `Cust_ID` FROM `customer` WHERE `login_username` = '$user'))";
-    $result = mysqli_query($conn, $sql);
-    if ($result){
- //     $showalert = true;
- echo 'done';
-    }
-    else
-    echo("Error description: " . mysqli_error($conn));
-}
+    
 ?><!DOCTYPE html>
 <html>
   <title>Payment Page</title>
@@ -445,7 +450,7 @@ ul.summary-list > li:last-child  {
             </select>
             <br>
          <div class="panel">
-        <textarea placeholder="Do you want to ask us something" rows="2" class="form-control input-lg p-text-area" name="enquiry"></textarea>
+        <textarea placeholder="Do you want to ask us something" rows="2" class="form-control input-lg p-text-area" name="desc"></textarea>
           <footer class="panel-footer">
               <button type="submit" class="btn btn-warning pull-right">Ask</button>
               </form>

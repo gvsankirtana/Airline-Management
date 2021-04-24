@@ -20,11 +20,7 @@
    $sql1 = "SELECT email,phone_number FROM customer WHERE login_username = '$user'";
    $result = mysqli_query($conn,$sql1);
    $row = mysqli_fetch_row($result);
-   if($_SERVER["REQUEST_METHOD"] == "POST")
-   {
-    $sql = "INSERT INTO `passenger` ( `login_username`, `password`) VALUES ('$username', '$password')";
-
-   }
+ 
 ?>
 <!DOCTYPE html>
 <html>
@@ -467,7 +463,7 @@ WELCOME! <?php print_r($user); ?>
         <br>
         <?php    }?>
         <div class="btn-block">
-          <button type="submit">Book</button>
+          <button type="submit">Add flight</button>
         </div>
       </div>
     </form>
@@ -487,4 +483,4 @@ WELCOME! <?php print_r($user); ?>
   }
   </script>
 </body>
-</html> 
+</html
