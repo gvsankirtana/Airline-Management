@@ -42,7 +42,12 @@ echo '</table>';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Customer Enquiry</title>
    <style>
 	   * {
@@ -229,7 +234,9 @@ nav ul li a{
 <body>
 	<div id="navbar">
 		<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
-		<a href="logout.php"><button type="button" class="btn btn-danger btn-sm" style="float:right">LOGOUT</button></a>
+		<ul class="nav navbar-nav navbar-right">
+      <li style="top: 24px;right:50px;"><a href="profile.php"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php print_r($_SESSION["user"]);?></a></li>
+	</ul>
 	</div>
 	<nav id="side">
 		<ul>
@@ -237,11 +244,13 @@ nav ul li a{
 			<br>
 			<br>
 			<br>
+			<li><a href="profile.php">Profile</a></li>
 			<li><a href="searchflights.php">Book Ticket</a></li>
-                       <li><a href="enquiry.php">Enquiry</a></li>
+            <li><a href="enquiry.php">Enquiry</a></li>
+			<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
 		</ul>
 	</nav>
-	<img src="https://royalposthumus.com/images/white_menu_icon.png" style="width: 100px;"id="menu">
+	<img style="top: 100px;" src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px;"id="menu">
 	<?php
    $showalert=false;
    $titleErr = $descriptionErr = $typeErr= $userErr= $answer="";
@@ -272,7 +281,6 @@ nav ul li a{
         echo("Error description: " . mysqli_error($conn));
     }
 }?>
- <h4 style="text-align=right;">WELCOME! <?php print_r($_SESSION["user"]); ?></h4>
 		<div class="form-box">
 		<?php
             if($showalert){

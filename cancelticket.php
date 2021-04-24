@@ -134,19 +134,21 @@ echo $result;
       <div class="container">
         <img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="171.2" height="100" style="float:left">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
-        </ul>
+      <li style="top: 24px;"><a href="profile.php"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php print_r($user);?></a></li>
+			</ul>
       </div>
     </div>
     <nav id="side">
-      <ul>
-        <br><br><br><br><br><br><br>
+    <ul>
+        <br><br><br><br><br><br><br><br>
+        <li><a href="profile.php">Profile</a></li>
         <li><a href="searchflights.php">Book Ticket</a></li>
         <li><a href="enquiry.php">Enquiry</a></li>
+        <li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
       </ul>
     </nav>
     
-    <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
+    <img style="top: 120px;" src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px;"id="menu">
     
     <div class="container text-center flex-container" style="vertical-position:center;">
     <div>
