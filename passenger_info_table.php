@@ -20,11 +20,6 @@
    $sql1 = "SELECT email,phone_number FROM customer WHERE login_username = '$user'";
    $result = mysqli_query($conn,$sql1);
    $row = mysqli_fetch_row($result);
-   if($_SERVER["REQUEST_METHOD"] == "POST")
-   {
-    $sql = "INSERT INTO `passenger` ( `login_username`, `password`) VALUES ('$username', '$password')";
-
-   }
 ?>
 <!DOCTYPE html>
 <html>
@@ -358,7 +353,7 @@ WELCOME! <?php print_r($user); ?>
       <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
 <div class="main">
     <div class="testbox">
-    <form action="/flight_management/Airport-management/passenger.php" method="post">
+    <form action="/flight_management/passenger.php" method="post">
       <div class="banner">
         <h1>Ticket Booking Form</h1>
       </div>
@@ -467,7 +462,7 @@ WELCOME! <?php print_r($user); ?>
         <br>
         <?php    }?>
         <div class="btn-block">
-          <button type="submit">Book</button>
+          <button type="submit">Add flight</button>
         </div>
       </div>
     </form>
