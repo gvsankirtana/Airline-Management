@@ -9,26 +9,26 @@
   $nameErr = $emailErr = $phoneErr= $adherr="";
    include 'connect.php';
    $f=0;
+   $s=$_SESSION['seats'];
    if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
-    $name = $_POST["name"];
-    $email =$_POST["email"];
-    $phone =$_POST["phone"];
-    $city =$_POST["city"];
-    $postal =$_POST["zipcode"];
-    $adhaar =$_POST["adhaar"];
-    $state =$_POST["state"];
-    $gender =$_POST["gender"];
-    $dob =$_POST["dob"];
+    for ($i = 1; $i <= $s; $i++)  
+    {   
+    $name = $_POST["name$i"];
+    $email =$_POST["email$i"];
+    $phone =$_POST["phone$i"];
+    $city =$_POST["city$i"];
+    $postal =$_POST["zipcode$i"];
+    $adhaar =$_POST["adhaar$i"];
+    $state =$_POST["state$i"];
+    $gender =$_POST["gender$i"];
+    $dob =$_POST["dob$i"];
     $exists=false;
     if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
       $nameErr = "Only letters and white space allowed" ;
     } 
     else if (!preg_match("/^[0-9\-\(\)\/\+\s]*$/",$phone)) {
       $phoneErr = "Enter Valid Phone number" ;
-    } 
-    else if (!preg_match("/^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$/",$adhaar)) {
-      $adherr= "Enter valid Adhaar Number" ;
     } 
     else{
         $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
@@ -43,6 +43,7 @@
          echo("Error description: " . mysqli_error($conn));
     }
 } 
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,6 +64,7 @@ body{
   background-size: cover;
 }
 </style>
+<body>
 <body>
 <div class="alert alert-success" role="alert">
             <p>You have successfuly entered your Information!</p>

@@ -13,9 +13,9 @@
    $class=$_POST["class"];
    $seats=$_POST["seats"];
    $s=$_POST["seats"];
-  // $_SESSION['class']=$class;
-   //$_SESSION['flightid']=$flight;
-   //$_SESSION['seats']=$seats;
+   $_SESSION['class']=$class;
+   $_SESSION['flightid']=$flight;
+   $_SESSION['seats']=$seats;
    $_SERVER["REQUEST_METHOD"]="";
    $sql1 = "SELECT email,phone_number FROM customer WHERE login_username = '$user'";
    $result = mysqli_query($conn,$sql1);
@@ -342,12 +342,7 @@ nav ul li a{
 		</div>
 	</div>
 <div class="main">
-<<<<<<< Updated upstream
 WELCOME! <?php print_r($user); ?>
-=======
-WELCOME! 
-<?php print_r($_SESSION["user"]); ?>
->>>>>>> Stashed changes
       <nav id="side">
         <ul>
           <br>
@@ -363,7 +358,7 @@ WELCOME!
       <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
 <div class="main">
     <div class="testbox">
-    <form action="/flight_management/Airport-management/passenger_info_table.php" method="post">
+    <form action="/flight_management/passenger.php" method="post">
       <div class="banner">
         <h1>Ticket Booking Form</h1>
       </div>
@@ -387,18 +382,35 @@ WELCOME!
       </div>
       <div class="item">
         <p>Email</p>
-        <input type="email" name="email" value="<?php echo $row[0] ?>" required/>
+        <input type="email" name="email" value="<?php echo $row[0] ?>" />
       </div>
       <div class="item">
         <p>Phone</p>
-        <input type="text" name="phone" value="<?php echo $row[1] ?>" required/>
+        <input type="text" name="phone" value="<?php echo $row[1] ?>" />
+      </div>
+      <?php for ($var = 1; $var <= $seats; $var++) { ?>
+        <div class="item">
+        <input type="email" name="email<?php echo $var?>" value="<?php echo $row[0] ?>" hidden/>
+      </div>
+      <div class="item">
+        <input type="text" name="phone<?php echo $var?>" value="<?php echo $row[1] ?>" hidden/>
+      </div>
+      <div class="item">
+        <p>Passenger contact name <?php $var?></p>
+        <div class="name-item">
+          <input type="text" id="name<?php echo $var?>" name="name<?php echo $var?>" />
+        </div>
+      </div>
+      <div class="item">
+        <p>Adhaar Number</p>
+        <input type="text" name="adhaar<?php echo $var?>"/>
       </div>
       <div class="item">
         <p>Address</p>
         <div class="city-item">
-          <input type="text" name="city"     placeholder='City' required/>
-          <input type="text" name="zipcode"  placeholder="Postal / Zip code" required/>
-          <select name="state" required>
+          <input type="text" name="city<?php echo $var?>"     placeholder='City' />
+          <input type="text" name="zipcode<?php echo $var?>"  placeholder="Postal / Zip code" />
+          <select name="state<?php echo $var?>" >
             <option selected value="" disabled>State</option>
             <option value="Gujarat">Gujarat</option>
             <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -432,17 +444,6 @@ WELCOME!
             <option value="Uttrakand">Uttrakand</option>
           </select>
         </div>
-      <?php for ($var = 1; $var <= $seats; $var++) { ?>
-      <div class="item">
-        <p>Passenger contact name <?php echo $var?></p>
-        <div class="name-item">
-          <input type="text" id="name" name="name" required/>
-        </div>
-      </div>
-      <div class="item">
-        <p>Adhaar Number</p>
-        <input type="text" name="adhaar" required/>
-      </div>
       <div class="question">
         <p>Gender</p>
         <div class="question-answer">
@@ -457,14 +458,11 @@ WELCOME!
         </div>
         <p>Date Of Birth</p>
         <div class="day-visited">
-          <input type="date" name="dob" required/>
+          <input type="date" name="dob<?php echo $var?>" />
         </div>
-        <center>
-        <input type="submit" value="Save"/>
-        </center>
         <?php    }?>
         <div class="btn-block">
-          <button type="submit"><a href="/flight_management/payment.php">Book</a></button>
+          <button type="submit">Book</button>
         </div>
       </div>
     </form>
