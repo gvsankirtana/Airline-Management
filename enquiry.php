@@ -8,7 +8,7 @@
 <?php 
 include 'connect.php';
 $user = $_SESSION["user"];
-$sql3="SELECT * FROM enquiry WHERE Cust_id = (SELECT `Cust_Id` FROM `customer` WHERE `login_username` = '$user') AND enquiry_answer IS NOT NULL";
+$sql3="SELECT * FROM enquiry WHERE login_username = '$user' AND enquiry_answer IS NOT NULL";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }
@@ -261,7 +261,7 @@ nav ul li a{
 		$descriptionErr = "Description is required" ;
 	}
     else{
-        $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`Cust_id`) VALUES ('$title', '$type','$description',(SELECT `Cust_ID` FROM `customer` WHERE `login_username` = '$user'))";
+        $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`login_username`) VALUES ('$title', '$type','$description','$user')";
         $result = mysqli_query($conn, $sql);
         if ($result){
            $showalert = true;
