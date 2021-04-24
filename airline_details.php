@@ -455,7 +455,7 @@ nav ul li a{
         </div>
         <br>
         <div class="btn-block">
-          <button type="submit">Book</button>
+          <button type="submit">Add flight</button>
         </div>
       </div>
     </form>
