@@ -22,7 +22,7 @@
    $row = mysqli_fetch_row($result);
    if($_SERVER["REQUEST_METHOD"] == "POST")
    {
-//    $sql = "INSERT INTO `passenger` ( `login_username`, `password`) VALUES ('$username', '$password')";
+    $sql = "INSERT INTO `passenger` ( `login_username`, `password`) VALUES ('$username', '$password')";
 
    }
 ?>
@@ -390,23 +390,27 @@ WELCOME! <?php print_r($user); ?>
       </div>
       <?php for ($var = 1; $var <= $seats; $var++) { ?>
         <div class="item">
+        <h2>Passenger <?php echo $var?></h2>
+      </div>
+      <br>
+        <div class="item">
         <input type="email" name="email<?php echo $var?>" value="<?php echo $row[0] ?>" hidden/>
       </div>
       <div class="item">
         <input type="text" name="phone<?php echo $var?>" value="<?php echo $row[1] ?>" hidden/>
       </div>
       <div class="item">
-        <p>Passenger contact name <?php $var?></p>
+        <p>Passenger contact name </p>
         <div class="name-item">
           <input type="text" id="name<?php echo $var?>" name="name<?php echo $var?>" />
         </div>
       </div>
       <div class="item">
-        <p>Adhaar Number</p>
+        <p>Adhaar Number </p>
         <input type="text" name="adhaar<?php echo $var?>"/>
       </div>
       <div class="item">
-        <p>Address</p>
+        <p>Address </p>
         <div class="city-item">
           <input type="text" name="city<?php echo $var?>"     placeholder='City' />
           <input type="text" name="zipcode<?php echo $var?>"  placeholder="Postal / Zip code" />
@@ -456,10 +460,11 @@ WELCOME! <?php print_r($user); ?>
             <label for="radio_4<?php echo $var?>" class="radio"><span>Female</span></label>
           </div>
         </div>
-        <p>Date Of Birth</p>
+        <p>Date Of Birth </p>
         <div class="day-visited">
           <input type="date" name="dob<?php echo $var?>" />
         </div>
+        <br>
         <?php    }?>
         <div class="btn-block">
           <button type="submit">Book</button>
