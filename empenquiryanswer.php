@@ -1,4 +1,6 @@
 <?php 
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
 include 'connect.php';
 $sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NULL";
 $res=mysqli_query($conn,$sql3);

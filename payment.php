@@ -1,15 +1,17 @@
 <?php
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
   session_start();
   if(($_SESSION["user"])==null)
      {
       header("location: login.php");
      }
      $s=$_SESSION['seats'];
+     $flightid=$_SESSION["flightid"];
   include 'connect.php';
 
   if($_SERVER["REQUEST_METHOD"] == "POST")
 {
-  $flightid=$_POST["flightid"];
 for ($i = 1; $i <= $s; $i++)  
   {
     $adhaar =$_POST["adhaar$i"]; 
@@ -17,13 +19,13 @@ for ($i = 1; $i <= $s; $i++)
   }
 }
 $class="Business";
-  /*if($class=="Business"){
+  if($class=="Business"){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
     //echo $price;
   }
   else if($class==$_SESSION['class']){
     $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
-  }*/
+  }
   $query ="SELECT Flight_ID, departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
   $result1=mysqli_query($conn, $price);
   $result = mysqli_query($conn, $query);

@@ -1,4 +1,6 @@
 <?php 
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
      session_start();
      if(($_SESSION["user"])==null)
      {
@@ -360,7 +362,7 @@ WELCOME! <?php print_r($user); ?>
       <div class="item">
         <p>Flight ID</p><span class="error">
         <div class="name-item">
-          <input type="text"  name="flightid" value="<?php echo $flight ?>" disabled></input>
+          <input type="text" value="<?php echo $flight ?>" disabled></input>
         </div>
       </div>
       <div class="item">
@@ -401,7 +403,7 @@ WELCOME! <?php print_r($user); ?>
         </div>
       </div>
       <div class="item">
-        <p>Aadhaar Number </p>
+        <p>Adhaar Number </p>
         <input type="text" name="adhaar<?php echo $var?>"/>
       </div>
       <div class="item">

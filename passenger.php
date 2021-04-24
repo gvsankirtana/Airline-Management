@@ -1,4 +1,6 @@
 <?php
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
   session_start();
   if(($_SESSION["user"])==null)
      {
@@ -9,15 +11,8 @@
    include 'connect.php';
    $f=0;
    $s=$_SESSION['seats'];
-  if($_SERVER["REQUEST_METHOD"] == "POST")
+   if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
-      $flightid = $_POST["flightid"];
-      echo 
-      "<div class='result'>
-      <form method='POST' action='payment.php'>
-      <input type='hidden' name='flightid' value=$flightid />
-
-      ";
     for ($i = 1; $i <= $s; $i++)  
     {   
     $name = $_POST["name$i"];
@@ -25,18 +20,10 @@
     $phone =$_POST["phone$i"];
     $city =$_POST["city$i"];
     $postal =$_POST["zipcode$i"];
-    $adhaar =$_POST["adhaar$i"]; 
+    $adhaar =$_POST["adhaar$i"];
     $state =$_POST["state$i"];
     $gender =$_POST["gender$i"];
     $dob =$_POST["dob$i"];
-    
-    echo 
-    "
-    <input type='hidden' name='adhaar$i' value=$adhaar />
-    ";
-    }
-  echo "    <input type='submit'name='submit'/>
-  </form>";
     $exists=false;
     if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
       $nameErr = "Only letters and white space allowed" ;
@@ -57,7 +44,7 @@
          echo("Error description: " . mysqli_error($conn));
     }
 } 
-    
+    }
 ?>
 <!DOCTYPE html>
 <html>

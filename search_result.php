@@ -1,4 +1,6 @@
 <?php
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
 session_start();
      if(($_SESSION["user"])==null)
      {
@@ -14,7 +16,7 @@ $to=$_POST["tcity"];
 $class=$_POST["class"];
 $date=$_POST["traveldate"];
 $seats = $_POST["seats"];
-  $sql="Select * from airline_view where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by economy_Fare";
+  $sql="Select * from airline where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by economy_Fare";
   $res=mysqli_query($conn,$sql);
   if ($res){
     }
