@@ -4,12 +4,22 @@
      {
       header("location: login.php");
      }
+     $s=$_SESSION['seats'];
   include 'connect.php';
-  $flightid=12546;
+
+  if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+  $flightid=$_POST["flightid"];
+for ($i = 1; $i <= $s; $i++)  
+  {
+    $adhaar =$_POST["adhaar$i"]; 
+    echo $adhaar;
+  }
+}
 $class="Business";
   if($class=="Business"){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
-    echo $price;
+    //echo $price;
   }
   else if($class=="Economy"){
     $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";

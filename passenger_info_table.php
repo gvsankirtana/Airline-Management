@@ -353,14 +353,14 @@ WELCOME! <?php print_r($user); ?>
       <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
 <div class="main">
     <div class="testbox">
-    <form action="/flight_management/passenger.php" method="post">
+    <form action="/flight_management/Airport-Management/passenger.php" method="post">
       <div class="banner">
         <h1>Ticket Booking Form</h1>
       </div>
       <div class="item">
         <p>Flight ID</p><span class="error">
         <div class="name-item">
-          <input type="text" value="<?php echo $flight ?>" disabled></input>
+          <input type="text"  name="flightid" value="<?php echo $flight ?>" disabled></input>
         </div>
       </div>
       <div class="item">
@@ -401,7 +401,7 @@ WELCOME! <?php print_r($user); ?>
         </div>
       </div>
       <div class="item">
-        <p>Adhaar Number </p>
+        <p>Aadhaar Number </p>
         <input type="text" name="adhaar<?php echo $var?>"/>
       </div>
       <div class="item">
