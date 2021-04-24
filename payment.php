@@ -7,6 +7,7 @@
   include 'connect.php';
   $flightid = $_SESSION['flightid'];
   $class = $_SESSION['class'];
+  $s=$_SESSION['seats'];
   if($_SESSION['class']=="Business"){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
     echo $price;
@@ -210,6 +211,10 @@
               <td><?php echo $row[2] ?> </td>
             </tr>
             <tr>
+            <tr>
+              <th>Total Passengers</th>
+              <td><?php echo $s ?></td>
+            </tr>
               <th>Charges</th>
               <td><?php echo "₹";echo $pricerow[0] ?></td>
             </tr>
