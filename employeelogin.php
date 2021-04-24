@@ -97,7 +97,7 @@ $count=mysqli_num_rows($result);
               else{
                 $_SESSION['user'] = $username;
                 if(!isset($_SESSION[' user'])){
-                  header("location: searchflights.php");
+                  header("location: airline_details.php");
                 }
               }
               }?>

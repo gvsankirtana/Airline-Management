@@ -1,9 +1,44 @@
 
-
+<?php
+  session_start();
+  if(($_SESSION["user"])==null)
+     {
+      header("location: login.php");
+     }
+  $showalert=false;
+   include 'connect.php';
+   $f=0;
+   if($_SERVER["REQUEST_METHOD"] == "POST")
+    { 
+    $fid = $_POST["fid"];
+    $ftype =$_POST["ftype"];
+    $fname =$_POST["fname"];
+    $refno =$_POST["refno"];
+    $efare =$_POST["efare"];
+    $bfare =$_POST["bfare"];
+    $vacant =$_POST["vacant"];
+    $depdate =$_POST["depdate"];
+    $deptime =$_POST["deptime"];
+    $arrdate =$_POST["arrdate"];
+    $arrtime =$_POST["arrtime"];
+    $depcity =$_POST["depcity"];
+    $arrcity =$_POST["arrcity"];                                                                                                                                                                                                                                                                         
+    $exists=false;
+        $sql = "INSERT INTO `airline` ( `Flight_ID`, `Flight_Type`,`Airline_name`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid', '$ftype','$fname','$refno','$efare','$bfare','$vacant','$depcity','$depdate','$deptime','$arrcity','$arrdate',' $arrtime')";
+        $result = mysqli_query($conn, $sql);
+        echo $result;
+        if ($result){                                                
+            $showalert = true;
+         }
+         else{
+         echo("Error description: " . mysqli_error($conn));
+         }
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ticket Booking Form</title>
+<title>Airline Details Entry</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
@@ -331,45 +366,45 @@ nav ul li a{
       <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
 <div class="main">
     <div class="testbox">
-    <form action="/flight_management/passenger.php" method="post">
+    <form action="/flight_management/airline_details.php" method="post">
       <div class="banner">
         <h1>  Airline Details Entry</h1>
       </div>
       <br>
       <div class="item">
         <p>Flight ID </p>
-        <div class="name-item">
-          <input type="text" id="name" name="name"/>
-        </div>
+          <input type="text" id="fid" name="fid"/>
       </div>
       <div class="item">
-        <p>Flight Type </p>
-        <input type="text" name="adhaar"/>
-      </div>
+        <p>Flight Type</p>
+          <select name="ftype" >
+          <option value="Domestic">Domestic</option>
+          <option value="International">International</option>
+          </select>
+        </div>
       <div class="item">
         <p>Airline Name</p>
-          <input type="text" name="airline" />
+          <input type="text" name="fname" />
         </div>
       <div class="item">
         <p>Reference_no</p>
-        <input type="text" name="airline" />
+        <input type="text" name="refno" />
         </div>
         <div class="item">
         <p>Economy Fare</p>
-        <input type="text" name="airline" placeholder='$' />
+        <input type="text" name="efare" placeholder='$' />
         </div>
         <div class="item">
         <p>Buisness Fare</p>
-        <input type="text" name="airline" placeholder='$' />
+        <input type="text" name="bfare" placeholder='$' />
         </div>
         <div class="item">
         <p>vacant Seats</p>
-        <input type="text" name="airline" />
+        <input type="number" name="vacant" />
         </div>
         <div class="item">
         <p>Departure Destination</p>
-        <div class="city-item">
-          <select name="city" >
+          <select name="depcity" >
           <option value="Hyderabad">Hyderabad</option>
             <option value="Delhi">Delhi </option>
             <option value="Shimla">Shimla</option>
@@ -386,16 +421,15 @@ nav ul li a{
         </div>
         <p>Departure Date</p>
         <div class="day-visited">
-          <input type="date" name="dep" />
+          <input type="date" name="depdate" />
         </div>
         <p>Departure Time</p>
         <div class="day-visited">
-        <input type="time" id="time" name="time">
+        <input type="time" id="deptime" name="deptime">
         </div>
         <div class="item">
         <p>Arrival Destination</p>
-        <div class="city-item">
-          <select name="city" >
+          <select name="arrcity" >
           <option value="Delhi">Delhi </option>
           <option value="Hyderabad">Hyderabad</option>
             <option value="Shimla">Shimla</option>
@@ -413,15 +447,15 @@ nav ul li a{
         </div>
         <p>Arrival Date</p>
         <div class="day-visited">
-          <input type="date" name="dep" />
+          <input type="date" name="arrdate" />
         </div>
         <p>Arrival Time</p>
         <div class="day-visited">
-        <input type="time" id="time" name="time">
+        <input type="time" id="arrtime" name="arrtime">
         </div>
         <br>
         <div class="btn-block">
-          <button type="submit">Book</button>
+          <button type="submit">Add flight</button>
         </div>
       </div>
     </form>
