@@ -266,7 +266,7 @@ session_cache_limiter('private_no_expire'); // works
 		<div class="container">
 			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="171.2" height="100" style="float:left">
 			<ul class="nav navbar-nav navbar-right">
-				<li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
+      <li style="top: 24px;"><a href="profile.php"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php print_r($_SESSION["user"]);?></a></li>
 			</ul>
 		</div>
 	</div>
@@ -277,6 +277,7 @@ session_cache_limiter('private_no_expire'); // works
         <li><a href="profile.php">Profile</a></li>
         <li><a href="searchflights.php">Book Ticket</a></li>
         <li><a href="enquiry.php">Enquiry</a></li>
+        <li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
       </ul>
     </nav>
     <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px; top: 120px"id="menu">
@@ -285,10 +286,6 @@ session_cache_limiter('private_no_expire'); // works
         <!--<div class="banner">
         </div>-->
         <div class="item">
-          WELCOME!
-          <?php
-            print_r($_SESSION["user"]);
-          ?>
           <h2><center>Filter Flights</center></h2>
           <label for="fcity">FROM:</label>
           <select name="fcity" id="fcity"  class="form-control">
