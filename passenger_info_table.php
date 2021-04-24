@@ -467,7 +467,7 @@ WELCOME! <?php print_r($user); ?>
         <br>
         <?php    }?>
         <div class="btn-block">
-          <button type="submit">Book</button>
+          <button type="submit">Add flight</button>
         </div>
       </div>
     </form>
