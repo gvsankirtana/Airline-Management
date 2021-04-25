@@ -10,13 +10,14 @@ session_cache_limiter('private_no_expire'); // works
 <?php 
 include 'connect.php';
 $user = $_SESSION["user"];
-$sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NOT NULL";
+$sql3="CALL `enquiry_answer`();";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }
   else
   echo("Error description: " . mysqli_error($conn));
 $f=1;
+
 echo 
 '
 <table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:20px;background-color: transparent;">
