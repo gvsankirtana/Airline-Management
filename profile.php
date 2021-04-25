@@ -640,10 +640,6 @@ echo
   }
 echo '</table>';?>
               </div>
-    
-=======
-           
->>>>>>> 511fc3b4ebcd11ac522a964c13182c6caf1eb586
           </div>
       </div>
   </div>
