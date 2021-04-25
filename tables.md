@@ -13,8 +13,9 @@ Schema of the project -> https://drive.google.com/file/d/1fNM8E-KdrGRa7raDDep0PN
 9.  create table passenger_info(Aadhar_No int(12) primary key,P_DOB date,P_email varchar(40),P_Name varchar(30),P_gender varchar(7),P_age int(3),p_phone_no varchar(13),state varchar(10),city varchar(10),pincode varchar(10),check(p_gender in('Male','Female')));
  alter table ticket add aadhar_no  int(12) references passenger_info(aadhar_No);
  
-9. create table answers(emp_id int(4) references customer_care_agent(Emp_id),enquiry_id int(8) references enquiry(enquiry_id),primary key(emp_id,enquiry_id));
-10.  create table manages(emp_id int(4) references airline_Coordinator(Emp_id),flight_id int(4) references Airline(Flight_ID),primary key(Emp_ID,Flight_ID));
+10. create table answers(emp_id int(4) references customer_care_agent(Emp_id),enquiry_id int(8) references enquiry(enquiry_id),primary key(emp_id,enquiry_id));
+
+11.  create table manages(emp_id int(4) references airline_Coordinator(Emp_id),flight_id int(4) references Airline(Flight_ID),primary key(Emp_ID,Flight_ID));
 
 
 

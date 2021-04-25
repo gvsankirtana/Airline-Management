@@ -1,6 +1,6 @@
 <?php
 header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works*/
+session_cache_limiter('private_no_expire'); // works
 session_start();
 if(($_SESSION["user"])==null){
   header("location: login.php");
@@ -42,20 +42,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $query = "INSERT INTO ticket (aadhar_no,Booking_Ref,class, payment_Type, booking_time, booking_date, flight_ID) values('$adhaar','$bookref','Economy', 'UPI', CURRENT_TIME(), CURRENT_DATE(),'$flightid')";
         $result = mysqli_query($conn, $query);
       }
+      $query = "UPDATE airline SET vacant_seats=(SELECT vacant_seats FROM airline WHERE Flight_ID = '$flightid')-$s WHERE Flight_ID = '$flightid'";
+      $result = mysqli_query($conn, $query);
+      header('location: searchflights.php');  
+    }
   }
-  $query = "UPDATE airline SET vacant_seats=(SELECT vacant_seats FROM airline WHERE Flight_ID = '$flightid')-$s WHERE Flight_ID = '$flightid'";
-  $result = mysqli_query($conn, $query);
-  header('location: searchflights.php');  
-  }
-     
-  
 }
 $class="Business";
   if($class=="Business"){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
     //echo $price;
   }
-  else if($class==$_SESSION['class']){
+  else if($class=="Economy"){
     $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
   }
   $query ="SELECT departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
@@ -267,12 +265,12 @@ $class="Business";
               <th>From</th>
               <td>
               <?php 
-                echo $row[1];
+                echo $row[0];
               ?></td>
             </tr>
             <tr>
               <th>To</th>
-              <td><?php echo $row[2] ?> </td>
+              <td><?php echo $row[1] ?> </td>
             </tr>
             <tr>
               <th>Charges</th>

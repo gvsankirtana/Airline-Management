@@ -10,6 +10,26 @@ $password=mysqli_real_escape_string($conn,$_POST["password"]);
 $query = "SELECT * FROM login WHERE login_username='$username' and password='$password'";
 $result = mysqli_query($conn, $query);
 $count=mysqli_num_rows($result);
+if($count!=0){
+  $query = "SELECT * FROM customer WHERE login_username='$username'";
+  $result = mysqli_query($conn, $query);
+  $countd=mysqli_num_rows($result);
+  if($countd!=0){
+    header("location: searchflights.php");
+  }
+  $query = "SELECT * FROM customer_care_agent WHERE login_username='$username'";
+  $result = mysqli_query($conn, $query);
+  $countd=mysqli_num_rows($result);
+  if($countd!=0){
+    header("location: enquiryanswer.php");
+  }
+  $query = "SELECT * FROM airline_coordinator WHERE login_username='$username'";
+  $result = mysqli_query($conn, $query);
+  $countd=mysqli_num_rows($result);
+  if($countd!=0){
+    header("location: airline_details.php");
+  }
+}
 }
 ?>
 <!DOCTYPE html>
@@ -70,12 +90,6 @@ $count=mysqli_num_rows($result);
           <div class="panel-heading headingstyle">
             <h3><b>Login</b></h3>
           </div>
-          <nav class="navbar" style="background-color: #e3f2fd;">
-            <ul class="nav navnavbar-nav row">
-              <li class="nav-item active col-xs-6"><a class="nav-link" href="login.php"><h5><b>Customer</b></h5></a></li>
-              <li class="nav-item col-xs-6"><a class="nav-link" href="employeelogin.php"><h5><b>Employee</b></h5></a></li>
-            </ul>
-          </nav>
           <div class="panel-body">
             <form action="login.php" method="POST">
               <div class="form-group">
@@ -90,14 +104,7 @@ $count=mysqli_num_rows($result);
                 if($count==0){
                   echo ' <div class="alert alert-danger" role="alert" style="margin-top: 20px; margin-bottom: 0px;">
                   <h5 style={color:red;} class="alert-heading"><b>User account does not exists.</b></h5>
-                  <p>Signup to create an account to enjoy our services!</p>
                   </div> ';
-                }
-                else{
-                  $_SESSION['user'] = $username;
-                    if(!isset($_SESSION[' user'])){
-                     header("location: searchflights.php");
-                   }
                 }
               }
               ?>
