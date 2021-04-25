@@ -1,6 +1,4 @@
 <?php 
-header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
      session_start();
      if(($_SESSION["user"])==null)
      {
@@ -10,7 +8,7 @@ session_cache_limiter('private_no_expire'); // works
 <?php 
 include 'connect.php';
 $user = $_SESSION["user"];
-$sql3="CALL `enquiry_answer`();";
+$sql3="CALL `enquiry_answer`('$user')";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }
@@ -273,7 +271,7 @@ nav ul li a{
 		$descriptionErr = "Description is required" ;
 	}
     else{
-        $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`login_username`) VALUES ('$title', '$type','$description','$user')";
+        $sql = "CALL `inserenq`('$title','$type','$description','$user')";
         $result = mysqli_query($conn, $sql);
         if ($result){
            $showalert = true;

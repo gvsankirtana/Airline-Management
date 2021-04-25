@@ -1,5 +1,4 @@
 <?php 
-
      session_start();
      if(($_SESSION["user"])==null)
      {
@@ -605,6 +604,7 @@ ul.summary-list > li:last-child  {
                       </div>
                   </div>
               </div>
+<<<<<<< HEAD
               <div class="row">
               <div class="col-md-6">
               <div class="panel">
@@ -641,6 +641,9 @@ echo
 echo '</table>';?>
               </div>
     
+=======
+           
+>>>>>>> 511fc3b4ebcd11ac522a964c13182c6caf1eb586
           </div>
       </div>
   </div>
