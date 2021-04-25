@@ -1,6 +1,4 @@
 <?php
-header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
 session_start();
      if(($_SESSION["user"])==null)
      {
@@ -16,7 +14,8 @@ $to=$_POST["tcity"];
 $class=$_POST["class"];
 $date=$_POST["traveldate"];
 $seats = $_POST["seats"];
-  $sql="Select * from airline where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by economy_Fare";
+if($class=="Economy"){
+  $sql="Select airline.*,reference_flight_no.Airline_name from airline natural join reference_flight_no where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by economy_Fare";
   $res=mysqli_query($conn,$sql);
   if ($res){
     }
@@ -41,7 +40,6 @@ $seats = $_POST["seats"];
       </tr>
     </thead>
     ' ;
-    if($class=="Economy"){
     while($rows=mysqli_fetch_assoc($res))
     {
       echo "
@@ -63,6 +61,31 @@ echo '</table></form></div>';
   }
   else if($class=="Buisness")
   {
+    $sql="Select * from airline where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by buisness_fare";
+    $res=mysqli_query($conn,$sql);
+    if ($res){
+      }
+      else
+      echo("Error description: " . mysqli_error($conn));
+    $f=1; 
+    echo 
+    '<div class="result">
+    <form method="POST" action="passenger_info_table.php">
+    <table border=3 class="table table-bordered table-hover" align="center" style="font-size:15px; background-color: #FADCC8;height:50%;width:50%">
+    <thead>
+    <tr><th colspan="13"><h3>Airline Search Results from '.$_POST["fcity"].' to '.$_POST["tcity"] .' in '.$_POST["class"].':</h3></th></tr>
+    <tr>
+          <th scope="col">Flight_ID</th>
+          <th scope="col">Airline_Name</th>
+          <th scope="col">Fare</th>
+          <th scope="col">Dept_time</th>
+          <th scope="col">Dept_date</th>
+          <th scope="col">Arrival_time</th>
+          <th scope="col">Arrival_date</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      ' ;
     while($rows=mysqli_fetch_assoc($res))
     {
       echo "

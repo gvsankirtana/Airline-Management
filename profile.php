@@ -1,5 +1,4 @@
 <?php 
-
      session_start();
      if(($_SESSION["user"])==null)
      {
@@ -594,7 +593,6 @@ ul.summary-list > li:last-child  {
                   </div>
               </div>
            
-    
           </div>
       </div>
   </div>
