@@ -17,5 +17,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }    
     $query = "UPDATE airline SET vacant_seats=(SELECT vacant_seats FROM airline WHERE Flight_ID = '$flightid')-$s WHERE Flight_ID = '$flightid'";
     $result = mysqli_query($conn, $query);
+    header('location: searchflights.php');
 }
 ?>
