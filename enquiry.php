@@ -8,7 +8,7 @@
 <?php 
 include 'connect.php';
 $user = $_SESSION["user"];
-$sql3="CALL `enquiry_answer`()";
+$sql3="CALL `enquiry_answer`();";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }
@@ -271,7 +271,7 @@ nav ul li a{
 		$descriptionErr = "Description is required" ;
 	}
     else{
-        $sql = "CALL `inserenq`('$title','$type','$description','$user')";
+        $sql = "CALL `inserenq`('$title','$type','$description','$user');";
         $result = mysqli_query($conn, $sql);
         if ($result){
            $showalert = true;
@@ -280,15 +280,15 @@ nav ul li a{
         echo("Error description: " . mysqli_error($conn));
     }
 }?>
+<?php
+if($showalert){
+echo '  <div class="alert alert-success" role="alert">
+<p>You have successfuly entered your enquiry!</p>
+<hr>
+</div> ';
+}
+?>
 		<div class="form-box">
-		<?php
-            if($showalert){
-          echo '  <div class="alert alert-success" role="alert">
-            <p>You have successfuly entered your enquiry!</p>
-            <hr>
-           </div> ';
-            }
-            ?>
 		<form action=http://localhost/flight_management/enquiry.php method="POST">
 		<div class="header-text">
 			Customer Enquiry
