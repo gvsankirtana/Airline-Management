@@ -28,7 +28,7 @@ session_cache_limiter('private_no_expire'); // works
     $exists=false;
         $sql = "INSERT INTO `airline` ( `Flight_ID`, `Flight_Type`,`Airline_name`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid', '$ftype','$fname','$refno','$efare','$bfare','$vacant','$deptime','$depdate','$depcity','$arrtime','$arrdate',' $arrcity')";
         $result = mysqli_query($conn, $sql);
-        echo $result;
+        //echo $result;
         if ($result){                                                
             $showalert = true;
          }
