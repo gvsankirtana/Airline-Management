@@ -3,12 +3,13 @@ header('Cache-Control: no cache'); //no cache
 session_cache_limiter('private_no_expire'); // works
 session_start();
 require 'connect.php';
-$aadhar=$_SESSION['adhaar'];
-$sql = "DELETE FROM passenger_info WHERE Aadhar_No='$aadhar'";
-echo $sql;
-echo "&nbsp";
-$result = mysqli_query($conn, $sql);
-echo $result;
+$s=$_SESSION['seats'];
+for ($i = 1; $i <= $s; $i++){
+  $adhaar =$_SESSION["adhaar$i"]; 
+  $query = "DELETE FROM passenger_info WHERE Aadhar_No='$adhaar'";
+  $result = mysqli_query($conn, $query);
+}
+$user=$_SESSION["user"];
 ?>
 
 <!DOCTYPE html>
@@ -147,16 +148,12 @@ echo $result;
         <li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
       </ul>
     </nav>
-    
-    <img style="top: 120px;" src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px;"id="menu">
-    
+    <img style="top: 120px;" src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px;"id="menu">    
     <div class="container text-center flex-container" style="vertical-position:center;">
     <div>
     <div style="color:white; font-size:64px;"><b>THANK YOU!</b></div>
-    
     <div style="color:white; font-size:17px;">Your booking has been cancelled...<br><a href="searchflights.php"style="color:yellow;">click to continue booking flights!</a></div>
     </div>
-    
     </div>
     
     <script>
