@@ -8,7 +8,7 @@
 <?php 
 include 'connect.php';
 $user = $_SESSION["user"];
-$sql3="CALL `enquiry_answer`();";
+$sql3="CALL `enquiry_answer`('$user')";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }
