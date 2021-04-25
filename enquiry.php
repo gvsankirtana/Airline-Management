@@ -271,7 +271,7 @@ nav ul li a{
 		$descriptionErr = "Description is required" ;
 	}
     else{
-        $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`login_username`) VALUES ('$title', '$type','$description','$user')";
+        $sql = "CALL `inserenq`('$title','$type','$description','$user')";
         $result = mysqli_query($conn, $sql);
         if ($result){
            $showalert = true;
