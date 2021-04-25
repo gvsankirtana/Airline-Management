@@ -8,7 +8,7 @@
 <?php 
 include 'connect.php';
 $user = $_SESSION["user"];
-$sql3="CALL `enquiry_answer`('$user')";
+$sql3="CALL `enquiry_answer`()";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }
@@ -18,7 +18,7 @@ $f=1;
 
 echo 
 '
-<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:20px;background-color: transparent;">
+<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:20px;background-color: grey;">
 <thead>
 <tr><th colspan="20"><h3>FAQS</h3></th></tr>
 <tr>
