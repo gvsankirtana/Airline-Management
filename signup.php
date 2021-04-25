@@ -47,18 +47,16 @@
         }
         else
         echo("Error description: " . mysqli_error($conn));
+        $sql = "INSERT INTO `customer` (`Cust_name`,`gender`,`email`,`phone_number`,`login_username`) VALUES ('$name','$gender','$email','$phno','$username')";
+     $result = mysqli_query($conn, $sql);
+     $_SESSION["user"]=$username;
+     $showalert=true;
  
     }
     else if($password != $cpassword){
         $showError = "Error inserting.!Check if password and confirm password match";   
     }
-    if($exists==false && $f==0)
-   { 
-     $sql = "INSERT INTO `customer` (`Cust_name`,`gender`,`email`,`phone_number`,`login_username`) VALUES ('$name','$gender','$email','$phno','$username')";
-     $result = mysqli_query($conn, $sql);
-     $_SESSION["user"]=$username;
-     $showalert=true;
-   }
+  
     }
   }
 ?>

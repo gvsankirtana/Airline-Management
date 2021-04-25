@@ -14,8 +14,8 @@
          $type = $_POST['type'];
          $title = $_POST['enquirytitle'];
          $description = $_POST['desc'];
-     
-         $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`login_username`) VALUES ('$title', '$type','$description','$user')";
+         $sql = "CALL `inserenq`('$title','$type','$description','$user')";
+       // $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`login_username`) VALUES ('$title', '$type','$description','$user')";
          $result = mysqli_query($conn, $sql);
          if ($result){
          $showalert = true;
@@ -41,8 +41,11 @@
         }
         else
         {
+            // Trigger `update_password` has been created.
+//CREATE TRIGGER `update_password` AFTER UPDATE ON `login` FOR EACH ROW Update login set password=NEW.password where login_username=NEW.login_username;
             $upd="Update login set password='$password' where login_username='$user'";
             $c=mysqli_query($conn,$upd);
+        
             if ($c){
                     $showalert2 = true;
                 echo 'Succesfully changed password';
@@ -62,7 +65,6 @@
  $sql="Select * from  login join customer on login.login_username=customer.login_username where login.login_username='$user'";
  $sql2="Select count(*) from enquiry where login_username='$user'";
  $sql3="Select count(*) from enquiry where login_username='$user' and enquiry_answer is null";
- $sql4=
  $res=mysqli_query($conn,$sql);
   $res2=mysqli_query($conn,$sql2);
   $res3=mysqli_query($conn,$sql3);
@@ -72,9 +74,20 @@
     else
     echo("Error description: " . mysqli_error($conn));
     $row=mysqli_fetch_assoc($res);
+    $email=$row["email"];
+
     $row2=mysqli_fetch_assoc($res2);
     $row3=mysqli_fetch_assoc($res3);
     $pend=$row2['count(*)']-$row3['count(*)'];
+    $sql4="Select count(*) from ticket where aadhar_no in (Select Aadhar_no from passenger_info where P_email='$email')";
+    $sql5="Select count(*) from passenger_info where P_email='$email'";
+    $res4=mysqli_query($conn,$sql4);
+    $res5=mysqli_query($conn,$sql5);
+    $row4=mysqli_fetch_assoc($res4);
+    $row5=mysqli_fetch_assoc($res5);
+
+    $tic=$row4['count(*)'];
+   
     
 ?>
 <!DOCTYPE html>
@@ -538,9 +551,7 @@ ul.summary-list > li:last-child  {
                   <div class="bio-row">
                       <p><span>Phone number</span>: <?php print_r($row["phone_number"]);?></p>
                   </div>
-                  <div class="bio-row">
-                      <p><span>Cust_ID </span>: <?php print_r($row["Cust_ID"]);?></p>
-                  </div>
+                  
                   <div class="bio-row">
                       <p><span>Login username </span>: <?php print_r($row["login_username"]);?></p>
                   </div>
@@ -583,17 +594,52 @@ ul.summary-list > li:last-child  {
                   <div class="panel">
                       <div class="panel-body">
                           <div class="bio-chart">
-                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="63" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(76, 197, 205); padding: 0px; -webkit-appearance: none; background: none;"></div>
+                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $tic ?>" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(76, 197, 205); padding: 0px; -webkit-appearance: none; background: none;"></div>
                           </div>
                           <div class="bio-desk">
                               <h4 class="terques">Number of tickets booked </h4>
-                              <p>Started : 15 July</p>
-                              <p>Deadline : 15 August</p>
+                              <p>Passengers : <?php echo $row5['count(*)'] ?></p>
+                              <p>Tickets : <?php echo $tic ?></p>
                           </div>
+                          
                       </div>
                   </div>
               </div>
-           
+              <div class="row">
+              <div class="col-md-6">
+              <div class="panel">
+                      <div class="panel-body">
+                      <?php
+                      $sql3="CALL `enquiry_user`('$user');";
+$res=mysqli_query($conn,$sql3);
+if ($res){
+  }
+  else
+  echo("Error description: " . mysqli_error($conn));
+$f=1;
+
+echo 
+'
+<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:20px;background-color: #afa8d8;color:black;">
+<thead>
+<tr><th colspan="20"><h3>Your enquiries</h3></th></tr>
+<tr>
+	  <th scope="col" style="text-color:black;">Enquiry Title</th>
+	  <th scope="col">Enquiry Type</th>
+	  <th scope="col">Enquiry Description</th>
+	  <th scope="col">Enquiry Answer</th>
+	</tr>
+  </thead>
+  ' ;
+  while($rows=mysqli_fetch_assoc($res))
+  {
+	echo "<tr><td>{$rows['Enquiry_title']}</td>
+	 <td>{$rows['Enquiry_type']}</td> 
+	 <td>{$rows['Enquiry_Description']}</td> 
+	 <td>{$rows['enquiry_answer']}</td><tr>";
+  }
+echo '</table>';?>
+              </div>
     
           </div>
       </div>
