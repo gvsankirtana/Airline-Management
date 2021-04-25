@@ -1,4 +1,6 @@
+
 <?php 
+
      session_start();
      if(($_SESSION["user"])==null)
      {
@@ -6,6 +8,8 @@
      }
 ?>
 <?php
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
    include 'connect.php';
    $var=0;
    $flight = $_POST["flight"];

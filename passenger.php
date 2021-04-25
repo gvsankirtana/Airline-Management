@@ -11,7 +11,6 @@
    $s=$_SESSION['seats'];
   if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
-      $flightid = $_POST["flightid"];
       echo 
       "<div class='result'>
       <form method='POST' action='payment.php'>
