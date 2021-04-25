@@ -1,8 +1,9 @@
 <?php
-header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
+
 session_start();
-if(session_destroy()){
+$_SESSION["user"]=null;
+session_destroy();
+echo $_SESSION["user"];
     header("location:homepage.php");
-}
+
 ?> 

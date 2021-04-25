@@ -1,6 +1,5 @@
 <?php 
-header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
+
      session_start();
      if(($_SESSION["user"])==null)
      {
@@ -282,7 +281,7 @@ session_cache_limiter('private_no_expire'); // works
     </nav>
     <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px; top: 120px"id="menu">
     <div class="testbox">
-      <form action="/flight_management/search_result.php" method="post">
+      <form action="/flight_management/Airport-management/search_result.php" method="post">
         <!--<div class="banner">
         </div>-->
         <div class="item">

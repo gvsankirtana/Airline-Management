@@ -10,7 +10,7 @@ session_cache_limiter('private_no_expire'); // works
 <?php 
 include 'connect.php';
 $user = $_SESSION["user"];
-$sql3="SELECT * FROM enquiry WHERE login_username = '$user' AND enquiry_answer IS NOT NULL";
+$sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NOT NULL";
 $res=mysqli_query($conn,$sql3);
 if ($res){
   }

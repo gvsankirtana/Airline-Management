@@ -1,6 +1,5 @@
 <?php 
-header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
+
      session_start();
      if(($_SESSION["user"])==null)
      {
@@ -8,9 +7,9 @@ session_cache_limiter('private_no_expire'); // works
      }
      $user=$_SESSION["user"];
      include 'connect.php';
-     $showalert=false;$wrong=false;
+     $showalert=false;$wrong=false;$showalert2=false;
      $flag=0;
-   /* if($_SERVER["REQUEST_METHOD"] == "POST" and $flag==1)
+    if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="1")
      {
          $type = $_POST['type'];
          $title = $_POST['enquirytitle'];
@@ -25,8 +24,7 @@ session_cache_limiter('private_no_expire'); // works
          echo("Error description: " . mysqli_error($conn));
 
      }
-     else */
-     if($_SERVER["REQUEST_METHOD"] == "POST" )
+     else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="2" )
 {
     $password = $_POST["pwd"];
     $opassword = $_POST["opwd"];
@@ -46,7 +44,7 @@ session_cache_limiter('private_no_expire'); // works
             $upd="Update login set password='$password' where login_username='$user'";
             $c=mysqli_query($conn,$upd);
             if ($c){
-                //    $showalert = true;
+                    $showalert2 = true;
                 echo 'Succesfully changed password';
 
                 }
@@ -61,7 +59,7 @@ session_cache_limiter('private_no_expire'); // works
         echo 'wrong password';
     }
 }
- $sql="Select * from  login join customer on login.login_username=customer.login_username";
+ $sql="Select * from  login join customer on login.login_username=customer.login_username where login.login_username='$user'";
  $sql2="Select count(*) from enquiry where login_username='$user'";
  $sql3="Select count(*) from enquiry where login_username='$user' and enquiry_answer is null";
  $sql4=
@@ -480,6 +478,12 @@ ul.summary-list > li:last-child  {
             <hr>
            </div> ';
             }
+            if($showalert2){
+                echo '  <div class="alert alert-success" role="alert">
+                  <h4 class="alert-heading">Password updated!</h4>
+                  <hr>
+                 </div> ';
+                  }
             ?>
 <div class="row">
   <div class="profile-nav col-md-3">
@@ -494,8 +498,7 @@ ul.summary-list > li:last-child  {
 
           <ul class="nav nav-pills nav-stacked">
               <li class="active"><a href="#"> <i class="fa fa-user"></i> Profile</a></li>
-              <li><a href="#"> <i class="fa fa-calendar"></i> Recent Activity <span class="label label-warning pull-right r-activity">9</span></a></li>
-              <li><a href="#"> <i class="fa fa-edit"></i> Edit profile</a></li>
+             
           </ul>
       </div>
   </div>
@@ -511,6 +514,7 @@ ul.summary-list > li:last-child  {
          <div class="panel">
         <textarea placeholder="Do you want to ask us something" rows="2" class="form-control input-lg p-text-area" name="desc"></textarea>
           <footer class="panel-footer">
+          <input type="hidden" name="flag" value="1"/>
               <button type="submit" class="btn btn-warning pull-right">Ask</button>
               </form>
 
@@ -552,6 +556,7 @@ ul.summary-list > li:last-child  {
               <div class="form-group">
                 <input type="password" placeholder="Confirm Password" class="form-control"  name="cpwd">
               </div> 
+              <input type="hidden" name="flag" value="2"/>
               <button class="btn btn-info" type="submit" >Update Password!</button>
  
               </div></span>
@@ -581,41 +586,15 @@ ul.summary-list > li:last-child  {
                               <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="63" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(76, 197, 205); padding: 0px; -webkit-appearance: none; background: none;"></div>
                           </div>
                           <div class="bio-desk">
-                              <h4 class="terques">Number of transactions made </h4>
+                              <h4 class="terques">Number of tickets booked </h4>
                               <p>Started : 15 July</p>
                               <p>Deadline : 15 August</p>
                           </div>
                       </div>
                   </div>
               </div>
-              <div class="col-md-6">
-                  <div class="panel">
-                      <div class="panel-body">
-                          <div class="bio-chart">
-                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="75" data-fgcolor="#96be4b" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(150, 190, 75); padding: 0px; -webkit-appearance: none; background: none;"></div>
-                          </div>
-                          <div class="bio-desk">
-                              <h4 class="green">VectorLab Portfolio</h4>
-                              <p>Started : 15 July</p>
-                              <p>Deadline : 15 August</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-6">
-                  <div class="panel">
-                      <div class="panel-body">
-                          <div class="bio-chart">
-                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="50" data-fgcolor="#cba4db" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(203, 164, 219); padding: 0px; -webkit-appearance: none; background: none;"></div>
-                          </div>
-                          <div class="bio-desk">
-                              <h4 class="purple">Adobe Muse Template</h4>
-                              <p>Started : 15 July</p>
-                              <p>Deadline : 15 August</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+           
+    
           </div>
       </div>
   </div>

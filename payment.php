@@ -15,9 +15,9 @@ session_cache_limiter('private_no_expire'); // works
 for ($i = 1; $i <= $s; $i++)  
   {
     $adhaar =$_POST["adhaar$i"]; 
-    echo $adhaar;*/
+    echo $adhaar;
 header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
+session_cache_limiter('private_no_expire'); // works*/
 session_start();
 if(($_SESSION["user"])==null){
   header("location: login.php");
@@ -234,7 +234,7 @@ $class="Business";
                 <input type="text" class="form-control" name="AccountNumber">
               </div>
               <div class="form-select">
-                <input type="checkbox" value="save" name="adetails">
+                <input type="checkbox" value="save" name="adetails" checked>
                 <label for="adetails">Save account details</label>
               </div>
               <div class="alert alert-danger" role="alert"  style="margin-top: 20px; margin-bottom: 0px;">
@@ -280,12 +280,12 @@ $class="Business";
               <th>From</th>
               <td>
               <?php 
-                echo $row[0];
+                echo $row[1];
               ?></td>
             </tr>
             <tr>
               <th>To</th>
-              <td><?php echo $row[1] ?> </td>
+              <td><?php echo $row[2] ?> </td>
             </tr>
             <tr>
               <th>Charges</th>

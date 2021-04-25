@@ -1,6 +1,5 @@
  <?php
- header('Cache-Control: no cache'); //no cache
- session_cache_limiter('private_no_expire'); // works
+
      session_start();
     $showalert=false;
    $nameErr = $emailErr = $showError="";
@@ -57,6 +56,7 @@
    { 
      $sql = "INSERT INTO `customer` (`Cust_name`,`gender`,`email`,`phone_number`,`login_username`) VALUES ('$name','$gender','$email','$phno','$username')";
      $result = mysqli_query($conn, $sql);
+     $_SESSION["user"]=$username;
      $showalert=true;
    }
     }
@@ -132,6 +132,7 @@
           echo '  <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Well done!</h4>
             <p>You have successfuly created a account in our application!</p>
+            Click <a href="searchflights.php" >Here to book flights</a>
             <hr>
            </div> ';
             }
@@ -166,7 +167,7 @@
                 <input type="email" class="form-control" placeholder="Email" name="email">
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" placeholder="Phone Number" name="phno">
+                <input type="text" class="form-control" placeholder="Phone Number" name="phno">
               </div>
               <button class="btn btn-info" type="submit">Sign up!</button>
               <span class="error"><?php echo $nameErr;?></span>
