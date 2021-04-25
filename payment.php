@@ -1,4 +1,21 @@
 <?php
+  /*session_start();
+  if(($_SESSION["user"])==null)
+     {
+      header("location: login.php");
+     }
+     header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
+     $s=$_SESSION['seats'];
+     $flightid=$_SESSION["flightid"];
+  include 'connect.php';
+
+  if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+for ($i = 1; $i <= $s; $i++)  
+  {
+    $adhaar =$_POST["adhaar$i"]; 
+    echo $adhaar;*/
 header('Cache-Control: no cache'); //no cache
 session_cache_limiter('private_no_expire'); // works
 session_start();
@@ -50,17 +67,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
      
   
 }
- 
-
-/*  if($_SESSION['class']=="Economy"){
+$class="Business";
+  if($class=="Business"){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
     //echo $price;
   }
-  else if($_SESSION['class']=="Business"){
-*/  $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";    
-//  }
-
-$query ="SELECT departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
+  else if($class==$_SESSION['class']){
+    $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
+  }
+  $query ="SELECT Flight_ID, departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
   $result1=mysqli_query($conn, $price);
   $result = mysqli_query($conn, $query);
   $pricerow=mysqli_fetch_row($result1);

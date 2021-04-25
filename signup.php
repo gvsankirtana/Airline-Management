@@ -6,10 +6,11 @@
    $nameErr = $emailErr = $showError="";
    $f=0;
    if($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-    include 'connect.php';                              
+    { 
+	   
+    include 'connect.php';
     $username = $_POST["username"];
-    $name=$_POST["name"];   
+    $name=$_POST["name"];
     $gender=$_POST["gender"];
     $password = $_POST["pwd"];
     $cpassword = $_POST["cpwd"];
@@ -57,11 +58,6 @@
      $sql = "INSERT INTO `customer` (`Cust_name`,`gender`,`email`,`phone_number`,`login_username`) VALUES ('$name','$gender','$email','$phno','$username')";
      $result = mysqli_query($conn, $sql);
      $showalert=true;
-     $_SESSION['user'] = $username;
-     if(!isset($_SESSION["user"]))
-    {
-     header("location: searchflights.php");
-    }
    }
     }
   }
@@ -125,4 +121,64 @@
   </head>
   <body>
     <div id="navbar">
-			<img src="https://5.im
+			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
+		</div>
+    <div class="container panel_style">
+      <div class="col-xs-6 col-xs-offset-3">
+        <div class="panel border border-dark">
+        <div class="panel-heading headingstyle">
+            <?php
+            if($showalert){
+          echo '  <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well done!</h4>
+            <p>You have successfuly created a account in our application!</p>
+            <hr>
+           </div> ';
+            }
+            ?>
+            <h4><center><b>Signup Now !!</b></center></h4>
+          </div>
+          <div class="panel-body">
+            <form action="/flight_management/Airport-management/signup.php" method="post">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Name" name="name">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username"  name="username">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password"  name="pwd">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password"  name="cpwd">
+              </div>
+              <div class="form-check row">
+                <div class="col-xs-3">
+                  <input type="radio" name="gender" value="female" >
+                  <label class="form-check-label">Female</label>
+                </div>
+                <div class="col-xs-2">
+                  <input type="radio" name="gender" value="male">
+                  <label class="form-check-label">Male</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" name="email">
+              </div>
+              <div class="form-group">
+                <input type="number" class="form-control" placeholder="Phone Number" name="phno">
+              </div>
+              <button class="btn btn-info" type="submit">Sign up!</button>
+              <span class="error"><?php echo $nameErr;?></span>
+            <br>  <span class="error"><?php echo $emailErr;?></span>
+            <br>  <span class="error"><?php echo $showError;?></span>
+
+            </form>
+          </div>
+          <div class="panel-footer"> Have an account? <a href="login.php">Login</a> <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

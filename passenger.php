@@ -11,8 +11,14 @@ session_cache_limiter('private_no_expire'); // works
    include 'connect.php';
    $f=0;
    $s=$_SESSION['seats'];
-   if($_SERVER["REQUEST_METHOD"] == "POST")
+  /* if($_SERVER["REQUEST_METHOD"] == "POST")
     { 
+      echo 
+      "<div class='result'>
+      <form method='POST' action='payment.php'>
+      <input type='hidden' name='flightid' value=$flightid />
+
+      ";*/
     for ($i = 1; $i <= $s; $i++)  
     {   
     $name = $_POST["name$i"];
@@ -45,7 +51,7 @@ session_cache_limiter('private_no_expire'); // works
          echo("Error description: " . mysqli_error($conn));
     }
 } 
-    }
+    
 ?>
 <!DOCTYPE html>
 <html>
