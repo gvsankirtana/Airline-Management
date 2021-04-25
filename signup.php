@@ -1,5 +1,4 @@
  <?php
-
      session_start();
     $showalert=false;
    $nameErr = $emailErr = $showError="";
