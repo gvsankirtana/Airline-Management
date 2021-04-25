@@ -8,23 +8,28 @@ $password=mysqli_real_escape_string($conn,$_POST["password"]);
 
 $query = "call logincommon('$username', '$password')";
 $result = mysqli_query($conn, $query);
-$count=mysqli_num_rows($result);
-if($count!=0){
-  $query = "SELECT * FROM customer WHERE login_username='$username'";
-  $result = mysqli_query($conn, $query);
-  $countd=mysqli_num_rows($result);
+if(mysqli_num_rows($result)>0){
+  $query2 = "SELECT * FROM customer WHERE login_username='$username'";
+  $result2 = mysqli_query($conn, $query2);
+  if ($result2){
+    //    $showalert = true;
+    }
+    else
+    echo("Error description: " . mysqli_error($conn));
+  $countd=mysqli_num_rows($result2);
+  
   if($countd!=0){
     header("location: searchflights.php");
   }
-  $query = "SELECT * FROM customer_care_agent WHERE login_username='$username'";
-  $result = mysqli_query($conn, $query);
-  $countd=mysqli_num_rows($result);
+  $query3 = "SELECT * FROM customer_care_agent WHERE login_username='$username'";
+  $result3 = mysqli_query($conn, $query3);
+  $countd=mysqli_num_rows($result3);
   if($countd!=0){
     header("location: enquiryanswer.php");
   }
-  $query = "SELECT * FROM airline_coordinator WHERE login_username='$username'";
-  $result = mysqli_query($conn, $query);
-  $countd=mysqli_num_rows($result);
+  $query4 = "SELECT * FROM airline_coordinator WHERE login_username='$username'";
+  $result4 = mysqli_query($conn, $query4);
+  $countd=mysqli_num_rows($result4);
   if($countd!=0){
     header("location: airline_details.php");
   }
