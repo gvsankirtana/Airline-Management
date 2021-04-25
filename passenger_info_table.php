@@ -1,6 +1,7 @@
 
 <?php 
-
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
      session_start();
      if(($_SESSION["user"])==null)
      {
@@ -335,13 +336,12 @@ nav ul li a{
 <div id="navbar">
 		<div class="container">
 			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="171.2" height="100" style="float:left">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
+      <ul class="nav navbar-nav navbar-right">
+      <li style="top: 24px;"><a href="profile.php"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php print_r($user);?></a></li>
 			</ul>
-		</div>
+    </div>
 	</div>
 <div class="main">
-WELCOME! <?php print_r($user); ?>
       <nav id="side">
         <ul>
           <br>
@@ -350,21 +350,23 @@ WELCOME! <?php print_r($user); ?>
           <br>
           <br>
           <br>
+          <li><a href="profile.php">Profile</a></li>
           <li><a href="searchflights.php">Book Ticket</a></li>
           <li><a href="enquiry.php">Enquiry</a></li>
+          <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
         </ul>
       </nav>
-      <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
+      <img style="top: 120px;" src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px;"id="menu">
 <div class="main">
     <div class="testbox">
-    <form action="/flight_management/Airport-Management/passenger.php" method="post">
+    <form action="passenger.php" method="post">
       <div class="banner">
         <h1>Ticket Booking Form</h1>
       </div>
       <div class="item">
         <p>Flight ID</p><span class="error">
         <div class="name-item">
-          <input type="text"  name="flightid" value="<?php echo $flight ?>" disabled></input>
+          <input type="text" value="<?php echo $flight ?>" disabled></input>
         </div>
       </div>
       <div class="item">
@@ -405,7 +407,7 @@ WELCOME! <?php print_r($user); ?>
         </div>
       </div>
       <div class="item">
-        <p>Aadhaar Number </p>
+        <p>Adhaar Number </p>
         <input type="text" name="adhaar<?php echo $var?>"/>
       </div>
       <div class="item">

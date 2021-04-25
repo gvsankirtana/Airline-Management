@@ -1,4 +1,6 @@
 <?php 
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
      session_start();
      if(($_SESSION["user"])==null)
      {
@@ -46,7 +48,7 @@
     }
     .main {
       margin-left: 10px; /* Same as the width of the sidenav */
-      font-size: 28px; /* Increased text to enable scrolling */
+      font-size: 28px; /* Increased text to enable scrolling. */
       padding: 0px 10px;
     }
     @media screen and (max-height: 450px) {
@@ -264,7 +266,7 @@
 		<div class="container">
 			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="171.2" height="100" style="float:left">
 			<ul class="nav navbar-nav navbar-right">
-				<li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
+      <li style="top: 24px;"><a href="profile.php"><span class="glyphicon glyphicon-user"></span>&nbsp; <?php print_r($_SESSION["user"]);?></a></li>
 			</ul>
 		</div>
 	</div>
@@ -275,18 +277,15 @@
         <li><a href="profile.php">Profile</a></li>
         <li><a href="searchflights.php">Book Ticket</a></li>
         <li><a href="enquiry.php">Enquiry</a></li>
+        <li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
       </ul>
     </nav>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px; top: 120px"id="menu">
+    <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px; top: 120px"id="menu">
     <div class="testbox">
-      <form action="/flight_management/Airport-management/search_result.php" method="post">
+      <form action="/flight_management/search_result.php" method="post">
         <!--<div class="banner">
         </div>-->
         <div class="item">
-          WELCOME!
-          <?php
-            print_r($_SESSION["user"]);
-          ?>
           <h2><center>Filter Flights</center></h2>
           <label for="fcity">FROM:</label>
           <select name="fcity" id="fcity"  class="form-control">
