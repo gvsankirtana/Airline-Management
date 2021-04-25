@@ -11,7 +11,6 @@ $query = "SELECT * FROM login WHERE login_username='$username' and password='$pa
 $result = mysqli_query($conn, $query);
 $count=mysqli_num_rows($result);
 }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -73,8 +72,8 @@ $count=mysqli_num_rows($result);
           </div>
           <nav class="navbar" style="background-color: #e3f2fd;">
             <ul class="nav navnavbar-nav row">
-              <li class="nav-item active col-xs-6"><a class="nav-link" href="login.html"><h5><b>Customer</b></h5></a></li>
-              <li class="nav-item col-xs-6"><a class="nav-link" href="employeelogin.html"><h5><b>Employee</b></h5></a></li>
+              <li class="nav-item active col-xs-6"><a class="nav-link" href="login.php"><h5><b>Customer</b></h5></a></li>
+              <li class="nav-item col-xs-6"><a class="nav-link" href="employeelogin.php"><h5><b>Employee</b></h5></a></li>
             </ul>
           </nav>
           <div class="panel-body">

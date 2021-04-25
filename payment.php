@@ -1,21 +1,4 @@
 <?php
-  /*session_start();
-  if(($_SESSION["user"])==null)
-     {
-      header("location: login.php");
-     }
-     header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
-     $s=$_SESSION['seats'];
-     $flightid=$_SESSION["flightid"];
-  include 'connect.php';
-
-  if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-for ($i = 1; $i <= $s; $i++)  
-  {
-    $adhaar =$_POST["adhaar$i"]; 
-    echo $adhaar;
 header('Cache-Control: no cache'); //no cache
 session_cache_limiter('private_no_expire'); // works*/
 session_start();
@@ -28,6 +11,10 @@ include 'connect.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $BankName=mysqli_real_escape_string($conn,$_POST["BankName"]);
   $AccountNumber=mysqli_real_escape_string($conn,$_POST["AccountNumber"]);
+  $cancel=mysqli_real_escape_string($conn,$_POST["button"]);
+  if($cancel=="cancel"){
+    header("location: cancelticket.php");
+  }
   $s=$_SESSION['seats'];
   $flightid=$_SESSION['flightid'];
   $bank=0;
@@ -42,19 +29,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $adetails=mysqli_real_escape_string($conn,$_POST["adetails"]);
     if($adetails=="save"){
       for ($i = 1; $i <= $s; $i++){
-          $adhaar =$_SESSION["adhaar$i"]; 
-          $bookref= $flightid."#".$adhaar;
-          $query = "INSERT INTO ticket (aadhar_no,Booking_Ref,class, payment_Type, booking_time, booking_date, account_No, Bank_name, flight_ID) values('$adhaar','$bookref','Economy', 'UPI', CURRENT_TIME(), CURRENT_DATE(), '$AccountNumber', '$BankName', '$flightid')";
-          $result = mysqli_query($conn, $query);
-          }  
+        $adhaar =$_SESSION["adhaar$i"]; 
+        $bookref= $flightid."#".$adhaar;
+        $query = "INSERT INTO ticket (aadhar_no,Booking_Ref,class, payment_Type, booking_time, booking_date, account_No, Bank_name, flight_ID) values('$adhaar','$bookref','Economy', 'UPI', CURRENT_TIME(), CURRENT_DATE(), '$AccountNumber', '$BankName', '$flightid')";
+        $result = mysqli_query($conn, $query);
+      }  
     }
     else{
       for ($i = 1; $i <= $s; $i++){
-          $adhaar =$_SESSION["adhaar$i"]; 
-          $bookref= $flightid."#".$adhaar;
-          $query = "INSERT INTO ticket (aadhar_no,Booking_Ref,class, payment_Type, booking_time, booking_date, flight_ID) values('$adhaar','$bookref','Economy', 'UPI', CURRENT_TIME(), CURRENT_DATE(),'$flightid')";
-          $result = mysqli_query($conn, $query);
-    }
+        $adhaar =$_SESSION["adhaar$i"]; 
+        $bookref= $flightid."#".$adhaar;
+        $query = "INSERT INTO ticket (aadhar_no,Booking_Ref,class, payment_Type, booking_time, booking_date, flight_ID) values('$adhaar','$bookref','Economy', 'UPI', CURRENT_TIME(), CURRENT_DATE(),'$flightid')";
+        $result = mysqli_query($conn, $query);
+      }
   }
   $query = "UPDATE airline SET vacant_seats=(SELECT vacant_seats FROM airline WHERE Flight_ID = '$flightid')-$s WHERE Flight_ID = '$flightid'";
   $result = mysqli_query($conn, $query);
@@ -71,7 +58,7 @@ $class="Business";
   else if($class==$_SESSION['class']){
     $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
   }
-  $query ="SELECT Flight_ID, departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
+  $query ="SELECT departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
   $result1=mysqli_query($conn, $price);
   $result = mysqli_query($conn, $query);
   $pricerow=mysqli_fetch_row($result1);
@@ -237,7 +224,7 @@ $class="Business";
                 <input type="checkbox" value="save" name="adetails" checked>
                 <label for="adetails">Save account details</label>
               </div>
-              <div class="alert alert-danger" role="alert"  style="margin-top: 20px; margin-bottom: 0px;">
+              <div class="alert alert-danger" role="alert"  style="margin-top: 20px; margin-bottom: 0px; border:0px; padding:0px;">
               <?php
               if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($bank==1){

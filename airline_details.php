@@ -26,9 +26,9 @@ session_cache_limiter('private_no_expire'); // works
     $depcity =$_POST["depcity"];
     $arrcity =$_POST["arrcity"];                                                                                                                                                                                                                                                                         
     $exists=false;
-        $sql = "INSERT INTO `airline` ( `Flight_ID`, `Flight_Type`,`Airline_name`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid', '$ftype','$fname','$refno','$efare','$bfare','$vacant','$depcity','$depdate','$deptime','$arrcity','$arrdate',' $arrtime')";
+        $sql = "INSERT INTO `airline` ( `Flight_ID`, `Flight_Type`,`Airline_name`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid', '$ftype','$fname','$refno','$efare','$bfare','$vacant','$deptime','$depdate','$depcity','$arrtime','$arrdate',' $arrcity')";
         $result = mysqli_query($conn, $sql);
-        echo $result;
+       // echo $result;
         if ($result){                                                
             $showalert = true;
          }
@@ -366,6 +366,12 @@ nav ul li a{
         </ul>
       </nav>
       <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
+    <?php if($showalert){
+    echo `<div class="alert alert-success" role="alert">
+     <center><p>You have successfuly entered your Information!</p></center>
+     <hr>
+     </div>`;
+}?>
 <div class="main">
     <div class="testbox">
     <form action="/flight_management/airline_details.php" method="post">
