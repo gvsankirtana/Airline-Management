@@ -356,7 +356,7 @@ nav ul li a{
       <img style="top: 120px;" src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px;"id="menu">
 <div class="main">
     <div class="testbox">
-    <form action="/flight_management/Airport-Management/passenger.php" method="post">
+    <form action="passenger.php" method="post">
       <div class="banner">
         <h1>Ticket Booking Form</h1>
       </div>
