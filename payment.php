@@ -182,10 +182,14 @@ $query ="SELECT departure_Destination, arrival_destination from airline where Fl
                 <label for="Account_Number">Account Number</label> <br>
                 <input type="text" class="form-control" name="AccountNumber">
               </div>
-              <div class="panel-footer text-right" style="align-items:center;">
-                <button class="btn btn-info" value="submit" name="button">Submit</button>
-                <button class="btn btn-info" value="cancel" name="button" href="cancelticket.php">Cancel</button>
+              <div class="form-select">
+                <input type="checkbox" value="save" name="adetails">
+                <label for="adetails">Save account details</label>
               </div>
+            </div>
+            <div class="panel-footer text-right" style="align-items:center;">
+              <button class="btn btn-info" value="submit" name="button">Submit</button>
+              <button class="btn btn-info" value="cancel" name="button" href="cancelticket.php">Cancel</button>
             </div>
           </div>
           </form>
