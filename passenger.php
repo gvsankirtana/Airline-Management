@@ -21,6 +21,7 @@ session_cache_limiter('private_no_expire'); // works
     $city =$_POST["city$i"];
     $postal =$_POST["zipcode$i"];
     $adhaar =$_POST["adhaar$i"];
+    $_SESSION["adhaar$i"]=$_POST["adhaar$i"];
     $state =$_POST["state$i"];
     $gender =$_POST["gender$i"];
     $dob =$_POST["dob$i"];

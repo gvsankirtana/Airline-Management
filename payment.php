@@ -1,6 +1,6 @@
 <?php
-header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
+//header('Cache-Control: no cache'); //no cache
+//session_cache_limiter('private_no_expire'); // works
   session_start();
   if(($_SESSION["user"])==null)
      {
@@ -10,27 +10,22 @@ session_cache_limiter('private_no_expire'); // works
      $flightid=$_SESSION["flightid"];
   include 'connect.php';
 
-  if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-for ($i = 1; $i <= $s; $i++)  
-  {
-    $adhaar =$_POST["adhaar$i"]; 
-    echo $adhaar;
-  }
-}
-$class="Business";
-  if($class=="Business"){
+ 
+
+/*  if($_SESSION['class']=="Economy"){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
     //echo $price;
   }
-  else if($class==$_SESSION['class']){
-    $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";
-  }
-  $query ="SELECT Flight_ID, departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
+  else if($_SESSION['class']=="Business"){
+*/  $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";    
+//  }
+
+$query ="SELECT departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
   $result1=mysqli_query($conn, $price);
   $result = mysqli_query($conn, $query);
   $pricerow=mysqli_fetch_row($result1);
   $row = mysqli_fetch_row($result);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -213,12 +208,12 @@ $class="Business";
               <th>From</th>
               <td>
               <?php 
-                echo $row[1];
+                echo $row[0];
               ?></td>
             </tr>
             <tr>
               <th>To</th>
-              <td><?php echo $row[2] ?> </td>
+              <td><?php echo $row[1] ?> </td>
             </tr>
             <tr>
               <th>Charges</th>
