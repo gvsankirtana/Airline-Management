@@ -30,8 +30,10 @@
     $gender =$_POST["gender$i"];
     $dob =$_POST["dob$i"];
     $exists=false;
-    $sql2= "CALL passadhar($adhaar)";
+    $sql2= " SELECT `passadhar`(@p0) AS `passadhar`";
     $res = mysqli_query($conn, $sql2);
+    $row=mysqli_fetch_assoc($res);
+
     //$count=mysqli_num_rows($res);
     if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
       $nameErr = "Only letters and white space allowed" ;
@@ -39,7 +41,7 @@
     else if (!preg_match("/^[0-9\-\(\)\/\+\s]*$/",$phone)) {
       $phoneErr = "Enter Valid Phone number" ;
     } 
-    else if($res==0) {
+    else if($row['passadhar']==0) {
         $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
         $sql1= "UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`) where Aadhar_No='$adhaar'";
         $result = mysqli_query($conn, $sql);
@@ -63,6 +65,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="passenger.css" rel="stylesheet">
 </head>
 <style>
 body{

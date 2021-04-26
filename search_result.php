@@ -15,8 +15,9 @@ $class=$_POST["class"];
 $date=$_POST["traveldate"];
 $seats = $_POST["seats"];
 if($class=="Economy"){
-  $sql="Select airline.*,reference_flight_no.Airline_name from airline natural join reference_flight_no where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by economy_Fare";
-  $res=mysqli_query($conn,$sql);
+ // $sql="Select airline.*,reference_flight_no.Airline_name from airline natural join reference_flight_no where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by economy_Fare";
+ $sql="CALL airline_info('$from','$to','$date','$seats','1')"; 
+ $res=mysqli_query($conn,$sql);
   if ($res){
     }
     else
@@ -61,7 +62,7 @@ echo '</table></form></div>';
   }
   else if($class=="Business")
   {
-    $sql="Select airline.*,reference_flight_no.Airline_name from airline natural join reference_flight_no where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by buisness_fare";
+    $sql="CALL airline_info('$from','$to','$date','$seats','2')"; 
     $res=mysqli_query($conn,$sql);
     if ($res){
       }

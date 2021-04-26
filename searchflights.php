@@ -19,6 +19,14 @@
     <link href="searchflights.css" rel="stylesheet">
 
 </head>
+<style>
+    body {
+      font-family: "Lato", sans-serif;
+      background-image: url("https://www.thephotoforum.com/attachments/thousand_steps3-jpg.95195/");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    </style>
 <body>
 <div id="navbar">
 		<div class="container">

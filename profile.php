@@ -75,12 +75,15 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
 
 }
  $sql="Select * from  login join customer on login.login_username=customer.login_username where login.login_username='$user'";
- $sql2="Select count(*) from enquiry where login_username='$user'";
- $sql3="Select count(*) from enquiry where login_username='$user' and enquiry_answer is null";
+ $sql2="SELECT `passenger_enq`('$user') AS `passenger_enq`";
+ $sql3="SELECT `passenger_enq_answered`('$user') AS `passenger_enq_answered`";
  $res=mysqli_query($conn,$sql);
   $res2=mysqli_query($conn,$sql2);
   $res3=mysqli_query($conn,$sql3);
 
+//$resf=mysqli_query($conn,$sqlf);
+//$rowf=mysqli_fetch_assoc($resf);
+//echo $rowf["count"];
   if ($res){
     }
     else
@@ -90,9 +93,8 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
 
     $row2=mysqli_fetch_assoc($res2);
     $row3=mysqli_fetch_assoc($res3);
-    $pend=$row2['count(*)']-$row3['count(*)'];
-    $sql4="Select count(*) from ticket where aadhar_no in (Select Aadhar_no from passenger_info where P_email='$email')";
-    $sql5="Select count(*) from passenger_info where P_email='$email'";
+    $sql4="SELECT `ticket_count`('$email') AS `ticket_count`";
+    $sql5="SELECT `passenger_count`('$email') AS `passenger_count`";
     $res4=mysqli_query($conn,$sql4);
     $res5=mysqli_query($conn,$sql5);
     $row4=mysqli_fetch_assoc($res4);
@@ -227,12 +229,12 @@ body {
                   <div class="panel">
                       <div cdlass="panel-body">
                           <div class="bio-chart">
-                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $row2["count(*)"] ?>" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(224, 107, 125); padding: 0px; -webkit-appearance: none; background: none;"></div>
+                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $row2['passenger_enq']; ?>" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(224, 107, 125); padding: 0px; -webkit-appearance: none; background: none;"></div>
                           </div>
                           <div class="bio-desk">
                               <h4 class="red">Number of enquires made </h4>
-                              <p>Answered Queries :<?php echo $pend ?></p>
-                              <p>Pending Queries: <?php echo $row3['count(*)'] ?></p>
+                              <p>Answered Queries :<?php echo $row2['passenger_enq']-$row3['passenger_enq_answered'];?></p>
+                              <p>Pending Queries: <?php echo $row3['passenger_enq_answered'] ?></p>
                           </div>
                       </div>
                   </div>
@@ -245,8 +247,8 @@ body {
                           </div>
                           <div class="bio-desk">
                               <h4 class="terques">Number of tickets booked </h4>
-                              <p>Passengers : <?php echo $row5['count(*)'] ?></p>
-                              <p>Tickets : <?php echo $tic ?></p>
+                              <p>Passengers : <?php echo $row5['passenger_count'] ?></p>
+                              <p>Tickets : <?php echo $row4['ticket_count'] ?></p>
                           </div>
                           
                       </div>
@@ -284,7 +286,7 @@ echo
   ' ;
   while($rows=mysqli_fetch_assoc($res))
   {
-	echo "<tr><td>{$rows['Enquiry_title']}</td>
+	echo "<tr><td>{$rows['enquiry_title']}</td>
 	 <td>{$rows['Enquiry_type']}</td> 
 	 <td>{$rows['Enquiry_Description']}</td> 
 	 <td>{$rows['enquiry_answer']}</td><tr>";

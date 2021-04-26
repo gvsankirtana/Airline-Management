@@ -95,7 +95,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                   }
                   else{
                   $_SESSION['user'] = $username;
-                    if(!isset($_SESSION['user'])){
                       $query = "SELECT * FROM customer WHERE login_username='$username'";
                       $result = mysqli_query($conn, $query);
                       $countd=mysqli_num_rows($result);
@@ -115,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         header("location: empenquiryanswer.php");
                       }
                    }
-                  }
+                  
                 }
               }
               ?>

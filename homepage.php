@@ -1,7 +1,8 @@
+<?php
+session_start();
 
-<?php session_start(); 
-     $user=$_SESSION["user"];
-     ?>
+?>
+
 <!doctype html>
 
 <html lang="en">
@@ -34,7 +35,9 @@
                 <span class="sr-only">(current)</span>
               </a>
         </li>        &nbsp;        &nbsp;
-
+        <?php 
+        if(($_SESSION["user"])!=null)
+     { ?>
         <li class="nav-item">
           <a class="nav-link" href="login.php">Login</a>
         </li>
@@ -42,16 +45,15 @@
         <li class="nav-item">
           <a class="nav-link" href="signup.php">Signup</a>
         </li>        &nbsp;        &nbsp;
-     
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <?php  if($user!=null){ ?>
-         
+        <?php } ?>
+
+      <?php 
+        if(($_SESSION["user"])!=null)
+     { ?>
         <li class="nav-item">
           <a class="nav-link" href="logout.php">Logout</a>
-        </li>
-        <?php } ?>
+        </li>        &nbsp;        &nbsp;
+      <?php } ?>
       </ul>
       <br>
       <br>

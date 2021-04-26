@@ -9,8 +9,10 @@
      include 'connect.php';
      $showalert=false;$wrong=false;$showalert2=false;
      $flag=0;
-     $coord="Select count(*) from airline_coordinator where login_username=(Select login_username from  login where login_username='$user')";
-     $q=mysqli_query($conn,$coord);
+//     $coord="Select count(*) from airline_coordinator where login_username=(Select login_username from  login where login_username='$user')";
+//as a function
+$coord="SELECT `find_employee_type`('$user') AS `find_employee_type`";  
+$q=mysqli_query($conn,$coord);
      $count=mysqli_num_rows($q);
      
      if ($count==0){
@@ -60,9 +62,9 @@
 
 else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
 {
-    $adhar = $_POST['adhar'];
+    $flight = $_POST['flight'];
     if($u=="coord")
-    $del="Delete from passenger_info where Aadhar_No='$adhar'";//trigger to ticket table here
+    $del="Delete from airline where Flight_ID='$flight'";//trigger to ticket table here
     else 
     echo 'You are not a airline coordinator';
     $c=mysqli_query($conn,$del);
@@ -75,9 +77,10 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
 
 }
 if($u=="cuscare")
-{$sql="Select * from  login join customer_care_agent a on login.login_username=a.login_username where login.login_username='$user'";
-$sql2="Select count(*) from answers where login_username='$user'";//no of answered queries
- $sql3="Select count(*) from enquiry where enquiry_answer is null";//pending
+{
+$sql="Select * from  login join customer_care_agent a on login.login_username=a.login_username where login.login_username='$user'";
+$sql2="SELECT `empl_answered`('$user') AS `empl_answered`";//no of answered queries
+$sql3="SELECT `pending_answer_all`() AS `pending_answer_all`";//pending
 
  $res=mysqli_query($conn,$sql);
   $res2=mysqli_query($conn,$sql2);
@@ -95,8 +98,9 @@ $sql2="Select count(*) from answers where login_username='$user'";//no of answer
     $pend=$row2['count(*)']-$row3['count(*)'];
  }
  else if($u=="coord")
-{$sql="Select * from  login join airline_coordinator a on login.login_username=a.login_username where login.login_username='$user'";
-$sql2="Select count(*) from manages where login_username='$user'";//no of flight managed
+{
+    $sql="Select * from  login join airline_coordinator a on login.login_username=a.login_username where login.login_username='$user'";
+$sql2="SELECT `manage_flight`($user) AS `manage_flight`";//no of flight managed
 
  $res=mysqli_query($conn,$sql);
   $res2=mysqli_query($conn,$sql2);
@@ -241,12 +245,12 @@ body {
 
                       <?php if ($u=="cuscare") { ?>
                         <div class="bio-chart">
-                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $row2["count(*)"] ?>" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(224, 107, 125); padding: 0px; -webkit-appearance: none; background: none;"></div>
+                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $row2['empl_answered'] ?>" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(224, 107, 125); padding: 0px; -webkit-appearance: none; background: none;"></div>
                           </div>
                           <div class="bio-desk">
                                 <h4 class="red">Number of enquires answered. </h4>
-                              <p>Answered Queries :<?php echo $pend ?></p>
-                              <p>Pending Queries: <?php echo $row3['count(*)'] ?></p>
+                              <p>Answered Queries :<?php echo $row2['empl_answered'] ?></p>
+                              <p>Pending Queries: <?php echo $row3['pending_answer_all'] ?></p>
                       </div>
                               <?php } ?>
 
@@ -264,7 +268,7 @@ body {
                           </div>
                           <div class="bio-desk">
                               <h4 class="terques">Number of flights managed  by you</h4>
-                              <p>Flights : <?php echo $row2['count(*)'] ?></p>   
+                              <p>Flights : <?php echo $row2['manage_flight'] ?></p>   
                           </div>           
                       <?php } ?>
                       </div>
@@ -390,7 +394,7 @@ while(mysqli_next_result($conn)){;}?>
     <div id="dThreshold2" style="display: none">
     <form action="profile.php" method="post">
     <div class="form-group">
-                <input type="text" placeholder="Passenger flight to be deleted" class="form-control"  name="adhar">
+                <input type="text" placeholder="Passenger flight to be deleted" class="form-control"  name="flight">
               </div>    
               <input type="hidden" name="flag" value="3"/>
               <button class="btn btn-danger" type="submit" >Delete Flight!</button>
