@@ -5,25 +5,20 @@
       header("location: login.php");
      }
      $user=$_SESSION["user"];
+    
      include 'connect.php';
      $showalert=false;$wrong=false;$showalert2=false;
      $flag=0;
-    if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="1")
-     {
-         $type = $_POST['type'];
-         $title = $_POST['enquirytitle'];
-         $description = $_POST['desc'];
-         $sql = "CALL `inserenq`('$title','$type','$description','$user')";
-       // $sql = "INSERT INTO `enquiry` ( `Enquiry_type`, `Enquiry_title`,`Enquiry_Description`,`login_username`) VALUES ('$title', '$type','$description','$user')";
-         $result = mysqli_query($conn, $sql);
-         if ($result){
-         $showalert = true;
-         }
-         else
-         echo("Error description: " . mysqli_error($conn));
-
+     $coord="Select count(*) from airline_coordinator where login_username=(Select login_username from  login where login_username='$user')";
+     $q=mysqli_query($conn,$coord);
+     $count=mysqli_num_rows($result);
+     
+     if ($count==0){
+            $u="cuscare";
      }
-     else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="2" )
+     else
+     $u="coord";
+    if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="2" )
 {
     $password = $_POST["pwd"];
     $opassword = $_POST["opwd"];
@@ -61,6 +56,7 @@
         echo 'wrong password';
     }
 }
+
 else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
 {
     $adhar = $_POST['adhar'];
@@ -74,12 +70,16 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
     echo("Error description: " . mysqli_error($conn));
 
 }
- $sql="Select * from  login join customer on login.login_username=customer.login_username where login.login_username='$user'";
- $sql2="Select count(*) from enquiry where login_username='$user'";
- $sql3="Select count(*) from enquiry where login_username='$user' and enquiry_answer is null";
+if($u=="coord")
+ $sql="Select * from  login join airline_coordinator a on login.login_username=a.login_username where login.login_username='$user'";
+else if($u=="cuscare")
+$sql="Select * from  login join customer_care_agent a on login.login_username=a.login_username where login.login_username='$user'";
+ //$sql2="Select count(*) from enquiry where login_username='$user'";
+ //$sql3="Select count(*) from enquiry where login_username='$user' and enquiry_answer is null";
+
  $res=mysqli_query($conn,$sql);
-  $res2=mysqli_query($conn,$sql2);
-  $res3=mysqli_query($conn,$sql3);
+ // $res2=mysqli_query($conn,$sql2);
+  //$res3=mysqli_query($conn,$sql3);
 
   if ($res){
     }
@@ -88,17 +88,17 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
     $row=mysqli_fetch_assoc($res);
     $email=$row["email"];
 
-    $row2=mysqli_fetch_assoc($res2);
-    $row3=mysqli_fetch_assoc($res3);
-    $pend=$row2['count(*)']-$row3['count(*)'];
-    $sql4="Select count(*) from ticket where aadhar_no in (Select Aadhar_no from passenger_info where P_email='$email')";
-    $sql5="Select count(*) from passenger_info where P_email='$email'";
-    $res4=mysqli_query($conn,$sql4);
-    $res5=mysqli_query($conn,$sql5);
-    $row4=mysqli_fetch_assoc($res4);
-    $row5=mysqli_fetch_assoc($res5);
+    //$row2=mysqli_fetch_assoc($res2);
+    //$row3=mysqli_fetch_assoc($res3);
+    //$pend=$row2['count(*)']-$row3['count(*)'];
+    //$sql4="Select count(*) from ticket where aadhar_no in (Select Aadhar_no from passenger_info where P_email='$email')";
+    //$sql5="Select count(*) from passenger_info where P_email='$email'";
+    //$res4=mysqli_query($conn,$sql4);
+    //$res5=mysqli_query($conn,$sql5);
+    //$row4=mysqli_fetch_assoc($res4);
+    //$row5=mysqli_fetch_assoc($res5);
 
-    $tic=$row4['count(*)'];
+    //$tic=$row4['count(*)'];
    
     
 ?>
@@ -163,52 +163,44 @@ body {
       </div>
   </div>
   <div class="profile-info col-md-9">
-          <form action="profile.php" method="post">
-          <input  class="form-control" placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle" required/><br>
-          <select  name="type"  class="form-control">
-          <option value="Feedback">Feedback</option>
-            <option value="complaint">Complaint</option>
-            <option value="Question">Question </option>
-            </select>
-            <br>
-         <div class="panel">
-        <textarea placeholder="Do you want to ask us something" rows="2" class="form-control input-lg p-text-area" name="desc"></textarea>
-          <footer class="panel-footer">
-          <input type="hidden" name="flag" value="1"/>
-              <button type="submit" class="btn btn-warning pull-right">Ask</button>
-              </form>
 
-              <ul class="nav nav-pills">
-              </ul>
-          </footer>
-      </div>
       <div class="panel">
           <div class="bio-graph-heading" style="color:black;font-size:20px;">
-          Welcome <?php print_r($row["Cust_name"]);?>!You have been an amazing customer and always supported us . We love to be in service for you.
+          Welcome <?php print_r($row["Emp_name"]);?>!You have been an amazing employee and always supported us . We love to be in service for you.
           </div>
+          <div class="panel">
           <div class="panel-body bio-graph-info">
               <h1>Bio Graph</h1>
               <div class="row">
                   <div class="bio-row">
-                      <p><span>Name </span>: <?php print_r($row["Cust_name"]);?></p>
+                      <p><span>Name </span>: <?php print_r($row["Emp_name"]);?></p>
                   </div>
                   <div class="bio-row">
                       <p><span>Gender </span>: <?php print_r($row["gender"]);?></p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Phone number</span>: <?php print_r($row["phone_number"]);?></p>
+                      <p><span>Phone number</span>: <?php print_r($row["phone_no"]);?></p>
                   </div>
-                  
+                  <div>
                   <div class="bio-row">
-                      <p><span>Login username </span>: <?php print_r($row["login_username"]);?></p>
+                      <p><span>Salary</span>: <?php print_r($row["salary"]);?></p>
+                  </div>
+                  <div class="bio-row">
+                      <p><span>Role</span>: <?php print_r($row["Role"]);?></p>
+                  </div>
+                  <div class="bio-row">
+                      <p><span>Date of Joining</span>: <?php print_r($row["Date_of_join"]);?></p>
+                  </div>
+                  <div class="bio-row">
+                      <p><span>Login username </span>: <?php print_r($row["Login_username"]);?></p>
                   </div>
                   <span><a href="javascript:void(0);" onclick="show();">Want to update password?</a>
-    <div id="dThreshold" style="display: none">
-    <form action="profile.php" method="post">
-    <div class="form-group">
+                  <div id="dThreshold" style="display: none">
+                     <form action="profile.php" method="post">
+                       <div class="form-group">
                 <input type="password" placeholder="Old Password" class="form-control"  name="opwd">
               </div>    
-    <div class="form-group">
+              <div class="form-group">
                 <input type="password" placeholder="New Password" class="form-control" name="pwd">
               </div>
               <div class="form-group">
@@ -230,7 +222,7 @@ body {
                               <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $row2["count(*)"] ?>" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(224, 107, 125); padding: 0px; -webkit-appearance: none; background: none;"></div>
                           </div>
                           <div class="bio-desk">
-                              <h4 class="red">Number of enquires made </h4>
+                              <h4 class="red">Number of enquires answered </h4>
                               <p>Answered Queries :<?php echo $pend ?></p>
                               <p>Pending Queries: <?php echo $row3['count(*)'] ?></p>
                           </div>
@@ -244,9 +236,8 @@ body {
                               <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $tic ?>" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(76, 197, 205); padding: 0px; -webkit-appearance: none; background: none;"></div>
                           </div>
                           <div class="bio-desk">
-                              <h4 class="terques">Number of tickets booked </h4>
+                              <h4 class="terques">Number of flights managed </h4>
                               <p>Passengers : <?php echo $row5['count(*)'] ?></p>
-                              <p>Tickets : <?php echo $tic ?></p>
                           </div>
                           
                       </div>
