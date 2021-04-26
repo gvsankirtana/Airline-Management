@@ -22,10 +22,18 @@
     $arrdate =$_POST["arrdate"];
     $arrtime =$_POST["arrtime"];
     $depcity =$_POST["depcity"];
-    $arrcity =$_POST["arrcity"];                                                                                                                                                                                                                                                                         
+    $arrcity =$_POST["arrcity"];  
+    $user=$_SESSION["user"];      
+    $sql3="SELECT count(*) FROM airline WHERE flight_id = '$fid'";
+    $res = mysqli_query($conn, $sql3);                                                                                                                                                                                                                                                                
     $exists=false;
-        $sql = "INSERT INTO `airline` ( `Flight_ID`, `Flight_Type`,`Airline_name`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid', '$ftype','$fname','$refno','$efare','$bfare','$vacant','$deptime','$depdate','$depcity','$arrtime','$arrdate',' $arrcity')";
+    if(mysqli_num_rows($res)<=0){
+        $sql =  "INSERT INTO `airline` (`flight_id`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid','$refno','$efare','$bfare','$vacant','$deptime','$depdate','$depcity','$arrtime','$arrdate',' $arrcity')";
+        $sql1 = "INSERT INTO `reference_flight_no` ( `Reference_no`,`Flight_Type`,`Airline_name`) VALUES ('$refno', '$ftype','$fname')";
+        $sql2 = "INSERT INTO `manages`(`Login_username`, `flight_id`)VALUES('$user','$fid')";
         $result = mysqli_query($conn, $sql);
+        $result1 = mysqli_query($conn, $sql1);
+        $result2 = mysqli_query($conn, $sql2);
        // echo $result;
         if ($result){                                                
             $showalert = true;
@@ -33,6 +41,7 @@
          else{
          echo("Error description: " . mysqli_error($conn));
          }
+      }
     }
 ?>
 <!DOCTYPE html>
@@ -351,26 +360,12 @@ nav ul li a{
 		</div>
 	</div>
 <div class="main">
-      <nav id="side">
-        <ul>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <li><a href="searchflights.php">Book Ticket</a></li>
-          <li><a href="enquiry.php">Enquiry</a></li>
-        </ul>
-      </nav>
-      <img style="top: 120px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB5nWJeJStVSln4FEFOjNFF-AWjHE7OhgvYTu4mXG9xQdekA34VR3RXu0o7PJn3EEEJjo&usqp=CAU" style="width: 50px;"id="menu">
-    <?php if($showalert){
+<?php if($showalert){
     echo `<div class="alert alert-success" role="alert">
      <center><p>You have successfuly entered your Information!</p></center>
      <hr>
      </div>`;
 }?>
-<div class="main">
     <div class="testbox">
     <form action="/flight_management/airline_details.php" method="post">
       <div class="banner">
@@ -378,6 +373,8 @@ nav ul li a{
       </div>
       <br>
       <div class="item">
+      <p>*If you have already filled your details then check your <a href="profile.php">profile</a>*</p>
+      <br>
         <p>Flight ID </p>
           <input type="text" id="fid" name="fid"/>
       </div>
