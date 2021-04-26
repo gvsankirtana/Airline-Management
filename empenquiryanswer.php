@@ -1,5 +1,11 @@
 <?php 
+ session_start();
+ if(($_SESSION["user"])==null)
+	{
+	 header("location: login.php");
+	}
 include 'connect.php';
+$user=$_SESSION["user"];  
 $sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NULL";
 $res=mysqli_query($conn,$sql3);
 if ($res){
@@ -52,7 +58,7 @@ body {
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: 0;
+	left: 200px;
 	right: 0;
 	width: 500px;
 	height: 430px;
@@ -219,19 +225,15 @@ nav ul li a{
 <body>
 	<div id="navbar">
 		<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
-		<a href="employee homepage.html"><button type="button" class="btn btn-danger btn-sm" style="float:right">LOGOUT</button></a>
 	</div>
 	<nav id="side">
-		<ul>
-			<br>
-			<br>
-			<br>
-			<br>
-			<li><a href="emp enquiryanswer.html">ANSWER ENQUIRY</a></li>
-			<li><a href="emp_add flights.html">ADD FLIGHTS</a></li>
-		</ul>
-	</nav>
-	<img src="https://image.flaticon.com/icons/png/512/39/39563.png" style="width: 50px;"id="menu">
+      <ul>
+        <br><br><br><br><br><br><br><br>
+        <li><a href="admin_profile.php">Profile</a></li>
+        <li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
+      </ul>
+    </nav>
+    <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px; top: 120px"id="menu">
 	<?php
    $showalert=false;
    $userErr = $enquiErr = $ansErr="";
@@ -242,18 +244,15 @@ nav ul li a{
     $enquiid = $_POST["enqui"];
     $ans =$_POST["ans"];
     $exists=false;
-	if (empty($_POST["emp"])) {
-		$userErr = "employee username needed" ;
-	} 
-    else if (empty($_POST["enqui"])) {
+    if (empty($_POST["enqui"])) {
       $enquiErr = "Enter Enquiry ID" ;
     } 
 	else if(empty($_POST["ans"])){
 		$ansErr = "Enter answer" ;
 	}
     else{
-        $sql="INSERT INTO `answers`(`Enquiry_ID`,`emp_id`) values ('$enquiid',(SELECT `Emp_ID` FROM `customer_care_agent` WHERE `login_username` = '$emp'))";
-        $sql1 = "UPDATE `enquiry` SET `enquiry_answer`= '$ans' WHERE `Enquiry_ID` = '$enquiid'" ;
+        $sql="INSERT INTO `answers`(`Enquiry_ID`,`login_username`) values ('$enquiid',$user)";
+        $sql1="UPDATE `enquiry` SET `enquiry_answer`= '$ans' WHERE `Enquiry_ID` = '$enquiid'" ;
         mysqli_query($conn, $sql);
         $result = mysqli_query($conn, $sql1);
         if ($result){
@@ -265,10 +264,18 @@ nav ul li a{
 }
 ?>
 	<div class="form-box">
+	<?php
+if($showalert){
+echo '  <div class="alert alert-success" role="alert" style="color:white">
+<p>You have successfuly entered your enquiry!</p>
+<hr>
+</div> ';
+}
+?>
         <form action=http://localhost/flight_management/empenquiryanswer.php method="POST">
 		<div class="header-text">
 			Answering Query 
-		</div><input placeholder="Your employee Username" id="emp" name="emp" type="text"> <input placeholder="Enquiry id" name="enqui" id="enqui" type="type"><textarea  name="ans" id="ans" rows="4" cols="50">Enter answer for query</textarea> <button>Submit</button>
+		</div><input placeholder="Enquiry id" name="enqui" id="enqui" type="type"><textarea  name="ans" id="ans" rows="4" cols="50">Enter answer for query</textarea> <button>Submit</button>
         </form>
     </div>
 	<script>

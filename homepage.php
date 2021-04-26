@@ -36,7 +36,7 @@ session_start();
               </a>
         </li>        &nbsp;        &nbsp;
         <?php 
-        if(($_SESSION["user"])!=null)
+        if(($_SESSION["user"])==null)
      { ?>
         <li class="nav-item">
           <a class="nav-link" href="login.php">Login</a>

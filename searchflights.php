@@ -17,7 +17,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="searchflights.css" rel="stylesheet">
-
+    <style>
+    body {
+      font-family: "Lato", sans-serif;
+      background-image: url("https://www.thephotoforum.com/attachments/thousand_steps3-jpg.95195/");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    </style>
 </head>
 <style>
     body {
@@ -46,7 +53,7 @@
         <li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
       </ul>
     </nav>
-    <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px; top: 120px"id="menu">
+    <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 50px; top: 120px" id="menu">
     <div class="testbox">
       <form action="search_result.php" method="post">
         <!--<div class="banner">

@@ -9,14 +9,7 @@
    include 'connect.php';
    $f=0;
    $s=$_SESSION['seats'];
-  /* if($_SERVER["REQUEST_METHOD"] == "POST")
-    { 
-      echo 
-      "<div class='result'>
-      <form method='POST' action='payment.php'>
-      <input type='hidden' name='flightid' value=$flightid />
 
-      ";*/
     for ($i = 1; $i <= $s; $i++)  
     {   
     $name = $_POST["name$i"];
@@ -30,6 +23,7 @@
     $gender =$_POST["gender$i"];
     $dob =$_POST["dob$i"];
     $exists=false;
+<<<<<<< HEAD
     $sql2= " SELECT `passadhar`(@p0) AS `passadhar`";
     $res = mysqli_query($conn, $sql2);
     $row=mysqli_fetch_assoc($res);
@@ -42,18 +36,26 @@
       $phoneErr = "Enter Valid Phone number" ;
     } 
     else if($row['passadhar']==0) {
+=======
+    //$sql2 = "CALL passadhar($adhaar);";
+    $sql2="SELECT count(*) FROM passenger_info WHERE Aadhar_No = '$adhaar'";
+    $res = mysqli_query($conn, $sql2);
+    if ($res){
+      $showalert = true;
+   }
+   else{
+   echo("Error description: " . mysqli_error($conn));
+   }
+    if(mysqli_num_rows($res)<=0) {
+        //$sql = "CALL inspass('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
+>>>>>>> 9ed5da6da84b0daf533c450bbef1565ab14060dc
         $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
-        $sql1= "UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`) where Aadhar_No='$adhaar'";
+        $sql1= "CALL ageup('$adhaar');";
+        // $sql1= "UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`) where Aadhar_No='$adhaar'";
         $result = mysqli_query($conn, $sql);
         mysqli_query($conn, $sql1);
-        echo $result;
-        if ($result){
-            $showalert = true;
-         }
-         else
-         echo("Error description: " . mysqli_error($conn));
-    }
 } 
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,23 +69,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="passenger.css" rel="stylesheet">
 </head>
-<style>
-body{
-  background-image: url("https://media.cntraveler.com/photos/5a4e4dfd75ddab26e42d6603/16:9/w_2560%2Cc_limit/GettyImages-86146996.jpg");
-  background-repeat:no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-<!DOCTYPE html>
-<html>
-<head>
-<title>Ticket Booking Form</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
   font-family: "Lato", sans-serif;
