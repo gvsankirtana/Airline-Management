@@ -78,6 +78,7 @@ include 'connect.php';
               <div class="form-select">
                 <input type="checkbox" value="save" name="adetails">
                 <label for="adetails">Save account details</label>
+                <input type="hidden" value="0" name="adetails">
               </div>
             </div>
             <div class="panel-footer text-right" style="align-items:center;">
