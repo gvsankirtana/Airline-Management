@@ -11,13 +11,14 @@
      $flag=0;
      $coord="Select count(*) from airline_coordinator where login_username=(Select login_username from  login where login_username='$user')";
      $q=mysqli_query($conn,$coord);
-     $count=mysqli_num_rows($result);
+     $count=mysqli_num_rows($q);
      
      if ($count==0){
             $u="cuscare";
      }
      else
      $u="coord";
+     
     if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="2" )
 {
     $password = $_POST["pwd"];
@@ -60,7 +61,10 @@
 else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
 {
     $adhar = $_POST['adhar'];
+    if($u=="coord")
     $del="Delete from passenger_info where Aadhar_No='$adhar'";//trigger to ticket table here
+    else 
+    echo 'You are not a airline coordinator';
     $c=mysqli_query($conn,$del);
     if ($c){
         $showalert2 = true;
@@ -70,16 +74,14 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
     echo("Error description: " . mysqli_error($conn));
 
 }
-if($u=="coord")
- $sql="Select * from  login join airline_coordinator a on login.login_username=a.login_username where login.login_username='$user'";
-else if($u=="cuscare")
-$sql="Select * from  login join customer_care_agent a on login.login_username=a.login_username where login.login_username='$user'";
- //$sql2="Select count(*) from enquiry where login_username='$user'";
- //$sql3="Select count(*) from enquiry where login_username='$user' and enquiry_answer is null";
+if($u=="cuscare")
+{$sql="Select * from  login join customer_care_agent a on login.login_username=a.login_username where login.login_username='$user'";
+$sql2="Select count(*) from answers where login_username='$user'";//no of answered queries
+ $sql3="Select count(*) from enquiry where enquiry_answer is null";//pending
 
  $res=mysqli_query($conn,$sql);
- // $res2=mysqli_query($conn,$sql2);
-  //$res3=mysqli_query($conn,$sql3);
+  $res2=mysqli_query($conn,$sql2);
+  $res3=mysqli_query($conn,$sql3);
 
   if ($res){
     }
@@ -88,17 +90,33 @@ $sql="Select * from  login join customer_care_agent a on login.login_username=a.
     $row=mysqli_fetch_assoc($res);
     $email=$row["email"];
 
-    //$row2=mysqli_fetch_assoc($res2);
-    //$row3=mysqli_fetch_assoc($res3);
-    //$pend=$row2['count(*)']-$row3['count(*)'];
-    //$sql4="Select count(*) from ticket where aadhar_no in (Select Aadhar_no from passenger_info where P_email='$email')";
-    //$sql5="Select count(*) from passenger_info where P_email='$email'";
-    //$res4=mysqli_query($conn,$sql4);
-    //$res5=mysqli_query($conn,$sql5);
-    //$row4=mysqli_fetch_assoc($res4);
-    //$row5=mysqli_fetch_assoc($res5);
+    $row2=mysqli_fetch_assoc($res2);
+    $row3=mysqli_fetch_assoc($res3);
+    $pend=$row2['count(*)']-$row3['count(*)'];
+ }
+ else if($u=="coord")
+{$sql="Select * from  login join airline_coordinator a on login.login_username=a.login_username where login.login_username='$user'";
+$sql2="Select count(*) from manages where login_username='$user'";//no of flight managed
 
-    //$tic=$row4['count(*)'];
+ $res=mysqli_query($conn,$sql);
+  $res2=mysqli_query($conn,$sql2);
+
+  if ($res){
+    }
+    else
+    echo("Error description: " . mysqli_error($conn));
+    $row=mysqli_fetch_assoc($res);
+    $email=$row["email"];
+
+    $row2=mysqli_fetch_assoc($res2);
+ } 
+ $sql4="Select count(*) from ticket where aadhar_no in (Select Aadhar_no from passenger_info where P_email='$email')";
+    $sql5="Select count(*) from passenger_info where P_email='$email'";
+    $res4=mysqli_query($conn,$sql4);
+    $res5=mysqli_query($conn,$sql5);
+    $row4=mysqli_fetch_assoc($res4);
+    $row5=mysqli_fetch_assoc($res5);
+
    
     
 ?>
@@ -126,6 +144,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
 }
+
 </style>
 <div class="container bootstrap snippets bootdey">
 <div class="panel border border-dark">
@@ -218,40 +237,51 @@ body {
               <div class="col-md-6">
                   <div class="panel">
                       <div cdlass="panel-body">
-                          <div class="bio-chart">
+                      You are a <?php echo $u?>
+
+                      <?php if ($u=="cuscare") { ?>
+                        <div class="bio-chart">
                               <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $row2["count(*)"] ?>" data-fgcolor="#e06b7d" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(224, 107, 125); padding: 0px; -webkit-appearance: none; background: none;"></div>
                           </div>
                           <div class="bio-desk">
-                              <h4 class="red">Number of enquires answered </h4>
+                                <h4 class="red">Number of enquires answered. </h4>
                               <p>Answered Queries :<?php echo $pend ?></p>
                               <p>Pending Queries: <?php echo $row3['count(*)'] ?></p>
+                      </div>
+                              <?php } ?>
+
+                      </div>
                           </div>
                       </div>
-                  </div>
               </div>
               <div class="col-md-6">
                   <div class="panel">
                       <div class="panel-body">
-                          <div class="bio-chart">
-                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $tic ?>" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(76, 197, 205); padding: 0px; -webkit-appearance: none; background: none;"></div>
+                          <?php if ($u=="coord") { ?>
+                            <div class="bio-chart">
+
+                              <div style="display:inline;width:100px;height:100px;"><canvas width="100" height="100px"></canvas><input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="<?php echo $row2['count(*)'] ?>" data-fgcolor="#4CC5CD" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(76, 197, 205); padding: 0px; -webkit-appearance: none; background: none;"></div>
                           </div>
                           <div class="bio-desk">
-                              <h4 class="terques">Number of flights managed </h4>
-                              <p>Passengers : <?php echo $row5['count(*)'] ?></p>
-                          </div>
-                          
+                              <h4 class="terques">Number of flights managed  by you</h4>
+                              <p>Flights : <?php echo $row2['count(*)'] ?></p>   
+                          </div>           
+                      <?php } ?>
                       </div>
+
                   </div>
               </div>
+            </div><br><br><br><br><br><br><br><br>
               <div class="row">
               <div class="col-md-6">
+              <?php if ($u=="cuscare") { ?>
               <div class="panel">
                       <div class="panel-body">
                       <?php
                       $begin="BEGIN";
                       $res=mysqli_query($conn,$begin);
                       while(mysqli_next_result($conn)){;}
-                    $sql3="CALL `enquiry_user`('$user');";
+                    $sql3="CALL `pend_queries`();";
 $res=mysqli_query($conn,$sql3);
 while(mysqli_next_result($conn)){;}
 if ($res){
@@ -289,6 +319,7 @@ while(mysqli_next_result($conn)){;}?>
           </div>
       </div>
       </div>
+      <?php } ?> 
       <div class="row">
               <div class="col-md-6">
               <div class="panel">
@@ -297,7 +328,7 @@ while(mysqli_next_result($conn)){;}?>
                       $begin="BEGIN";
                       $res=mysqli_query($conn,$begin);
                       while(mysqli_next_result($conn)){;}
-                    $sql3="CALL `passenger_user`('$user');";
+                    $sql3="CALL `all_flights`();";
 $res=mysqli_query($conn,$sql3);
 while(mysqli_next_result($conn)){;}
 if ($res){
@@ -308,31 +339,38 @@ $f=1;
 
 echo 
 '
-<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:20px;background-color: #afa8d8;color:black;">
+<table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"   style="table-layout:absolute;width:100%; font-size:20px;background-color: #afa8d8;color:black;">
 <thead>
-<tr><th colspan="20"><h3>Your Passengers details saved with us</h3></th></tr>
+<tr><th colspan="20"><h3>Your Flight details saved:</h3></th></tr>
 <tr>
-	  <th scope="col" style="text-color:black;">Aadhar_no</th>
-	  <th scope="col">Name</th>
-	  <th scope="col">Date of Birth</th>
-	  <th scope="col">Gender</th>
-	  <th scope="col">Age</th>
-      <th scope="col">State</th>
-      <th scope="col">City</th>
-      <th scope="col">Pincode</th>
+	  <th scope="col" style="text-color:black;">Flight_ID</th>
+	  <th scope="col">Reference_NO</th>
+	  <th scope="col">economy_Fare</th>
+	  <th scope="col">buisness_Fare</th>
+	  <th scope="col">vacant_seats</th>
+      <th scope="col">dept_time</th>
+      <th scope="col">dept_date</th>
+      <th scope="col">Departure destination</th>
+      <th scope="col">Arrival Time</th>
+      <th scope="col">Arrival date</th>
+      <th scope="col">Arrival destination</th>        
 	</tr>
   </thead>
   ' ;
   while($rows=mysqli_fetch_assoc($res))
   {
-	echo "<tr><td>{$rows['Aadhar_No']}</td>
-	 <td>{$rows['P_Name']}</td> 
-	 <td>{$rows['P_DOB']}</td> 
-     <td>{$rows['P_gender']}</td>
-     <td>{$rows['P_age']}</td>
-     <td>{$rows['state']}</td> 
-	 <td>{$rows['city']}</td> 
-	 <td>{$rows['pincode']}</td><tr>";
+	echo "<tr><td>{$rows['Flight_ID']}</td>
+	 <td>{$rows['Reference_no']}</td> 
+	 <td>{$rows['economy_Fare']}</td> 
+     <td>{$rows['buisness_fare']}</td>
+     <td>{$rows['vacant_seats']}</td>
+     <td>{$rows['dept_Time']}</td> 
+     <td>{$rows['dept_date']}</td> 
+	 <td>{$rows['departure_Destination']}</td> 
+	 <td>{$rows['arrival_time']}</td>
+     <td>{$rows['arrival_date']}</td> 
+     <td>{$rows['arrival_destination']}</td> 
+     <tr>";
   }
 echo '</table>';
 $end="END;";
@@ -348,14 +386,14 @@ while(mysqli_next_result($conn)){;}?>
               <div class="col-md-6">
               <div class="panel">
                       <div class="panel-body">
-                      <span><a href="javascript:void(0);" onclick="show2();">Want to delete passenger?</a>
+                      <span><a href="javascript:void(0);" onclick="show2();">Want to delete flight?</a>
     <div id="dThreshold2" style="display: none">
     <form action="profile.php" method="post">
     <div class="form-group">
-                <input type="text" placeholder="Passenger Aadhar to be deleted" class="form-control"  name="adhar">
+                <input type="text" placeholder="Passenger flight to be deleted" class="form-control"  name="adhar">
               </div>    
               <input type="hidden" name="flag" value="3"/>
-              <button class="btn btn-danger" type="submit" >Delete Passenger!</button>
+              <button class="btn btn-danger" type="submit" >Delete Flight!</button>
                       </div>
     </div>
 </div>
