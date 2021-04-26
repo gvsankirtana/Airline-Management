@@ -1,39 +1,15 @@
 <?php
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
 session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
   include 'connect.php';                            
 $username=mysqli_real_escape_string($conn,$_POST["login_username"]);
 $password=mysqli_real_escape_string($conn,$_POST["password"]);
-
-$query = "call logincommon('$username', '$password')";
+$query = "SELECT * FROM login WHERE login_username='$username' and password='$password'";
 $result = mysqli_query($conn, $query);
-if(mysqli_num_rows($result)>0){
-  $query2 = "SELECT * FROM customer WHERE login_username='$username'";
-  $result2 = mysqli_query($conn, $query2);
-  if ($result2){
-    //    $showalert = true;
-    }
-    else
-    echo("Error description: " . mysqli_error($conn));
-  $countd=mysqli_num_rows($result2);
-  
-  if($countd!=0){
-    header("location: searchflights.php");
-  }
-  $query3 = "SELECT * FROM customer_care_agent WHERE login_username='$username'";
-  $result3 = mysqli_query($conn, $query3);
-  $countd=mysqli_num_rows($result3);
-  if($countd!=0){
-    header("location: enquiryanswer.php");
-  }
-  $query4 = "SELECT * FROM airline_coordinator WHERE login_username='$username'";
-  $result4 = mysqli_query($conn, $query4);
-  $countd=mysqli_num_rows($result4);
-  if($countd!=0){
-    header("location: airline_details.php");
-  }
-}
+$count=mysqli_num_rows($result);
 }
 ?>
 <!DOCTYPE html>
@@ -94,6 +70,12 @@ if(mysqli_num_rows($result)>0){
           <div class="panel-heading headingstyle">
             <h3><b>Login</b></h3>
           </div>
+          <nav class="navbar" style="background-color: #e3f2fd;">
+            <ul class="nav navnavbar-nav row">
+              <li class="nav-item active col-xs-6"><a class="nav-link" href="login.php"><h5><b>Customer</b></h5></a></li>
+              <li class="nav-item col-xs-6"><a class="nav-link" href="employeelogin.php"><h5><b>Employee</b></h5></a></li>
+            </ul>
+          </nav>
           <div class="panel-body">
             <form action="login.php" method="POST">
               <div class="form-group">
@@ -108,7 +90,31 @@ if(mysqli_num_rows($result)>0){
                 if($count==0){
                   echo ' <div class="alert alert-danger" role="alert" style="margin-top: 20px; margin-bottom: 0px;">
                   <h5 style={color:red;} class="alert-heading"><b>User account does not exists.</b></h5>
+                  <p>Signup to create an account to enjoy our services!</p>
                   </div> ';
+                }
+                else{
+                  $_SESSION['user'] = $username;
+                    if(!isset($_SESSION[' user'])){
+                      $query = "SELECT * FROM customer WHERE login_username='$username'";
+                      $result = mysqli_query($conn, $query);
+                      $countd=mysqli_num_rows($result);
+                      if($countd!=0){
+                        header("location: searchflights.php");
+                      }
+                      $query = "SELECT * FROM airline_coordinator WHERE login_username='$username'";
+                      $result = mysqli_query($conn, $query);
+                      $countd=mysqli_num_rows($result);
+                      if($countd!=0){
+                        header("location: airline_details.php");
+                      }
+                      $query = "SELECT * FROM customer_Care_Agent WHERE login_username='$username'";
+                      $result = mysqli_query($conn, $query);
+                      $countd=mysqli_num_rows($result);
+                      if($countd!=0){
+                        header("location: empenquiryanswer.php");
+                      }
+                   }
                 }
               }
               ?>

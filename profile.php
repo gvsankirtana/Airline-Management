@@ -295,7 +295,6 @@ $res=mysqli_query($conn,$end);
 while(mysqli_next_result($conn)){;}?>
 
               </div>
-    
           </div>
       </div>
       </div>
@@ -378,7 +377,12 @@ while(mysqli_next_result($conn)){;}?>
 function show() {
     document.getElementById("dThreshold").style.display ="block";
 }
+<<<<<<< HEAD
 function show2() {
     document.getElementById("dThreshold2").style.display ="block";
 }
 </script>
+=======
+
+</script>
+>>>>>>> d8746e5711641157f0ea6c021768782e974f75cc
