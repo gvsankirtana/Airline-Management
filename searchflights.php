@@ -280,7 +280,7 @@
     </nav>
     <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px; top: 120px"id="menu">
     <div class="testbox">
-      <form action="/flight_management/Airport-management/search_result.php" method="post">
+      <form action="search_result.php" method="post">
         <!--<div class="banner">
         </div>-->
         <div class="item">

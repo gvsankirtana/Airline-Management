@@ -5,11 +5,11 @@ session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
   include 'connect.php';                            
-$username=mysqli_real_escape_string($conn,$_POST["login_username"]);
-$password=mysqli_real_escape_string($conn,$_POST["password"]);
-$query = "SELECT * FROM login WHERE login_username='$username' and password='$password'";
-$result = mysqli_query($conn, $query);
-$count=mysqli_num_rows($result);
+  $username=mysqli_real_escape_string($conn,$_POST["login_username"]);
+  $password=mysqli_real_escape_string($conn,$_POST["password"]);
+  $query = "SELECT * FROM login WHERE login_username='$username'";
+  $result = mysqli_query($conn, $query);
+  $count=mysqli_num_rows($result);
 }
 ?>
 <!DOCTYPE html>
@@ -70,12 +70,6 @@ $count=mysqli_num_rows($result);
           <div class="panel-heading headingstyle">
             <h3><b>Login</b></h3>
           </div>
-          <nav class="navbar" style="background-color: #e3f2fd;">
-            <ul class="nav navnavbar-nav row">
-              <li class="nav-item active col-xs-6"><a class="nav-link" href="login.php"><h5><b>Customer</b></h5></a></li>
-              <li class="nav-item col-xs-6"><a class="nav-link" href="employeelogin.php"><h5><b>Employee</b></h5></a></li>
-            </ul>
-          </nav>
           <div class="panel-body">
             <form action="login.php" method="POST">
               <div class="form-group">
@@ -89,13 +83,21 @@ $count=mysqli_num_rows($result);
               if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($count==0){
                   echo ' <div class="alert alert-danger" role="alert" style="margin-top: 20px; margin-bottom: 0px;">
-                  <h5 style={color:red;} class="alert-heading"><b>User account does not exists.</b></h5>
-                  <p>Signup to create an account to enjoy our services!</p>
+                  <h5 style={color:red;} class="alert-heading"><b>Username does not exist.</b></h5>
                   </div> ';
                 }
                 else{
+                  $query = "SELECT * FROM login WHERE  password='$password'";
+                  $result = mysqli_query($conn, $query);
+                  $count=mysqli_num_rows($result);
+                  if($count==0){
+                    echo ' <div class="alert alert-danger" role="alert" style="margin-top: 20px; margin-bottom: 0px;">
+                  <h5 style={color:red;} class="alert-heading"><b>Incorrect Password.</b></h5>
+                  </div> ';
+                  }
+                  else{
                   $_SESSION['user'] = $username;
-                    if(!isset($_SESSION[' user'])){
+                    if(!isset($_SESSION['user'])){
                       $query = "SELECT * FROM customer WHERE login_username='$username'";
                       $result = mysqli_query($conn, $query);
                       $countd=mysqli_num_rows($result);
@@ -115,6 +117,7 @@ $count=mysqli_num_rows($result);
                         header("location: empenquiryanswer.php");
                       }
                    }
+                  }
                 }
               }
               ?>
