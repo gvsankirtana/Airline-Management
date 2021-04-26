@@ -381,38 +381,38 @@ nav ul li a{
       <p>*If you have already filled your details then check your <a href="profile.php">profile</a>*</p>
       <br>
         <p>Flight ID </p>
-          <input type="text" id="fid" name="fid"/>
+          <input type="text" id="fid" name="fid" required/>
       </div>
       <div class="item">
         <p>Flight Type</p>
-          <select name="ftype" >
+          <select name="ftype" required>
           <option value="Domestic">Domestic</option>
           <option value="International">International</option>
           </select>
         </div>
       <div class="item">
         <p>Airline Name</p>
-          <input type="text" name="fname" />
+          <input type="text" name="fname" required/>
         </div>
       <div class="item">
         <p>Reference_no</p>
-        <input type="text" name="refno" />
+        <input type="text" name="refno" required/>
         </div>
         <div class="item">
         <p>Economy Fare</p>
-        <input type="text" name="efare" placeholder='$' />
+        <input type="text" name="efare" placeholder='$' required/>
         </div>
         <div class="item">
         <p>Buisness Fare</p>
-        <input type="text" name="bfare" placeholder='$' />
+        <input type="text" name="bfare" placeholder='$' required/>
         </div>
         <div class="item">
         <p>vacant Seats</p>
-        <input type="number" name="vacant" />
+        <input type="number" name="vacant" required />
         </div>
         <div class="item">
         <p>Departure Destination</p>
-          <select name="depcity" >
+          <select name="depcity" required>
           <option value="Hyderabad">Hyderabad</option>
             <option value="Delhi">Delhi </option>
             <option value="Shimla">Shimla</option>
@@ -429,15 +429,15 @@ nav ul li a{
         </div>
         <p>Departure Date</p>
         <div class="day-visited">
-          <input type="date" name="depdate" />
+          <input type="date" name="depdate" min="2021-04-27" required/>
         </div>
         <p>Departure Time</p>
         <div class="day-visited">
-        <input type="time" id="deptime" name="deptime">
+        <input type="time" id="deptime" name="deptime" required>
         </div>
         <div class="item">
         <p>Arrival Destination</p>
-          <select name="arrcity" >
+          <select name="arrcity" required>
           <option value="Delhi">Delhi </option>
           <option value="Hyderabad">Hyderabad</option>
             <option value="Shimla">Shimla</option>
@@ -455,11 +455,11 @@ nav ul li a{
         </div>
         <p>Arrival Date</p>
         <div class="day-visited">
-          <input type="date" name="arrdate" />
+          <input type="date" name="arrdate" required/>
         </div>
         <p>Arrival Time</p>
         <div class="day-visited">
-        <input type="time" id="arrtime" name="arrtime">
+        <input type="time" id="arrtime" name="arrtime" min="2021-04-28" required>
         </div>
         <br>
         <div class="btn-block">
