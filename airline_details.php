@@ -1,4 +1,3 @@
-
 <?php
   session_start();
   if(($_SESSION["user"])==null)
@@ -24,24 +23,25 @@
     $depcity =$_POST["depcity"];
     $arrcity =$_POST["arrcity"];  
     $user=$_SESSION["user"];      
-    $sql3="SELECT count(*) FROM airline WHERE flight_id = '$fid'";
+    $sql3="SELECT * FROM airline WHERE Flight_ID = '$fid'";
     $res = mysqli_query($conn, $sql3);                                                                                                                                                                                                                                                                
     $exists=false;
-    if(mysqli_num_rows($res)<=0){
-        $sql =  "INSERT INTO `airline` (`flight_id`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid','$refno','$efare','$bfare','$vacant','$deptime','$depdate','$depcity','$arrtime','$arrdate',' $arrcity')";
+    if(mysqli_num_rows($res)==0){
+        $sql =  "INSERT INTO `airline` (`Flight_ID`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid','$refno','$efare','$bfare','$vacant','$deptime','$depdate','$depcity','$arrtime','$arrdate',' $arrcity')";
         $sql1 = "INSERT INTO `reference_flight_no` ( `Reference_no`,`Flight_Type`,`Airline_name`) VALUES ('$refno', '$ftype','$fname')";
-        $sql2 = "INSERT INTO `manages`(`Login_username`, `flight_id`)VALUES('$user','$fid')";
+        $sql2 = "INSERT INTO `manages`(`Login_username`, `Flight_ID`)VALUES('$user','$fid')";
+        //echo "here";
         $result = mysqli_query($conn, $sql);
         $result1 = mysqli_query($conn, $sql1);
         $result2 = mysqli_query($conn, $sql2);
-       // echo $result;
+        echo $result;
         if ($result){                                                
             $showalert = true;
          }
          else{
          echo("Error description: " . mysqli_error($conn));
          }
-      }
+     }
     }
 ?>
 <!DOCTYPE html>
