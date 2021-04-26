@@ -354,12 +354,17 @@ nav ul li a{
 <div id="navbar">
 		<div class="container">
 			<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="171.2" height="100" style="float:left">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
-			</ul>
 		</div>
 	</div>
 <div class="main">
+<nav id="side">
+      <ul>
+        <br><br><br><br><br><br><br><br>
+        <li><a href="admin_profile.php">Profile</a></li>
+        <li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
+      </ul>
+    </nav>
+    <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px; top: 120px"id="menu">
 <?php if($showalert){
     echo `<div class="alert alert-success" role="alert">
      <center><p>You have successfuly entered your Information!</p></center>

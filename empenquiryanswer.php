@@ -227,15 +227,13 @@ nav ul li a{
 		<img src="https://5.imimg.com/data5/TK/AD/MY-36130657/flight-booking-500x500.png" class="img-fluid" width="200" height="100" style="float:left">
 	</div>
 	<nav id="side">
-		<ul>
-			<br>
-			<br>
-			<br>
-			<br>
-			<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
-		</ul>
-	</nav>
-	<img src="https://image.flaticon.com/icons/png/512/39/39563.png" style="width: 50px;"id="menu">
+      <ul>
+        <br><br><br><br><br><br><br><br>
+        <li><a href="admin_profile.php">Profile</a></li>
+        <li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
+      </ul>
+    </nav>
+    <img src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px; top: 120px"id="menu">
 	<?php
    $showalert=false;
    $userErr = $enquiErr = $ansErr="";
