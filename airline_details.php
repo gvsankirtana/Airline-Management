@@ -22,9 +22,12 @@
     $arrdate =$_POST["arrdate"];
     $arrtime =$_POST["arrtime"];
     $depcity =$_POST["depcity"];
-    $arrcity =$_POST["arrcity"];                                                                                                                                                                                                                                                                         
+    $arrcity =$_POST["arrcity"];  
+    $user=$_SESSION["user"];                                                                                                                                                                                                                                                                      
     $exists=false;
-        $sql = "INSERT INTO `airline` ( `Flight_ID`, `Flight_Type`,`Airline_name`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid', '$ftype','$fname','$refno','$efare','$bfare','$vacant','$deptime','$depdate','$depcity','$arrtime','$arrdate',' $arrcity')";
+        $sql =  "INSERT INTO `airline` ( `Flight_ID`,`Reference_no`,`economy_Fare`,`buisness_fare`,`vacant_seats`,`dept_Time`,`dept_date`,`departure_Destination`,`arrival_time`,`arrival_date`,`arrival_destination`) VALUES ('$fid', '$ftype','$fname','$refno','$efare','$bfare','$vacant','$deptime','$depdate','$depcity','$arrtime','$arrdate',' $arrcity')";
+        $sql1 = "INSERT INTO `reference_flight_no` ( `Reference_no`,`Flight_Type`,`Airline_name`) VALUES ('$refno', '$ftype','$fname')";
+        $sql2 = "INSERT INTO `manages`(`login_username`,`flight_id`)VALUES('$user','$fid')";
         $result = mysqli_query($conn, $sql);
        // echo $result;
         if ($result){                                                
