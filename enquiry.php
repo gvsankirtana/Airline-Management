@@ -109,6 +109,7 @@ body {
 	width: 100%;
 	font-size: 18px;
 	font-family: poppins;
+	color:black;
 }
 .form-box input[type=checkbox] {
 	display: none;
