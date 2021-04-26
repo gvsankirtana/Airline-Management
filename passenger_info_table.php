@@ -1,10 +1,10 @@
-
 <?php 
      session_start();
      if(($_SESSION["user"])==null)
      {
       header("location: login.php");
      }
+
 ?>
 <?php
    include 'connect.php';
@@ -354,12 +354,15 @@ nav ul li a{
       </nav>
       <img style="top: 120px;" src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px;"id="menu">
 <div class="main">
+
     <div class="testbox">
     <form action="passenger.php" method="post">
       <div class="banner">
         <h1>Ticket Booking Form</h1>
       </div>
       <div class="item">
+      <p>*If you have already filled your details then check your <a href="profile.php">profile</a>*</p>
+      <br>
         <p>Flight ID</p><span class="error">
         <div class="name-item">
           <input type="text" value="<?php echo $flight ?>" disabled></input>
@@ -399,19 +402,19 @@ nav ul li a{
       <div class="item">
         <p>Passenger contact name </p>
         <div class="name-item">
-          <input type="text" id="name<?php echo $var?>" name="name<?php echo $var?>" />
+          <input type="text" id="name<?php echo $var?>" name="name<?php echo $var?>" required/>
         </div>
       </div>
       <div class="item">
         <p>Adhaar Number </p>
-        <input type="text" name="adhaar<?php echo $var?>"/>
+        <input type="text" name="adhaar<?php echo $var?>" required/>
       </div>
       <div class="item">
         <p>Address </p>
         <div class="city-item">
-          <input type="text" name="city<?php echo $var?>"     placeholder='City' />
-          <input type="text" name="zipcode<?php echo $var?>"  placeholder="Postal / Zip code" />
-          <select name="state<?php echo $var?>" >
+          <input type="text" name="city<?php echo $var?>"     placeholder='City' required/>
+          <input type="text" name="zipcode<?php echo $var?>"  placeholder="Postal / Zip code" required />
+          <select name="state<?php echo $var?>" required >
             <option selected value="" disabled>State</option>
             <option value="Gujarat">Gujarat</option>
             <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -449,17 +452,17 @@ nav ul li a{
         <p>Gender</p>
         <div class="question-answer">
           <div>
-          <input type="radio" value="Male" id="radio_3<?php echo $var?>" name="gender<?php echo $var?>"/>
+          <input type="radio" value="Male" id="radio_3<?php echo $var?>" name="gender<?php echo $var?>" required/>
             <label for="radio_3<?php echo $var?>" class="radio"><span>Male</span></label>
           </div>
           <div>
-            <input type="radio" value="Female" id="radio_4<?php echo $var?>" name="gender<?php echo $var?>"/>
+            <input type="radio" value="Female" id="radio_4<?php echo $var?>" name="gender<?php echo $var?>" required/>
             <label for="radio_4<?php echo $var?>" class="radio"><span>Female</span></label>
           </div>
         </div>
         <p>Date Of Birth </p>
         <div class="day-visited">
-          <input type="date" name="dob<?php echo $var?>" />
+          <input type="date" name="dob<?php echo $var?>" max="2020-04-26"required/>
         </div>
         <br>
         <?php    }?>

@@ -1,12 +1,10 @@
 <?php
-
-session_cache_limiter('private_no_expire'); // works
 session_start();
 require 'connect.php';
 $s=$_SESSION['seats'];
 for ($i = 1; $i <= $s; $i++){
   $adhaar =$_SESSION["adhaar$i"]; 
-  $query = "call cancelticket('$adhaar')";
+  $query = "DELETE FROM passenger_info WHERE Aadhar_No='$adhaar'";
   $result = mysqli_query($conn, $query);
 }
 $user=$_SESSION["user"];
@@ -22,7 +20,113 @@ $user=$_SESSION["user"];
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="ticket.css">
+    <style>
+      body{
+        background-image: url("images/payment.jpg");
+        background-repeat: no-repeat;
+        background-position: absolute,center;
+        background-size:cover,contain;
+        height:400px;
+      }
+      #navbar {
+        overflow: hidden;
+        background-color:rgba(0,0,0,0.2);
+        text-align: right;
+      }
+      #navbar a {
+        float: right;
+        display: block;
+        color: white;
+        text-align: right;
+        padding: 30px 30px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      #navbar a:hover {
+        background-color: #ddd;
+        color: white;
+      }
+      #navbar a.active {
+        background-color: black;
+        color: white;
+      }
+      #side a, .dropdown-btn {
+        padding: 6px 8px 6px 0px;
+        text-decoration: none;
+        font-size: 20px;
+        color: white;
+        display: block;
+        border: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+      }
+      #side a:hover, .dropdown-btn:hover {
+        color: yellow;
+      }
+      .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+      .sticky + .content {
+        padding-top: 60px;
+      }
+      #menu{
+        width:50px;
+        position: fixed;
+        right: 65px;
+        top:35px;
+        z-index:2;
+        cursor:pointer;
+      }
+      #side{
+        width:250px;
+        height:700px;
+        position: fixed;
+        right:-250px;
+        top:0;
+        background-color:rgba(0,0,0,0.2);
+        z-index: 2;
+        transition: 2s;
+        overflow-y: scroll;
+      }
+      li {
+        list-style-type: none;
+        font-size: 16pt;
+      }
+      nav ul li{
+        list-style: none;
+        margin:50px 20px;
+      }
+      nav ul li a{
+        text-transform: uppercase;
+        text-decoration: none;
+        color: white;
+        text-align: right;
+      }
+      .main {
+        margin-left: 60px; /* Same as the width of the sidenav */
+        font-size: 28px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
+        margin-right: 80px;
+      }
+      .headingstyle{
+        background-image: url("images/payment.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:cover,contain;
+        color: white;
+      }
+      .flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+}
+
+    </style>
   </head>
   <body>
     <div id="navbar">
@@ -49,6 +153,7 @@ $user=$_SESSION["user"];
     <div style="color:white; font-size:17px;">Your booking has been cancelled...<br><a href="searchflights.php"style="color:yellow;">click to continue booking flights!</a></div>
     </div>
     </div>
+    
     <script>
       var menu=document.getElementById("menu");
       var side=document.getElementById("side");

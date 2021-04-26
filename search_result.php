@@ -61,7 +61,7 @@ echo '</table></form></div>';
   }
   else if($class=="Business")
   {
-    $sql="Select airline.*,reference_flight_no.Airline_name from airline natural join reference_flight_no where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by buisness_fare";
+    $sql="SELECT airline.*,reference_flight_no.Airline_name from airline natural join reference_flight_no where departure_Destination='$from' and arrival_Destination='$to' and dept_date='$date' and vacant_seats>='$seats' order by buisness_fare";
     $res=mysqli_query($conn,$sql);
     if ($res){
       }
