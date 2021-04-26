@@ -1,6 +1,9 @@
 
-
+<?php session_start(); 
+     $user=$_SESSION["user"];
+     ?>
 <!doctype html>
+
 <html lang="en">
   <head>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -39,10 +42,16 @@
         <li class="nav-item">
           <a class="nav-link" href="signup.php">Signup</a>
         </li>        &nbsp;        &nbsp;
-
+     
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>
+        <?php  if($user!=null){ ?>
+         
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">Logout</a>
+        </li>
+        <?php } ?>
       </ul>
       <br>
       <br>
