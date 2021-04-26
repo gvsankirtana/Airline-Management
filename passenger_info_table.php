@@ -459,7 +459,7 @@ nav ul li a{
         </div>
         <p>Date Of Birth </p>
         <div class="day-visited">
-          <input type="date" name="dob<?php echo $var?>" />
+          <input type="date" name="dob<?php echo $var?>" max="2021-04-26" />
         </div>
         <br>
         <?php    }?>
