@@ -17,7 +17,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="searchflights.css" rel="stylesheet">
-
+    <style>
+    body {
+      font-family: "Lato", sans-serif;
+      background-image: url("https://www.thephotoforum.com/attachments/thousand_steps3-jpg.95195/");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    </style>
 </head>
 <body>
 <div id="navbar">

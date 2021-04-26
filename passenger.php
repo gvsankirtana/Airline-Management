@@ -44,7 +44,6 @@
         $sql1= "UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`) where Aadhar_No='$adhaar'";
         $result = mysqli_query($conn, $sql);
         mysqli_query($conn, $sql1);
-        echo $result;
         if ($result){
             $showalert = true;
          }
@@ -402,6 +401,7 @@ nav ul li a{
         </ul>
       </nav>
       <img style="top: 120px;right:30px;" src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px;"id="menu">
+      <br><br><br><br><br>
       <div class="alert alert-success" role="alert">
             <center><p>You have successfuly entered your Information!</p></center>
             <br>

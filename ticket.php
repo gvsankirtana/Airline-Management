@@ -15,6 +15,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         header("location: cancelticket.php");
     }
     else{
+      $query="insert into booking(login_username, Flight_ID) values('$user', '$flightid')";
+      $result = mysqli_query($conn, $query);
     if($adetails=="save"){
         for ($i = 1; $i <= $s; $i++){
             $adhaar =$_SESSION["adhaar$i"]; 

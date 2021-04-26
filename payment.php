@@ -1,36 +1,22 @@
 <?php
   header('Cache-Control: no cache'); //no cache
   session_cache_limiter('private_no_expire'); // works
-
 session_start();
-if(($_SESSION["user"])==null){
-  header("location: login.php");
-}
 $s=$_SESSION['seats'];
-$flightid=$_SESSION["flightid"];
+$flightid=$_SESSION['flightid'];
+
 include 'connect.php';
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-  $BankName=mysqli_real_escape_string($conn,$_POST["BankName"]);
-  $AccountNumber=mysqli_real_escape_string($conn,$_POST["AccountNumber"]);
-  $cancel=mysqli_real_escape_string($conn,$_POST["button"]);
-  if($cancel=="cancel"){
-    header("location: cancelticket.php");
-  }
-  $s=$_SESSION['seats'];
-  $flightid=$_SESSION["flightid"];
-  include 'connect.php';
   if($_SESSION['class']=="Economy"){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
   }
   else if($_SESSION['class']=="Business"){
     $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";    
   }
-  $query ="SELECT departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
   $result1=mysqli_query($conn, $price);
-  $result = mysqli_query($conn, $query);
   $pricerow=mysqli_fetch_row($result1);
+  $query ="SELECT departure_Destination, arrival_destination from airline where Flight_ID='$flightid'";
+  $result = mysqli_query($conn, $query);
   $row = mysqli_fetch_row($result);
-
 ?>
 <!DOCTYPE html>
 <html>
