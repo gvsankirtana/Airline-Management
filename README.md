@@ -14,6 +14,7 @@ Full stack project with MySQL database.
 
 ## SETUP
 *  XAMPP
+*  Download xampp here -https://www.apachefriends.org/download.html
 *  phpmyadmin
 
 ## Refer PDF for ER and relational schema 
