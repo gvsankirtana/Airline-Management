@@ -11,7 +11,7 @@ $user = $_SESSION["user"];
 $sql3="CALL `enquiry_answer`();";
 $res=mysqli_query($conn,$sql3);
 if ($res){
-  }
+  } 
   else
   echo("Error description: " . mysqli_error($conn));
 $f=1;

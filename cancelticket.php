@@ -34,7 +34,7 @@ $user=$_SESSION["user"];
       </div>
     </div>
     <nav id="side">
-    <ul>
+    <ul> 
         <br><br><br><br><br><br><br><br>
         <li><a href="profile.php">Profile</a></li>
         <li><a href="searchflights.php">Book Ticket</a></li>

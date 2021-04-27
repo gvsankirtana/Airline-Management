@@ -44,7 +44,7 @@
 		</div>
 	</div>
   <div class="main">
-    <nav id="side">
+    <nav id="side"> 
       <ul>
         <br><br><br><br><br><br><br><br>
         <li><a href="profile.php">Profile</a></li>

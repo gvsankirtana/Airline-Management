@@ -11,7 +11,7 @@
     $name=$_POST["name"];
     $gender=$_POST["gender"];
     $password = $_POST["pwd"];
-    $cpassword = $_POST["cpwd"];
+    $cpassword = $_POST["cpwd"]; 
     $email=$_POST["email"];
     $phno=$_POST["phno"];
     $exists=false;

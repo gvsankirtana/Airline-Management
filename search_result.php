@@ -7,7 +7,7 @@ session_start();
 
 $f=1;$fl=0;
 if( $_SERVER["REQUEST_METHOD"] == "POST")
-{ 
+{  
 include 'connect.php';
 $from = $_POST["fcity"];
 $to=$_POST["tcity"]; 

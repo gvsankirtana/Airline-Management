@@ -5,7 +5,7 @@
      {
       header("location: login.php");
      }
-?>
+?> 
 <?php
    include 'connect.php';
    $var=0;

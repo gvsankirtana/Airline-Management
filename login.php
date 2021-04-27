@@ -94,29 +94,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                   </div> ';
                   }
                   else{
-<<<<<<< HEAD
-                  $_SESSION['user'] = $username;
-                      $query = "SELECT * FROM customer WHERE login_username='$username'";
-                      $result = mysqli_query($conn, $query);
-                      $countd=mysqli_num_rows($result);
-                      if($countd!=0){
-                        header("location: searchflights.php");
-                      }
-                      $query = "SELECT * FROM airline_coordinator WHERE login_username='$username'";
-                      $result = mysqli_query($conn, $query);
-                      $countd=mysqli_num_rows($result);
-                      if($countd!=0){
-                        header("location: airline_details.php");
-                      }
-                      $query = "SELECT * FROM customer_Care_Agent WHERE login_username='$username'";
-                      $result = mysqli_query($conn, $query);
-                      $countd=mysqli_num_rows($result);
-                      if($countd!=0){
-                        header("location: empenquiryanswer.php");
-                      }
-                   }
-                  
-=======
                     $_SESSION['user'] = $username;
                     $query = "SELECT * FROM customer WHERE login_username='$username'";
                     $result = mysqli_query($conn, $query);
@@ -137,7 +114,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                       header("location: empenquiryanswer.php");
                     }
                   }
->>>>>>> 9ed5da6da84b0daf533c450bbef1565ab14060dc
                 }
               }
               ?>

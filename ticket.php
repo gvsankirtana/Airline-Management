@@ -3,7 +3,7 @@ header('Cache-Control: no cache'); //no cache
 session_cache_limiter('private_no_expire'); // works
 session_start();
 require 'connect.php';
-$user=$_SESSION["user"];
+$user=$_SESSION["user"]; 
 $BankName=mysqli_real_escape_string($conn,$_POST["BankName"]);
 $AccountNumber=mysqli_real_escape_string($conn,$_POST["AccountNumber"]);
 $adetails=mysqli_real_escape_string($conn,$_POST["adetails"]);

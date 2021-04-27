@@ -307,7 +307,7 @@ body {
    width: 100%;
 }
 .sticky + .content {
-   padding-top: 60px;
+   padding-top: 60px; 
 }
 #menu{
    width:50px;

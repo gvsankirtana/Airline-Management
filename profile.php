@@ -10,7 +10,7 @@
      $flag=0;
     if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="1")
      {
-         $type = $_POST['type'];
+          $type = $_POST['type'];
          $title = $_POST['enquirytitle'];
          $description = $_POST['desc'];
          $sql = "CALL `inserenq`('$title','$type','$description','$user')";

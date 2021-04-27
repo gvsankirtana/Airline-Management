@@ -45,7 +45,7 @@ include 'connect.php';
         <li><a href="enquiry.php">Enquiry</a></li>
         <li style="top: 24px;"><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;logout</a></li>
       </ul>
-    </nav>
+     </nav>
     <img style="top: 120px;" src="https://cdn1.iconfinder.com/data/icons/mobile-device/512/settings-option-configurate-gear-blue-round-512.png" style="width: 70px;"id="menu">
     <br><br><br>
     <div class="row container">

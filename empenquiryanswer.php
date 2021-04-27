@@ -3,7 +3,7 @@
  if(($_SESSION["user"])==null)
 	{
 	 header("location: login.php");
-	}
+	} 
 include 'connect.php';
 $user=$_SESSION["user"];  
 $sql3="SELECT * FROM enquiry WHERE enquiry_answer IS NULL";
