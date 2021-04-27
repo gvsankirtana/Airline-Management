@@ -95,7 +95,7 @@ body{
     background-position: center;
     background-size:cover,contain;
     color: white;
-  }
+  } 
   .flex-container {
 display: flex;
 justify-content: center;
