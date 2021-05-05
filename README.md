@@ -29,4 +29,4 @@ The Normalisation is at 3rd normal form currently
 ## phpmyadmin 
     Then clone the file in htdocs folder of your xampp folder.
    
-### Enjoy our services
+
