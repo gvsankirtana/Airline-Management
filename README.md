@@ -1,5 +1,4 @@
 #                                                                               Flight Management
-Full stack project with MySQL database.
 
 # Stacks We Have Used: 
 
