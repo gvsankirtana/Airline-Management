@@ -11,7 +11,7 @@
     { 
     $fid = $_POST["fid"];
     $ftype =$_POST["ftype"];
-    $fname =$_POST["fname"];
+    $fname =$_POST["fname"]; 
     $refno =$_POST["refno"];
     $efare =$_POST["efare"];
     $bfare =$_POST["bfare"];

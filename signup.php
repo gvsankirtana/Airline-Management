@@ -8,7 +8,7 @@
 	   
     include 'connect.php';
     $username = $_POST["username"];
-    $name=$_POST["name"];
+    $name=$_POST["name"]; 
     $gender=$_POST["gender"];
     $password = $_POST["pwd"];
     $cpassword = $_POST["cpwd"]; 

@@ -6,3 +6,4 @@ echo $_SESSION["user"];
     header("location:homepage.php");
 
 ?>  
+ 

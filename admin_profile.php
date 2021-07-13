@@ -6,7 +6,7 @@
      }
      $user=$_SESSION["user"];
     
-     include 'connect.php';
+     include 'connect.php'; 
      $showalert=false;$wrong=false;$showalert2=false;
      $flag=0; 
 //     $coord="Select count(*) from airline_coordinator where login_username=(Select login_username from  login where login_username='$user')";

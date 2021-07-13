@@ -4,7 +4,7 @@
      {
       header("location: login.php");
      }
-?>
+?> 
 <?php 
 include 'connect.php';
 $user = $_SESSION["user"];

@@ -6,7 +6,7 @@ $flightid=$_SESSION['flightid'];
 include 'connect.php';
   if($_SESSION['class']=="Economy"){
     $price = "SELECT buisness_fare from airline where Flight_ID='$flightid'";
-  }
+  } 
   else if($_SESSION['class']=="Business"){
     $price="SELECT economy_Fare from airline where Flight_ID='$flightid'";    
   }

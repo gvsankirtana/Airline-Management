@@ -11,7 +11,7 @@ for ($i = 1; $i <= $s; $i++){
 }
 $user=$_SESSION["user"];
 ?>
-
+ 
 <!DOCTYPE html>
 <html>
   <title>Payment Page</title>

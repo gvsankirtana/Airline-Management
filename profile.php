@@ -5,7 +5,7 @@
       header("location: login.php");
      }
      $user=$_SESSION["user"];
-     include 'connect.php';
+     include 'connect.php'; 
      $showalert=false;$wrong=false;$showalert2=false;
      $flag=0;
     if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="1")

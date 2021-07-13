@@ -3,7 +3,7 @@
   if(($_SESSION["user"])==null)
      {
       header("location: login.php");
-     }
+     } 
   $showalert=false;
   $nameErr = $emailErr = $phoneErr= $adherr="";
    include 'connect.php';

@@ -14,7 +14,7 @@ if ($res){
   echo("Error description: " . mysqli_error($conn));
 $f=1;
 echo 
-'
+' 
 <table border=10 class="table table-bordered table-hover" id="tab_logic" align="center"  style="font-size:15px;background-color: black;">
 <thead>
 <tr><th colspan="13"><h3>FAQS</h3></th></tr>

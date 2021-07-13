@@ -7,7 +7,7 @@
      }
 ?> 
 <?php
-   include 'connect.php';
+   include 'connect.php'; 
    $var=0;
    $flight = $_POST["flight"];
    $user=$_SESSION["user"];
