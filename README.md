@@ -9,7 +9,7 @@ Full stack project with MySQL database and PHP.
 *  HTML
 *  CSS
 *  Bootstrap
-
+   
 ## BACKEND
 *  MYSQL
 *  PHP
