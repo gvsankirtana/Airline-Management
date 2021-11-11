@@ -1,9 +1,9 @@
 #                                                                               Flight Management
 
 Full stack project with MySQL database and PHP. 
-=======
+=============
 
-## Stacks We Have Used: 
+## Stacks Used: 
 
 ## FRONTEND
 *  HTML
