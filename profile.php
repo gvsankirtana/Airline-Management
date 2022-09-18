@@ -106,7 +106,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
 ?>
 <!DOCTYPE html>
 <html>
-  <title>Payment Page</title>
+  <title>Profile</title>
   <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
