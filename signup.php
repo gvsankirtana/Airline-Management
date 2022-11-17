@@ -137,7 +137,7 @@
             <h4><center><b>Signup Now !!</b></center></h4>
           </div>
           <div class="panel-body">
-            <form action="/flight_management/Airport-management/signup.php" method="post">
+            <form action="/Airline-Management/signup.php" method="post">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Name" name="name">
               </div>
