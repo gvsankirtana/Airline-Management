@@ -23,20 +23,6 @@
     $gender =$_POST["gender$i"];
     $dob =$_POST["dob$i"];
     $exists=false;
-<<<<<<< HEAD
-    $sql2= " SELECT `passadhar`(@p0) AS `passadhar`";
-    $res = mysqli_query($conn, $sql2);
-    $row=mysqli_fetch_assoc($res);
-
-    //$count=mysqli_num_rows($res);
-    if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-      $nameErr = "Only letters and white space allowed" ;
-    } 
-    else if (!preg_match("/^[0-9\-\(\)\/\+\s]*$/",$phone)) {
-      $phoneErr = "Enter Valid Phone number" ;
-    } 
-    else if($row['passadhar']==0) {
-=======
     //$sql2 = "CALL passadhar($adhaar);";
     $sql2="SELECT count(*) FROM passenger_info WHERE Aadhar_No = '$adhaar'";
     $res = mysqli_query($conn, $sql2);
@@ -48,7 +34,6 @@
    }
     if(mysqli_num_rows($res)<=0) {
         //$sql = "CALL inspass('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
->>>>>>> 9ed5da6da84b0daf533c450bbef1565ab14060dc
         $sql = "INSERT INTO `passenger_info` ( `Aadhar_No`, `P_DOB`,`P_email`,`P_Name`,`P_gender`,`p_phone_no`,`state`,`city`,`pincode`) VALUES ('$adhaar', '$dob','$email','$name','$gender','$phone','$state','$city','$postal')";
         $sql1= "CALL ageup('$adhaar');";
         // $sql1= "UPDATE `passenger_info` SET `P_age` = year(CURRENT_DATE())-year(`P_DOB`) where Aadhar_No='$adhaar'";
