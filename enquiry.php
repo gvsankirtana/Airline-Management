@@ -294,21 +294,27 @@ echo '  <div class="alert alert-success" role="alert">
 		<div class="header-text">
 			Customer Enquiry
 		</div>
-		<input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> 
+		<input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle" style="color: #000000;"> 
 		<span class="error">
 			<?php 
 				echo $titleErr;
 			?>
 		</span>
-		<input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype">
+		<input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype" style="color: #000000;">
 		<span class="error">
 			<?php 
 				echo $typeErr;
 			?>
 		</span>
-		<textarea id="Description" name="Description" rows="1" cols="50"></textarea>
-		<span class="error"><?php echo $descriptionErr;?></span>
-		<button>Submit</button>
+		<textarea id="Description" name="Description" rows="1" cols="50" style="color: #000000;"></textarea>
+		<span class="error">
+			<?php 
+				echo $descriptionErr;
+			?>
+		</span>
+		<button>
+			Submit
+		</button>
 </form>
 	<script>
 		var menu=document.getElementById("menu");
