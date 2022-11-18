@@ -290,10 +290,25 @@ echo '  <div class="alert alert-success" role="alert">
 }
 ?>
 		<div class="form-box">
-		<form action=http://localhost/Airline_Management/enquiry.php method="POST">
+		<form action=http://localhost/Airline-Management/enquiry.php method="POST">
 		<div class="header-text">
 			Customer Enquiry
-		</div><input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> <span class="error"><?php echo $titleErr;?></span> <input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype"><span class="error"><?php echo $typeErr;?></span><textarea id="Description" name="Description" rows="1" cols="50"></textarea><span class="error"><?php echo $descriptionErr;?></span><button>Submit</button>
+		</div>
+		<input placeholder="Your Enquiry Title" type="text" id="enquirytitle" name="enquirytitle"> 
+		<span class="error">
+			<?php 
+				echo $titleErr;
+			?>
+		</span>
+		<input placeholder="Your Enquiry Type" type="text" id="enquirytype" name="enquirytype">
+		<span class="error">
+			<?php 
+				echo $typeErr;
+			?>
+		</span>
+		<textarea id="Description" name="Description" rows="1" cols="50"></textarea>
+		<span class="error"><?php echo $descriptionErr;?></span>
+		<button>Submit</button>
 </form>
 	<script>
 		var menu=document.getElementById("menu");
