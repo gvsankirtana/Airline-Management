@@ -1,6 +1,7 @@
 <?php
-session_start();
-
+if(!isset($_SESSION)){
+  session_start();
+}
 ?>
 
 <!doctype html>
@@ -35,9 +36,13 @@ session_start();
                 <span class="sr-only">(current)</span>
               </a>
         </li>        &nbsp;        &nbsp;
-        <?php 
-        if(($_SESSION["user"])==null)
+      <?php 
+        if(isset($_SESSION["user"]))
      { ?>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">Logout</a>
+        </li>        &nbsp;        &nbsp;
+      <?php } else{ ?>
         <li class="nav-item">
           <a class="nav-link" href="login.php">Login</a>
         </li>
@@ -46,14 +51,6 @@ session_start();
           <a class="nav-link" href="signup.php">Signup</a>
         </li>        &nbsp;        &nbsp;
         <?php } ?>
-
-      <?php 
-        if(($_SESSION["user"])!=null)
-     { ?>
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php">Logout</a>
-        </li>        &nbsp;        &nbsp;
-      <?php } ?>
       </ul>
       <br>
       <br>
