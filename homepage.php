@@ -258,7 +258,7 @@ h1 big {
 				  <br>
                <p>We are responsible for booking flight tickets and handle reservations for customers.<br>We are the face of the airline industry and the first point of contact for any customer while boarding a flight.
                <br>Our customers who hold an account in our application can book flight tickets in ease.
-               <br>Login/Signup to continue enjoying our services!! </p>
+               <br> Login/Signup to continue enjoying our services!! </p>
          <!--	<center><a href="login.php" class="btn btn-info btn-rounded btn-lg">BOOK NOW!</a></center>
 		-->  
        </div>
