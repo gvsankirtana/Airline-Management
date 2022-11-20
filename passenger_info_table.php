@@ -18,7 +18,7 @@
    $_SESSION['flightid']=$flight;
    $_SESSION['seats']=$seats;
    $_SERVER["REQUEST_METHOD"]="";
-   $sql1 = "SELECT email,phone_number FROM customer WHERE login_username = '$user'";
+   $sql1 = "SELECT email, phone_number FROM customer WHERE login_username = '$user'";
    $result = mysqli_query($conn,$sql1);
    $row = mysqli_fetch_row($result);
 ?>

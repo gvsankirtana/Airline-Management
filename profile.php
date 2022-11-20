@@ -1,6 +1,6 @@
 <?php 
      session_start();
-     if(($_SESSION["user"])==null)
+     if(!isset($_SESSION["user"]))
      {
       header("location: login.php");
      }
@@ -99,7 +99,7 @@ else if($_SERVER["REQUEST_METHOD"] == "POST" and $_POST["flag"]=="3" )
     $res5=mysqli_query($conn,$sql5);
     $row4=mysqli_fetch_assoc($res4);
     $row5=mysqli_fetch_assoc($res5);
-
+    
     $tic=$row4['count(*)'];
    
     
